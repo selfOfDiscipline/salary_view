@@ -221,6 +221,7 @@
                 this.listLoading = true
                 this.querydata.pageNum = this.pageNum
                 this.querydata.pageSize = this.pageSize
+                console.log(this.querydata)
                 selectCollectListBySalaryDate(this.querydata).then(res => {
                     if(res.code  == 200 ){
                         this.list = res.data;

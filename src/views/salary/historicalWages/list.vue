@@ -59,6 +59,11 @@
                         {{ (pageNum - 1) * pageSize + scope.$index + 1 }}
                         </template>
                     </el-table-column>
+                    <el-table-column label="所属日期" show-overflow-tooltip min-width="120" prop="salaryDate">
+                        <template slot-scope="scope">
+                            <span>{{ scope.row.salaryDate.substr(0, 7) }}</span>
+                        </template>
+                    </el-table-column>
                     <el-table-column label="员工姓名" prop="userName"></el-table-column>
                     <el-table-column label="实付工资" show-overflow-tooltip min-width="120" prop="totalIncomeMoney">
                         <template slot-scope="scope">
@@ -154,11 +159,7 @@
                             </template>
                         </el-table-column>
                     </el-table-column>
-                    <el-table-column label="所属日期" show-overflow-tooltip min-width="120" prop="salaryDate">
-                        <template slot-scope="scope">
-                            <span>{{ scope.row.salaryDate.substr(0, 7) }}</span>
-                        </template>
-                    </el-table-column>
+                    
                     <!-- <el-table-column label="操作" prop="businessTripMoney" width="100" fixed="right">
                         <template slot-scope="scope">
                             <el-tooltip placement="top">
