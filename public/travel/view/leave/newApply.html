@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>出差申请</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" type="text/css" href="../../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../../css/newApply.css">
+	<link rel="stylesheet" type="text/css" href="../../css/mobiscroll/mobiscroll.custom.min.css" />
+	<link rel="stylesheet" href="../../css/city/style.css">
+	<script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+	<script type="text/javascript" src="../../js/common/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../../app/js/base/base.js"></script>
+	<script type="text/javascript" src="../../js/common/cityList.js"></script>
+	<script type="text/javascript" src="../../js/common/attachmentUpload.js"></script>
+	<script type="text/javascript" src="../../js/newApply.js"></script>
+	<script type="text/javascript" src="../../js/mobiscroll/mobiscroll.custom.min.js"></script>
+	<script>
+		 function inputFocus(){
+		    setTimeout(function(){
+		      window.scrollTo(0,document.body.clientHeight);
+		    }, 500);
+		  }
+		  function onlyNumber(obj){    
+             	//得到第一个字符是否为负号    
+                var t = obj.value.charAt(0);      
+                //先把非数字的都替换掉，除了数字和.和-号    
+                obj.value = obj.value.replace(/[^\d\.\-]/g,'');       
+                //前两位不能是0加数字      
+                obj.value = obj.value.replace(/^0\d[0-9]*/g,''); 
+                //必须保证第一个为数字而不是.       
+                obj.value = obj.value.replace(/^\./g,'');       
+                //保证只有出现一个.而没有多个.       
+                obj.value = obj.value.replace(/\.{2,}/g,'.');       
+                //保证.只出现一次，而不能出现两次以上       
+                obj.value = obj.value.replace('.','$#$').replace(/\./g,'').replace('$#$','.');  
+                //如果第一位是负号，则允许添加    
+                obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');  
+               if(t == '-'){ return; }    
+           }
+	</script>
+	<style type="text/css">
+		input::-webkit-input-placeholder {
+			color: #9B9B9B;
+	    }
+		.departure_city >input{
+		    border: none;
+		    text-align: right;
+		    color: #9B9B9B !important;
+		    font-size: .4rem;
+		    background: transparent;
+		}
+	</style>
+</head>
+<body>
+	<div id="newApply">
+		<input type="hidden" name="id" id="resultId">
+		<div class="content_one">
+			<div class="content_title">
+				<div class="theme">出差计划（<span class="article">1</span>条）</div>
+				<span class="add plusAdd"></span>
+			</div>
+			<div class="content_hide" style="display:none">
+				<div class="wrap">
+					<p class="detail">出差明细</p>
+					<div class="content_bottom">
+						<div class="fewer clearfix">
+							<div class="few_left">
+								<div class="destination">
+									<span class="elapsedCity">请选择</span> - <span class="finishCity">请选择</span>
+								</div>
+								<div class="time_bom">
+									<span class="elapsedTime">2018-12-25 09:00</span>至<span class="finishTime">2018-12-25 09:00</span>
+								</div>
+							</div>
+							<div class="few_right">
+								展开
+							</div>		
+						</div>
+						<ul class="details clearfix">
+							<li class="transportType_li">
+								<input type="hidden" name="" class="businessTripId" value="1">
+								<input type="hidden" name="itemList[0].transportType" class="selected_clickVal" value="1">
+								<span class="detailsLeft im_list selected_click">
+									<div class="payment payment_important" style="margin-left: 0;">
+										<div class="pay_btn" id="pay_active"></div>
+										<i>飞机</i>
+									</div>
+									<div class="payment payment_important">
+										<div class="pay_btn"></div>
+										<i>火车</i>
+									</div>
+									<div class="payment payment_important">
+										<div class="pay_btn"></div>
+										<i>酒店</i>
+									</div>
+									<div class="payment payment_important">
+										<div class="pay_btn"></div>
+										<i>打车</i>
+									</div>
+									<div class="payment payment_important">
+										<div class="pay_btn"></div>
+										<i>差补</i>
+									</div>
+								</span>
+							</li>
+							<li class="tripRoute">
+								<a href="javascript:;" class="trip_text">行程类型</a>
+								<input type="hidden" name="itemList[0].tripType" class="selected_clickTypeVal" value="0">
+								<span class="detailsLeft selected_clickType">
+									<div class="payment">
+										<div class="pay_btn" id="pay_activeType"></div>
+										<i>单程</i>
+									</div>
+									<div class="payment">
+										<div class="pay_btn"></div>
+										<i>往返</i>
+									</div>
+								</span>
+							</li>
+							<li class="typeForm clearfix" style="height: initial;">
+								<a href="javascript:;" class="type_text">飞机舱位</a>
+								<input type="hidden" name="itemList[0].businessTripLevel" class="location" value="0">
+								<span class="detailsLeft" style="width: 70%;text-align: right;line-height: .9rem;">
+									<a href="javascript:;" class="genre genre_text">头等舱</a>
+									<!-- <img class="corners_right" src="../../img/corners_right.png"> -->
+								</span>
+							</li>
+							<li class="housingCityShow">
+								<p class="housing" style="float: left;">出发城市</p>
+								<span class="detailsLeft departure_city" style="width: 75%;">
+									<input type="text" readonly="readonly"  name="itemList[0].startAddress" class="departmentName cityName" value="请选择" placeholder="请选择" uuid="0">
+								</span>
+								<input type="hidden" name="itemList[0].startAddressid" class="departmentNameid" value="2234">
+								<input type="hidden" name="" class="flightType departureCityFlightType" value="1">
+							</li>
+							<li class="housingCityHide">
+								到达城市
+								<!-- <p class="annotation">出差城市需与携程中城市相匹配</p> -->
+								<span class="detailsLeft departure_city" style="width: 75%;">
+									<input type="text" readonly="readonly"  name="itemList[0].endAddress" class="arriveName cityName" value="请选择" placeholder="请选择" uuid="0">
+								</span>
+								<input type="hidden" name="itemList[0].startAddressid" class="departmentNameid" value="1061" >
+								<input type="hidden" name="" class="flightType arrivalCityFlightType" value="1">
+							</li>
+							
+							<li class="traveldays" style="display:none;">
+								<p class="housing" style="float: left;">住宿天数</p>
+								<span style="width: 60%;"  class="detailsLeft"	>
+									<input type="number" name="itemList[0].traveldays" class="traveldaysVal" value="" placeholder="" onKeyPress="if (event.keyCode!=46 && event.keyCode!=45 && event.keyCode<48 || event.keyCode>57)) event.returnValue=false"/>
+								</span>
+							</li>
+							
+							<li class="timetog">
+								去程日期
+								<span class="detailsLeft">
+									<input type="text" class="timestartClass detail_input datetimestart"  name="itemList[0].startDate" readonly="readonly" value="2019-01-17 10:30" style="border: none;text-align: right;"/>
+									<!-- <img class="corners_right" src="../../img/corners_right.png"> -->
+								</span>
+							</li>
+							<li class="timetog timetogEnd" style="display:none">
+								返程日期
+								<span class="detailsLeft">
+									<input type="text" class="timeendClass detail_input1 datetimeend" name="itemList[0].endDate" readonly="readonly" value="2019-01-17 10:30" style="border: none;text-align: right;"/>
+									<!-- <img class="corners_right" src="../../img/corners_right.png"> -->
+								</span>
+							</li>
+							<li class="particularMoney">
+								<p class="housing" style="float: left;">机票预估金额</p>
+								<span class="detailsLeft" style="width: 50%;">
+									<input type="number" onkeyup="onlyNumber(this)" readonly="readonly" class="particularMoneyVal" value="" placeholder="0.00" style="width: 100%;border: none;text-align: right;color: #9B9B9B !important;font-size: .4rem;background: transparent;" >
+								</span>
+							</li>
+							<li class="pay">
+								支付方式
+								<input type="hidden" name="itemList[0].paymientType" class="selected_clickPayVal" value="1">
+								<span class="detailsLeft selected_clickPay">
+									<div class="payment paypersonal">
+										<div class="pay_btn"></div>
+										<i>个人垫付</i>
+									 </div>
+									<div class="payment  paycompany">
+										<div class="pay_btn"  id="pay_activePay"></div>
+										<i>公司支付</i>
+									</div>
+								</span>
+							</li>
+							<li class="protection" style="display:none">
+								护照名
+								<span class="detailsLeft" style="width:70%">
+									<input type='text' onfocus="inputFocus()" value="" placeholder="例如:HAN/XUEFENG  (必填)" style="border: none;text-align: right;font-size:.4rem;width: 100%;"/>
+								</span>
+							</li>
+							<li class="remark">
+								备注
+								<span class="detailsLeft">
+									<input type='text' onfocus="inputFocus()"  placeholder="请填写备注" style="border: none;text-align: right;font-size:.4rem;"/>
+								</span>
+							</li>
+							<div class="pack_up">收起明细</div>
+							<div class="cencal">删除明细</div> 	
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="content_wrap">
+				
+			</div>
+			<div class="identity">提交身份</div>
+			<div class="identity_wrap">
+				<span>>集团部门员工>泰禾集团/集团总部/信息流程部/平台应用组/页面规</span>
+				<img class="corners_right" src="../../img/corners_right.png" style="float: right;margin-top: .15rem;">
+			</div>
+			
+			<div class="content">
+	            <div class="Enclosure" id="addEnclosure">附件<span class="add_theme"></span></div>
+	            <ul class="enclosure_list">
+	                <li id="noAttachment">暂无附件</li>
+	                <!-- <li>
+	                    <span class="list_left"></span>
+	                    <p>client2018-07-26.doc</p>
+	                    <span class="list_right"></span>
+	                </li>
+	                <li>
+	                    <span class="list_left"></span>
+	                    <p>760B2170-C024-48C8-AA760B2170-C024.doc</p>
+	                    <span class="list_right"></span>
+	                </li> -->
+	            </ul>
+	        </div>
+		</div>
+		<div class="btn_wrap">
+			<button type="button" class="save" id="preserve">保存</button>
+			<button type="button" class="next" id="next_step">提交</button>
+		</div>
+	</div>
+	<div class="Reminder">
+	    <div class="hide_show">
+	        <div class="Reminder_con">
+	            <p>提示</p>
+	            <p id="promptContent">查询失败！</p>
+	            <div class="cancel_btn">
+	                <span class="cancel">知 道 了</span>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<!-- 提交身份选择弹出框 -->
+	<div class="rank_rgba">
+		<div class="rank_type">
+			<h2>请选择提交身份</h2>
+			<ul class="ranktype_ul">
+				<!-- <li class="pitch">
+					<div class="rankleft">
+						<h3 class="rankType">预算主体11</h3>
+					</div>
+					<div class="rankright">
+						<img class="no_selected" src="../../img/selected.png">
+					</div>
+				</li>
+				<li>
+					<div class="rankleft">
+						<h3>预算主体22</h3>
+					</div>
+					<div class="rankright">
+						<img class="no_selected" src="../../img/no_selected.png">
+					</div>
+				</li> -->
+			</ul>
+		</div>
+	</div>
+	<div class="loading">
+	    <img src="../../img/loading.gif" class="img-responsive">
+	</div>
+	
+	<div class="Citywrap"   style="display:none">
+		<div class="schbox">
+			<input id="cityipt" placeholder="搜索"  type="text" />
+			<img src="" class="search_img">
+			<span class="cancel_city">取消</span>
+		</div>
+		<div class=" aircraftTab">
+			<ul>
+				<li class="active" id="inland">国内</li>
+				<li id="international">国际·港澳台</li>
+			</ul>
+			
+		</div>
+	    <div id="showLetter" class="showLetter">
+	    	<span>A</span>
+	    </div>
+	    <!--城市列表-->
+		<div class="container_im">
+		    <div class="city">
+		    </div>
+		</div>
+		<!--城市索引查询-->
+		<div class="letter">
+		    <ul>
+		        <li><a href="javascript:;">A</a></li>
+		        <li><a href="javascript:;">B</a></li>
+		        <li><a href="javascript:;">C</a></li>
+		        <li><a href="javascript:;">D</a></li>
+		        <li><a href="javascript:;">E</a></li>
+		        <li><a href="javascript:;">F</a></li>
+		        <li><a href="javascript:;">G</a></li>
+		        <li><a href="javascript:;">H</a></li>
+		        <li><a href="javascript:;">J</a></li>
+		        <li><a href="javascript:;">K</a></li>
+		        <li><a href="javascript:;">L</a></li>
+		        <li><a href="javascript:;">M</a></li>
+		        <li><a href="javascript:;">N</a></li>
+		        <li><a href="javascript:;">P</a></li>
+		        <li><a href="javascript:;">Q</a></li>
+		        <li><a href="javascript:;">R</a></li>
+		        <li><a href="javascript:;">S</a></li>
+		        <li><a href="javascript:;">T</a></li>
+		        <li><a href="javascript:;">W</a></li>
+		        <li><a href="javascript:;">X</a></li>
+		        <li><a href="javascript:;">Y</a></li>
+		        <li><a href="javascript:;">Z</a></li>
+		    </ul>
+		</div>
+	</div>
+	<!--删除弹框-->
+	<div class="delete_warn" style="display: none;">
+	    <div class="hide_show">
+	        <div class="Reminder_con">
+	            <p>是否确认删除！</p>
+	            <div>
+	                <span class="cancel_delete">取消</span>
+	                <span class="confirm_deletion">确定</span>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</body>
+</html>	

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>出差申请</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" type="text/css" href="../../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../../css/travel.css">
+	<link rel="stylesheet" type="text/css" href="../../css/mobiscroll/mobiscroll.custom.min.css" />
+	<!--<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>-->
+	<script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+	<script type="text/javascript" src="../../js/common/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../../app/js/base/base.js"></script>
+	<script type="text/javascript" src="../../js/common/attachmentUpload.js"></script>
+	<script type="text/javascript" src="../../js/alter_travel.js"></script>
+	<script type="text/javascript" src="../../js/mobiscroll/mobiscroll.custom.min.js"></script>
+</head>
+<body>
+	<div class="content_one">
+		<div class="content_top">
+			<div class="theme">标题</div>
+			<div class="write_topic">
+				<span>
+					<input name="" class="themeval" id="themeval" type="text" readonly="readonly" placeholder="" maxlength="25"/>
+				</span>
+			</div>
+		</div>
+		<div class="content_bottom">
+			<div class="theme">基本信息</div>
+			<ul class="details clearfix">
+			</ul>
+		</div>
+		<div class="content_footer">
+			<div class="theme">事由</div>
+			<div class="write_topic ">
+				<textarea  class="reason" style="padding:.25rem 0;" readonly="readonly" placeholder=""></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="btn_wrap">
+		<!-- <button type="button" class="save" id="preserve">保存</button> -->
+		<button type="button" class="next" id="next_step" style="width:92%">下一步</button>
+	</div>
+	<div class="Reminder">
+	    <div class="hide_show">
+	        <div class="Reminder_con">
+	            <p>提示</p>
+	            <p id="promptContent">查询失败！</p>
+	            <div class="cancel_btn">
+	                <span class="cancel">知 道 了</span>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div class="loading">
+	    <img src="../../img/loading.gif" class="img-responsive">
+	</div>
+</body>
+</html>

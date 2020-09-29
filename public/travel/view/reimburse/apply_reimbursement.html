@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>报销申请</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" type="text/css" href="../../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../../css/apply_reimbursement.css">
+	<link rel="stylesheet" type="text/css" href="../../css/mobiscroll/mobiscroll.custom.min.css">
+	<script type="text/javascript" src="../../js/common/jquery-min.js"></script>
+	<script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+	<script type="text/javascript" src="../../../../app/js/base/base.js"></script>
+	<script type="text/javascript" src="../../js/apply_reimbursement.js"></script>
+	<script type="text/javascript" src="../../js/mobiscroll/mobiscroll.custom.min.js"></script>
+	<style type="text/css">
+		/* ios12 input[disabled]导致字体不兼容颜色变浅问题*/
+		input[disabled],input:disabled,input.disabled{
+			color: #9B9B9B;
+			-webkit-text-fill-color: #9B9B9B;
+			-webkit-opacity:1;
+			opacity: 1;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="content_one">
+		<div class="content_top">
+			<div class="theme">标题</div>
+			<div class="write_topic">
+				<span>
+					<input name="" class="themeval" id="themeval" type="text" placeholder="此处填写主题" maxlength="25"/>
+				</span>
+			</div>
+		</div>
+		<div class="content_bottom">
+			<div class="theme">基本信息</div>
+			<ul class="details clearfix">
+				
+			</ul>
+		</div>
+		<div class="content_footer">
+			<div class="theme">事由</div>
+			<div class="write_topic ">
+				<textarea  class="reason" style="padding:.25rem 0;" placeholder="请填写"></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="btn_wrap">
+		<button type="button" class="save" id="preserve">保存</button>
+		<button type="button" class="next" id="next_step">下一步</button>
+	</div>
+	<!-- 法人公司选择弹出框 -->
+	<div class="corporation_fix">
+		<div class="corporation_type">
+			<h2>请选择收款银行</h2>
+			<ul class="corporation_ul">
+				<!-- <li class="pitch">
+					<div class="rankleft">
+						<h3 class="rankType">预算主体11</h3>
+					</div>
+					<div class="rankright">
+						<img class="no_selected" src="../../img/selected.png">
+					</div>
+				</li>
+				<li>
+					<div class="rankleft">
+						<h3>预算主体22</h3>
+					</div>
+					<div class="rankright">
+						<img class="no_selected" src="../../img/no_selected.png">
+					</div>
+				</li> -->
+			</ul>
+		</div>
+	</div>
+	<div class="loading">
+	    <img src="../../img/loading.gif" class="img-responsive">
+	</div>
+	<div class="Reminder">
+	    <div class="hide_show">
+	        <div class="Reminder_con">
+	            <p>提示</p>
+	            <p id="promptContent">查询失败！</p>
+	            <div class="cancel_btn">
+	                <span class="cancel">知 道 了</span>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</body>
+</html>	

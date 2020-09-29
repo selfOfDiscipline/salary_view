@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的发票-发票详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../../css/invoice_details.css">
+    <script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+    <script type="text/javascript" src="../../js/common/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/invoice_details.js"></script>
+    <script src="../../js/common/base.js"></script>
+</head>
+<body>
+<!--<div class="header">
+    <div class="return"><span class="arrowUp"></span>返回</div>
+    <div class="title">发票详情</div>
+    <div class="shut" id="delectInvoice" style="display: none">删除</div>
+</div>-->
+<div class="container" id="container">
+    <div class="loading">
+        <img src="../../img/loading.gif" class="img-responsive">
+    </div>
+    <!--<div class="content">
+        <div class="theme Enclosure">增值税普通发票</div>
+        <ul class="details clearfix">
+            <li>
+                开票方 <span class="slide_out_details"></span><p>北京伊缘相餐饮有限公司</p>
+                <ul class="toggleBox">
+                    <li>
+                        纳税人识别号
+                        <p>911192357382933290</p>
+                    </li>
+                    <li>
+                        地址电话
+                        <p>北京市朝阳区大北窑路口东南角</p>
+                        <p>65680632</p>
+                    </li>
+                    <li>开户行账户
+                        <p>广东发展银行股份有限公司北京建国路支行</p>
+                        <p>137041518010028831</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                收票方 <span class="slide_out_details"></span><p>泰禾集团股份有限公司北京…</p>
+                <ul class="toggleBox">
+                    <li>纳税人识别号
+                        <p>911192357382933290</p>
+                    </li>
+                    <li>地址电话
+                        <p>北京市朝阳区大北窑路口东南角</p>
+                        <p>65680632</p>
+                    </li>
+                    <li>开户行账户
+                        <p>广东发展银行股份有限公司北京建国路支行</p>
+                        <p>137041518010028831</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                开票日期 <p>2018年09月11日</p>
+            </li>
+            <li>
+                开票内容 <span class="slide_out_details"></span><p>*餐饮服务*餐饮</p>
+                <ul class="toggleBox">
+                    <li>金额
+                        <p>406.00</p>
+                    </li>
+                    <li>税率
+                        <p>3%</p>
+                    </li>
+                    <li>税额
+                        <p>12.20</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                发票代码 <p>011001800104</p>
+            </li>
+            <li>
+                发票号码 <p>40306882</p>
+            </li>
+            <li>
+                校验码 <p>43858298384102938829</p>
+            </li>
+        </ul>
+        <ul class="details clearfix">
+            <li>
+                消费类型 <span class="slide_out_details"></span><p>餐饮</p>
+                <ul class="toggleBox">
+                    <li>纳税人识别号
+                        <p>911192357382933290</p>
+                    </li>
+                    <li>地址电话
+                        <p>北京市朝阳区大北窑路口东南角</p>
+                        <p>65680632</p>
+                    </li>
+                    <li>开户行账户
+                        <p>广东发展银行股份有限公司北京建国路支行</p>
+                        <p>137041518010028831</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                查验状态 <p class="Inspection">查验</p>
+            </li>
+            <li class="Inspection_out">
+                查验交互
+                <p class="inspection_hints"><span class="inspection_late">(查验后)</span>发票查询失败，请联系管理员</p>
+            </li>
+            <li>
+                备忘录
+                <p><input type="text" class="memorandum" placeholder="请输入要记录的内容"></p>
+            </li>
+            <li>
+                支付类型
+                <p>
+                    <input type="radio" name="pay"> 个人支付
+                    <input type="radio" name="pay"> 公司支付
+                </p>
+            </li>
+            <li>
+                所属业务
+                <p>
+                    <input type="radio" name="pay"> 费控系统
+                    <input type="radio" name="pay"> 成本系统
+                </p>
+            </li>
+            <li>
+                使用状态 <p>已使用</p>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="Enclosure">附件<span class="add_theme"></span></div>
+        <ul class="enclosure_list">
+            <li>暂无附件</li>
+            <li><span class="list_left"></span><p>client2018-07-26.txt</p><span  class="list_right"></span></li>
+            <li><span class="list_left"></span><p>760B2170-C024-48C8-AA....png</p><span  class="list_right"></span></li>
+        </ul>
+    </div>-->
+</div>
+<div class="Reminder">
+    <div class="hide_show">
+        <div class="Reminder_con">
+            <p>提示</p>
+            <p id="promptContent">删除成功！</p>
+            <div class="cancel_btn">
+                <span class="cancel">知 道 了</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 职级类型选择弹出框 -->
+<div class="rank_rgba">
+    <div class="rank_type">
+        <h2>请选择所属业务</h2>
+        <ul class="ranktype_ul">
+            <li class="pitch" code='1'>
+                <div class="rankleft">
+                    <h3 class="rankType">费控系统</h3>
+                </div>
+                <div class="rankright">
+                    <img class="no_selected" src="../../img/selected.png">
+                </div>
+            </li>
+            <li code='2'>
+                <div class="rankleft">
+                    <h3>成本系统</h3>
+                </div>
+                <div class="rankright">
+                    <img class="no_selected" src="../../img/no_selected.png">
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="delete_warn">
+    <div class="hide_show">
+        <div class="Reminder_con">
+            <p>是否确认删除！</p>
+            <div>
+                <span class="cancel_delete">取消</span>
+                <span class="confirm_deletion">确定</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,118 @@
+.header{
+    background: #FBFBFB;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+}
+.container .content{
+    margin-top: .5rem;
+}
+.container .content .details{
+    width: 92%;
+    background: #FFFFFF;
+    margin: 0  auto .4rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+}
+.container .content  .details .subjectData{
+    /*line-height: 1.25rem;*/
+    font-size: .425rem;
+    border-bottom: 1px solid #e1e3e4;;
+    padding:0  .375rem;
+}
+.container .content .details .subjectData>span{
+    color: #9B9B9B;
+    display: inline-block;
+    float: right;
+}
+.container .content  .details .subjectData .details_title{
+    width: 82%;
+    height: 1.25rem;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    padding: .125rem 0;
+}
+.container .content  .details .subjectData .details_title span{
+    display: block;
+    font-size: .4rem;
+    color: #0D0E10;
+}
+.container .content  .details .subjectData .details_title p{
+    display: inline-block;
+    font-size: .3rem;
+    color: #9B9B9B;
+    float: right;
+}
+.container .content  .details .subjectData .details_title p:nth-child(2){
+    float: left;
+}
+.container .content  .details .subjectData>span.slide_out_details{
+    width: 12px;
+    height: 1.25rem;
+    margin-left: 0.25rem;
+    background: url(../img/Retract.png)no-repeat center;
+}
+.container .content .details .subjectData>span.slide_in_details{
+    background: url(../img/Open.png)no-repeat center;
+}
+.container .content  .details .subjectData .open{
+    background: url("../img/Open.png")no-repeat;
+}
+
+.container .content .details .subjectData .toggleCon{
+    display: block;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    /*margin-bottom: .4rem;*/
+}
+.container .content .details .subjectData  .toggleBox{
+    width: 100%;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    padding:0.25rem;
+    font-family: PingFangSC-Regular;
+    font-size: .3rem;
+    color: #9B9B9B;
+    background: #F5F5F5;
+    border: 1px solid #E6E6E6;
+    border-radius: 4px;
+    margin-bottom: .26rem;
+}
+/*
+.container .content .details .subjectData  .flight{
+    margin-bottom: 0;
+}
+*/
+
+.container .content  .details .subjectData .toggleBox>li{
+    position: relative;
+    width: 100%;
+    line-height: .7rem;
+}
+.container .content  .details .subjectData .toggleBox>li p{
+    float: right;
+    display: block;
+    color: #000000;
+}
+.container .content  .details .subjectData .toggleBox>li p i{
+   font-style: normal;
+}
+
+.container .content  .details .subjectData .toggleBox>li.fixed_position {
+    height: .7rem;
+    display: flex;
+    justify-content: space-between;
+}
+.container .content  .details .subjectData .toggleBox>li.flight_com{
+    height: 1.25rem;
+}
+
+.container .content  .details .subjectData .toggleBox>li.fixed_position span{
+    width: 50%;
+    text-align: center;
+    align-self: center;
+}
+.container .content  .details .subjectData .toggleBox>li.fixed_position span:nth-child(1){
+    color: #1660A3;
+}

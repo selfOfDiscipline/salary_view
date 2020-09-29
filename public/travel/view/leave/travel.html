@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>出差申请</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" type="text/css" href="../../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../../css/travel.css">
+	<link rel="stylesheet" type="text/css" href="../../css/mobiscroll/mobiscroll.custom.min.css" />
+	<!--<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>-->
+	<script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+	<script type="text/javascript" src="../../js/common/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../../app/js/base/base.js"></script>
+	<script type="text/javascript" src="../../js/common/attachmentUpload.js"></script>
+	<script type="text/javascript" src="../../js/travel.js"></script>
+	<script type="text/javascript" src="../../js/mobiscroll/mobiscroll.custom.min.js"></script>
+	<script>
+	 function inputFocus(){
+	    setTimeout(function(){
+	      window.scrollTo(0,document.body.clientHeight);
+	    }, 500);
+	  }
+</script>
+	</script>
+	<style type="text/css"> 
+	.details li:last-child{
+		border-bottom:none;
+	} 
+	</style>
+</head>
+<body  style="font-size: 12px;overflow: scroll;">
+	<!-- <div class="header">
+		<div class="return"><span class="arrowUp"></span>返回</div>
+		<div class="title">出差申请</div>
+		<div class="shut">关闭</div>
+	</div> -->
+	<div class="content_one">
+		<div class="content_top">
+			<div class="" style="height: 1.25rem;">
+			    <div class="theme" style="float: left;">标题</div>
+			    <!-- <div class="cancel_draught" style="padding-right: 4%;float: right;line-height: 1.25rem;color: #1660A3;font-size: .45rem;font-weight: bold;">删除</div> -->
+			</div>
+			<div class="write_topic">
+				<span>
+					<input name="" class="themeval" id="themeval" type="text" placeholder="此处填写主题(必填)" maxlength="25"/>
+				</span>
+			</div>
+		</div>
+		<div class="content_bottom">
+			<div class="theme">基本信息</div>
+			<ul class="details clearfix">
+				<li>
+					经办日期
+					<span class="detailsLeft">
+						<span class="deta_val Datenew">请选择</span>
+						<!-- <img class="corners_right" src="../../img/corners_right.png"> -->
+					</span>
+				</li>
+				<li>
+					开始时间
+					<span class="detailsLeft">
+						<input type="text" id="demo_datetime" class="detail_input datetimestart" readonly="readonly" value="" style="border: none;text-align: right;"/>
+						<img class="corners_right" src="../../img/corners_right.png">
+					</span>
+				</li>
+				<li>
+					截止日期
+					<span class="detailsLeft">
+						<input type="text" id="demo_datetime_end" class="detail_input1 datetimeend" readonly="readonly" value="" style="border: none;text-align: right;"/>
+						<img class="corners_right" src="../../img/corners_right.png">
+					</span>
+				</li>
+				<li>
+					出差天数
+					<span class="detailsLeft">
+						<span class="deta_val travelday" style="width: 1.5rem;">0</span>天
+						<u class="count">计算</u>
+					</span>
+				</li>
+				<li>
+					职级类型
+					<span class="detailsLeft">
+						<span class="deta_val grade">请选择</span>
+						<img class="corners_right" src="../../img/corners_right.png">
+					</span>
+				</li>
+				<!-- <li class="linear_type_click">
+					业务条线类型
+					<span class="detailsLeft">
+						<span class="deta_val linearVal">请选择</span>
+						<img class="corners_right" src="../../img/corners_right.png">
+					</span>
+				</li> -->
+				<li class="service_bar_type">
+					经办部门
+					<span class="detailsLeft">
+						<span class="deta_val businessVal">请选择</span>
+						<img class="corners_right" src="../../img/corners_right.png">
+					</span>
+				</li>
+				<li class="rank_rgba_click">
+					预算主体
+					<span class="detailsLeft">
+						<span class="deta_val rankTypeVal">请选择</span>
+						<img class="corners_right" src="../../img/corners_right.png">
+					</span>
+				</li>
+				<li class="subject_fix_click">
+					费用科目
+					<span class="detailsLeft">
+						<span class="deta_val subjectVal">请选择</span>
+						<img class="corners_right" src="../../img/corners_right.png">
+					</span>
+				</li>
+				<li class="corporation_fix_click">
+					法人公司
+					<span class="detailsLeft">
+						<span class="deta_val corporation" style="width: 5rem;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;display: block;text-align: right;float: left;">请选择</span>
+						<img class="corners_right" src="../../img/corners_right.png">
+					</span>
+				</li>
+				<li>
+					当前预算剩余(不含本次)
+					<span class="detailsLeft">
+						<i style="font-style: normal;" class="the_money business_surplus_money"></i>
+						<!-- <input type="text" style="color: #000 !important;" placeholder="￥0.00" name="name" id=""  disabled class="the_money business_surplus_money" /> -->
+					</span>
+				</li>
+				<li style="position: relative;height: 1.25rem;line-height: .8rem;display:none;">
+					<p style="width: 2.5rem; float: left;">本次使用预估</p>
+					<div class="hint" style="line-height: .4rem;font-size: .3rem;position: absolute;bottom: 0.1rem;color: #4787FF;">请参考"北京-上海3天2晚,5000元/人"进行预估</div>
+					<span class="detailsLeft" style="margin-top: .2rem;">
+						<input style="width: 4rem;cursor: pointer;di" value="0" type="number" placeholder="0.00" name="name" id="" class="the_money business_trip_money inputFocus" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')"/>
+					</span>
+				</li>
+			</ul>
+		</div>
+		<div class="content_footer">
+			<div class="theme">事由</div>
+			<div class="write_topic ">
+				<textarea  class="reason inputFocus" style="padding:.25rem 0;" placeholder="此处填写事由(必填)" ></textarea>
+			</div>
+		</div>
+		<div class="btn_wrap">
+			<button type="button" class="save" id="preserve">保存</button>
+			<button type="button" class="next" id="next_step">下一步</button>
+		</div>
+	</div>
+	<!-- 职级类型选择弹出框 -->
+	<div class="rank_rgba">
+		<div class="rank_type">
+			<h2>请选择预算主体</h2>
+			<ul class="ranktype_ul">
+				<!-- <li class="pitch">
+					<div class="rankleft">
+						<h3 class="rankType">预算主体11</h3>
+					</div>
+					<div class="rankright">
+						<img class="no_selected" src="../../img/selected.png">
+					</div>
+				</li>
+				<li>
+					<div class="rankleft">
+						<h3>预算主体22</h3>
+					</div>
+					<div class="rankright">
+						<img class="no_selected" src="../../img/no_selected.png">
+					</div>
+				</li> -->
+			</ul>
+		</div>
+	</div>
+	<!-- 法人公司选择弹出框 -->
+	<div class="corporation_fix">
+		<div class="corporation_type">
+			<h2>请选择法人公司</h2>
+			<ul class="corporation_ul">
+				<!-- <li class="pitch">
+					<div class="rankleft">
+						<h3 class="rankType">预算主体11</h3>
+					</div>
+					<div class="rankright">
+						<img class="no_selected" src="../../img/selected.png">
+					</div>
+				</li>
+				<li>
+					<div class="rankleft">
+						<h3>预算主体22</h3>
+					</div>
+					<div class="rankright">
+						<img class="no_selected" src="../../img/no_selected.png">
+					</div>
+				</li> -->
+			</ul>
+		</div>
+	</div>
+	<!-- 费用科目选择弹出框 -->
+	<div class="subject_fix">
+		<div class="subject_type">
+			<h2>请选择费用科目</h2>
+			<ul class="subject_ul">
+				<!-- <li class="pitch">
+					<div class="rankleft">
+						<h3 class="rankType">预算主体11</h3>
+					</div>
+					<div class="rankright">
+						<img class="no_selected" src="../../img/selected.png">
+					</div>
+				</li>
+				<li>
+					<div class="rankleft">
+						<h3>预算主体22</h3>
+					</div>
+					<div class="rankright">
+						<img class="no_selected" src="../../img/no_selected.png">
+					</div>
+				</li> -->
+			</ul>
+		</div>
+	</div>
+	<!-- 组织结构选择弹出框 -->
+	<div class="business_fix">
+		<div class="business_type">
+			<h2>请选择组织结构</h2>
+			<ul class="business_ul">
+				<!-- <li class="pitch">
+					<div class="rankleft">
+						<h3 class="rankType">预算主体11</h3>
+					</div>
+					<div class="rankright">
+						<img class="no_selected" src="../../img/selected.png">
+					</div>
+				</li>
+				<li>
+					<div class="rankleft">
+						<h3>预算主体22</h3>
+					</div>
+					<div class="rankright">
+						<img class="no_selected" src="../../img/no_selected.png">
+					</div>
+				</li> -->
+			</ul>
+		</div>
+	</div>
+	<!-- 业务条线类型选择弹出框 -->
+	<div class="linear_fix">
+		<div class="linear_type">
+			<h2>请选择业务条线类型</h2>
+			<ul class="linear_ul">
+				<li class="clearfix pitch">
+					<div class="rankleft">
+						<h3 class="rankType rankTypelinear">营销、设计、成本、运营、工程、客观专业条线 M3以上</h3>
+					</div>
+					<div class="rankright">
+						<img class="no_selected" src="../../img/no_selected.png">
+					</div>
+				</li>
+				<li class="clearfix pitch">
+					<div class="rankleft">
+						<h3>其他条线 M3以上</h3>
+					</div>
+					<div class="rankright">
+						<img class="no_selected" src="../../img/no_selected.png">
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="Reminder">
+	    <div class="hide_show">
+	        <div class="Reminder_con">
+	            <p>提示</p>
+	            <p id="promptContent">查询失败！</p>
+	            <div class="cancel_btn">
+	                <span class="cancel">知 道 了</span>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div class="loading">
+	    <img src="../../img/loading.gif" class="img-responsive">
+	</div>
+</body>
+</html>

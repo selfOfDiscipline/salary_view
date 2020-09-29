@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发票抬头</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../../css/reset.css">
+    <script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/personnel_invoice.css">
+    <script type="text/javascript" src="../../js/common/jquery-min.js"></script>
+    <script type="text/javascript" src="../../js/personnel_invoice.js"></script>
+    <!--<script type="text/javascript" src="../../js/autocomplete/jquery-1.4.2.min.js"></script>-->
+    <script type="text/javascript" src="../../js/autocomplete/jquery.autocomplete.js"></script>
+    <script src="../../../../app/js/base/base.js"></script>
+</head>
+<body>
+<!--<div class="header">
+    <div class="return"><span class="arrowUp"></span>返回</div>
+    <div class="title">人员发票抬头信息表</div>
+    <div class="shut" id="deleteInvoiceHead" style="display: none">删除</div>
+</div>-->
+<div class="container">
+    <div class="loading">
+        <img src="../../img/loading.gif" class="img-responsive">
+    </div>
+    <div class="content">
+        <div class="invoiceRise">发票抬头 <span  id="deleteInvoiceHead" style="display: none">删除</span></div>
+        <div class="all_content">
+            <div class="content_ul">
+                <ul class="wrap">
+                    <li>
+                        <span class="line_tit">名称</span>
+                        <input type="text" class="line_val" id="searchInput"  placeholder="公司名称（可检索）" value="">
+                        <input type="hidden" id="hiddenResult" value="">
+                    </li>
+                    <li>
+                        <span class="line_tit">税号</span>
+                        <p  class="line_con" id="tax"></p>
+                    </li>
+                    <li>
+                        <span class="line_tit">开户银行</span>
+                        <p  class="line_con" id="openBank"></p></li>
+                    <li>
+                        <span class="line_tit">银行账号</span>
+                        <p class="line_con" id="bankAccount"></p></li>
+                    <li>
+                        <span class="line_tit">公司电话</span>
+                        <p class="line_con" id="officeTelephone"></p></li>
+                    <li>
+                        <span class="line_tit">营业执照地址</span>
+                        <p class="line_con" id="licenseAddress"></p>
+                    </li>
+                    <li>
+                        <span class="line_tit"  style="width: 84%;">是否默认</span>
+                        <p class="checkBox" id="checkFlag">
+                            <span class="checkButton"></span>
+                        </p>
+                    </li>
+                </ul>
+                <div class="sure" id="sure">保 存</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="Reminder">
+    <div class="hide_show">
+        <div class="Reminder_con">
+            <p>提示</p>
+            <p id="promptContent"></p>
+            <div class="cancel_btn">
+                <span class="cancel">知 道 了</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="delete_warn">
+    <div class="hide_show">
+        <div class="Reminder_con">
+            <p>是否确认删除！</p>
+            <div>
+                <span class="cancel_delete">取消</span>
+                <span class="confirm_deletion">确定</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+</script>
+</body>
+</html>

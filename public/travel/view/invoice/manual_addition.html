@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的发票-手动添加</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../../css/mobiscroll/mobiscroll.custom.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/manual_addition.css">
+    <style>
+        .sure_train{
+            margin-top: 1.3rem;
+            margin-bottom: 1.3rem;
+            width: 92%;
+            height: 1rem;
+            margin-left: 4%;
+            line-height: 1rem;
+            text-align: center;
+            font-family: PingFang-SC-Regular;
+            font-size: .4rem;
+            color: #FFFFFF;
+            letter-spacing: 0;
+            background: #1660A3;
+            box-shadow: 0 0 6px 0 rgba(0,0,0,0.20);
+            border-radius: 100px;
+        }
+    </style>
+</head>
+<body>
+<!--<div class="header">
+    <div class="return"><span class="arrowUp"></span>返回</div>
+    <div class="title">手动添加</div>
+</div>-->
+<div class="container">
+    <div class="loading">
+        <img src="../../img/loading.gif" class="img-responsive">
+    </div>
+    <!-- <ul class="nav_ul">
+        <li class="active"> 增值税发票<span class="underline"></span></li>
+        <li>火车票<span></span></li>
+    </ul> -->
+    <div class="content">
+        <div class="all_content">
+            <div class="content_ul" style="height: auto; overflow: auto;">
+                <div>
+                    <ul class="wrap">
+                        <li>
+                            <span class="line_tit">发票代码</span>
+                            <input type="text" class="line_val" id="invoice_code"  placeholder="请填写">
+                        </li>
+                        <li>
+                            <span class="line_tit">发票号码</span>
+                            <input type="text"  class="line_val" id="invoice_number" placeholder="请填写">
+                        </li>
+                        <li>
+                            <span class="line_tit" id="invoiceValue">不含税价</span>
+                            <input type="text"  class="line_val" id="free_price" placeholder="请填写">
+                        </li>
+                        <li>
+                            <span class="line_tit">开票日期</span>
+                            <span class="date_arrow value_added_tax" id="date_arrow"></span>
+                            <input type="text" id="date_invoice" class="detail_input1 datetimeend" readonly="readonly" placeholder="请选择"  value="" style="border: none;text-align: right;float: right;width: 50%;height: 100%;color: #9B9B9B!important;font-size: .4rem;"/>
+                        </li>
+                    </ul>
+                    <div class="sure" id="sure">确 定</div>
+                </div>
+            </div>
+            <div class="content_ul" style="height: 0px; overflow: hidden;">
+                <div>
+                    <ul class="wrap">
+                        <li>
+                            <span class="line_tit">车次</span>
+                            <input type="text" class="line_val" id="invoiceDataCode"  placeholder="请填写">
+                        </li>
+                        <li>
+                            <span class="line_tit">乘车人</span>
+                            <input type="text" class="line_val" id="invoiceNumber"  placeholder="请填写">
+                        </li>
+                        <li>
+                            <span class="line_tit">出发地</span>
+                            <input type="text"  class="line_val" id="departure" placeholder="请填写">
+                        </li>
+                        <li>
+                            <span class="line_tit">目的地</span>
+                            <input type="text"  class="line_val" id="destination" placeholder="请填写">
+                        </li>
+                        <li>
+                            <span class="line_tit" >票价</span>
+                            <input type="text" id="totalAmount" class="line_val" onkeyup="clearNoNum(this)" maxlength="6" placeholder="请填写">
+                        </li>
+                        <li>
+                            <span class="line_tit">发车日期</span>
+                            <span class="dates_arrow train_date" id="dates_arrow"></span>
+                            <input type="text" id="billingTime" class="detail_input1 datetimeend" readonly="readonly" placeholder="请选择"  value=""  style="border: none;text-align: right;float: right;width: 50%;height: 100%;color: #9B9B9B!important;font-size: .4rem;"/>
+                        </li>
+                        <li class="invoiceRemarks">
+                            <span class="line_tit">备注</span>
+                            <br>
+                            <textarea name="invoiceRemarks" id="invoiceRemarks"  class="line_val"  onkeyup="wordStatic()"  placeholder="请输入"  cols="30" rows="10" maxlength="200"></textarea>
+                            <span class="needAttentionText">0/200</span>
+                        </li>
+                    </ul>
+                    <div class="sure_train" id="trainSure">保 存</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="Reminder">
+    <div class="hide_show">
+        <div class="Reminder_con">
+            <p>提示</p>
+            <p id="promptContent">有项目未填写</p>
+            <div class="cancel_btn">
+                <span class="cancel">知 道 了</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../js/common/jquery-min.js"></script>
+<script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+<script type="text/javascript" src="../../js/mobiscroll/mobiscroll.custom.min.js"></script>
+<script type="text/javascript" src="../../js/manual_addition.js"></script>
+<script src="../../js/common/base.js"></script>
+<script>
+    // 开票日期
+    var theme = "ios";
+    var mode = "scroller";
+    var display = "bottom";
+    var lang="zh";
+    var currYear = (new Date()).getFullYear();
+    //开始时间
+
+    $('#date_invoice').mobiscroll().date({
+        theme: theme,
+        mode: mode,
+        display: display,
+        lang: lang,
+        dateFormat:"yy-mm-dd",
+        onSelect:function(valueText, inst){
+            $(".value_added_tax").hide();
+        }
+    });
+
+    $('#billingTime').mobiscroll().date({
+        theme: theme,
+        mode: mode,
+        display: display,
+        lang: lang,
+        dateFormat:"yy-mm-dd",
+        onSelect:function(valueText, inst){
+            $(".train_date").hide();
+        }
+    });
+
+    // 发票代码 -- 改变时触发
+    var invoiceCode = null;
+    $("#invoice_code").blur(function(e){
+        //获取input输入的值
+        var queryData = {
+            invoiceDataCode: e.delegateTarget.value
+        };
+        if(e.delegateTarget.value != ""){
+            $.ajax({
+                url:sy()+'/feeInvoice/getVatInfoByParamForInvoiceType?invoiceDataCode='+ e.delegateTarget.value,
+                type : 'GET',
+                dataType: 'json',
+                // data: queryData,
+                xhrFields: {
+                    withCredentials: true    // 前端设置是否带cookie
+                },
+                success: function (data) {
+                    if(data.resultCode === 1){ // 1代表非专用发票（页面传参为校验码后六位）
+                        invoiceCode = data.resultCode;
+                        $("#invoiceValue").html("校验码后6位");
+                        $("#free_price").attr("maxlength","6");
+                        $("#free_price").off( "blur");
+
+                    } else if(data.resultCode === 2){ // 状态码为2代表专用发票（不含税价）
+                        invoiceCode = data.resultCode;
+                        $("#invoiceValue").html("不含税价");
+                        $("#free_price").removeAttr("maxlength","6");
+                        $("#free_price").on( "blur", function() {
+                            clearNoNum(this)
+                        });
+
+                    }  else if(data.resultCode === -1){ // 状态码为-1代表查询失败
+                        invoiceCode = data.resultCode;
+                        $("#promptContent").html("发票代码查询失败!");
+                        $(".Reminder").fadeToggle();
+                        $(".Reminder,.cancel").click(function(){
+                            $(".Reminder").hide();
+                        });
+                        return;
+                    }
+                }
+            });
+        }
+    });
+
+    // 金额保留两位小数
+    function clearNoNum(obj){
+        if(obj.value){
+            obj.value = obj.value.replace(/[^\d.]/g,"");  //清除“数字”和“.”以外的字符
+            obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个. 清除多余的
+            obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+            obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');//只能输入两个小数
+            if(obj.value.indexOf(".")< 0 && obj.value !=""){//以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的金额
+                obj.value= parseFloat(obj.value);
+            }
+        }
+    }
+
+    /*火车票  textarea*/
+    function wordStatic(){
+        var textHtml = $("#invoiceRemarks").val();
+        if(textHtml) {
+            textHtml = textHtml.replace(/\n|\r/gi, "");
+            $(".needAttentionText").html(textHtml.length + '/200');
+        }
+    }
+</script>
+</body>
+</html>

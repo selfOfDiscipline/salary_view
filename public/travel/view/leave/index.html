@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>差旅出行</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="../../css/reset.css">
+<script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+<script type="text/javascript" src="../../js/common/jquery-min.js"></script>
+<script type="text/javascript" src="../../../../app/js/base/base.js"></script>
+</head>
+<style>
+/*通用样式*/
+html{font-size:10px;box-sizing:border-box;}
+body{
+    margin:0;
+    padding:0;
+    font-family:"microsoft yahei",Arial,Helvetica,sans-serif;
+    letter-spacing: 0;
+}
+*{box-sizing: border-box;}
+ul,li,p,h1,h2,h3,h4,h5,h6,dl,dd,img{
+    margin:0;
+    padding:0;
+}
+input,.select,textarea{border:0;outline:none;}
+ul{list-style: none;}
+i{font-style:normal;}
+a {
+	text-decoration:none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  	cursor:pointer;
+}
+.lf{float:left;}
+.rt{float:right;}
+.clear{clear:both;}
+
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+.text-c{text-align:center;}
+.text-l{text-align:left;}
+.text-r{text-align:right;}
+.text-j{text-align:justify;}
+.fw_bold{font-weight:bold;}
+img{display:block;outline: none;border:none;}
+a,img,button,input,.select,textarea{-webkit-tap-highlight-color:rgba(255,255,255,0);}
+/*leave start*/
+body{background: #F8F8F8;}
+.leave .con{width:90%;margin:0.4rem auto 0;background:#fff;box-shadow: 0 0.2rem 0.5rem 0 rgba(0,0,0,0.10);border-radius: 0.16rem;}
+.leave .lists li a {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    height: 1.25rem;
+    line-height: 1.25rem;
+    border-bottom: 0.02rem solid #F5F5F5;
+    padding-left: 0.92rem;
+    background: url(../../img/leave_icon01.png) 0.28rem center no-repeat;
+    background-size: 0.44rem 0.44rem;
+    font-family: PingFangSC-Regular;
+    font-size: 0.4rem;
+    color: #262626;
+}
+.leave .lists li:last-child a{border-bottom:0;}
+.leave .lists li .more {
+    float: right;
+    margin-top: 0.5rem;
+    margin-right: 0.28rem;
+    width: 0.2rem;
+    height: 0.3rem;
+    background: url(../../img/leave_more.png) center no-repeat;
+    background-size: 0.12rem 0.24rem;
+}
+.leave .lists li.l2 a{background-image: url(../../img/leave_icon02.png);}
+.leave .lists li.l3 a{background-image: url(../../img/leave_icon03.png);}
+.leave .lists li.l4 a{background-image: url(../../img/leave_icon04.png);}
+.leave .lists li.l5 a{background-image: url(../../img/leave_icon05.png);}
+.leave .lists li.l6 a{background-image: url(../../img/leave_icon06.png);}
+.leave .lists li.l7 a{background-image: url(../../img/leave_icon07.png);}
+.leave .pos_f{position:fixed;right:0.4rem;bottom:0.4rem;font-family: PingFangSC-Regular;font-size: 0.28rem;color: #9B9B9B;letter-spacing: 0;font-weight:bold;}
+/*leave end*/
+</style>
+<body>
+	<div class="leave">
+		<div class="con">
+			<ul class="lists">
+				<li class="l1">
+					<a href="draught.html">出差申请<b class="more"></b></a>
+				</li>
+			</ul>
+		</div>
+		<div class="con">
+			<ul class="lists">
+				<li class="l2">
+					<a href="javascript:;" id="flight">订机票<b class="more"></b></a>
+				</li>
+				<li class="l3">
+					<a href="javascript:;" id="ticket">订火车票<b class="more"></b></a>
+				</li>
+				<li class="l4">
+					<a href="javascript:;" id="hotel">订酒店<b class="more"></b></a>
+				</li>
+				<li class="l5">
+					<a href="javascript:;" id="car">我要用车<b class="more"></b></a>
+				</li>
+			</ul>
+		</div>
+		<div class="con">
+			<ul class="lists">
+				<li class="l6">
+					<a href="javascript:;" id="itinerary_order">行程订单<b class="more"></b></a>
+				</li>
+				<li class="l7">
+					<a href="../reimburse/reimbursement.html">差旅报销<b class="more"></b></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="Reminder">
+		<div class="hide_show">
+			<div class="Reminder_con">
+				<p>提示</p>
+				<p id="promptContent"></p>
+				<div class="cancel_btn">
+					<span class="cancel">知 道 了</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$("#flight").click(function(){
+            window.location.href = sy() + "/travel/travel/view/travel_service/cost_type.html?transport_type=1";
+		});
+		$("#car").click(function(){
+            // M1,M2,M3 权限
+            $.ajax({
+                url:sy()+'/travelServer/judgeUserRankForBusiness',
+                type : 'get',
+                dataType: 'json',
+                contentType : 'application/json;charset=UTF-8',
+                //sdata: JSON.stringify(idData),
+                success: function (data) {
+                    if(data){
+                        // 获取列表
+                        var queryData = {
+                            "page": 1,
+                            "rows": 10,
+                            "changeType": 4
+                        };
+                        $.ajax({
+                            url:sy()+'/travelServer/selectTravelapplicationList',
+                            type : 'POST',
+                            dataType: 'json',
+                            contentType : 'application/json;charset=UTF-8',
+                            data: JSON.stringify(queryData),
+                            success: function (data) {
+                                if(data.resultCode == 0){
+                                    dataList = data.result.res;
+                                    if(dataList.length != 0){
+                                        window.location.href = sy() + "/travel/travel/view/travel_service/cost_type.html?transport_type=4";
+                                    }else if(dataList.length == 0){
+                                        // 页面加载滴滴单点登录
+                                        $.ajax({
+                                            url:sy()+'/didi/api/loginDiDi',
+                                            type : 'GET',
+                                            dataType: 'json',
+                                            contentType : 'application/json;charset=UTF-8',
+                                            success: function (data) {
+                                                // true  /  false 权限页面
+                                                if(data.resultCode == 0){
+                                                    window.location.href = "openapp://?name="+ encodeURIComponent(data.result) +"&url=https://dc.tt/esappd";
+                                                }else{
+                                                    $("#promptContent").html(data.message);
+                                                    $(".Reminder").fadeToggle();
+                                                    $(".Reminder,.cancel").click(function(e){
+                                                        $(".Reminder").hide();
+                                                    })
+                                                }
+                                            }
+                                        });
+                                    }
+                                } else if(data.resultCode == -1){
+                                    // 失败
+                                    $("#promptContent").html(data.message);
+                                    $(".Reminder").fadeToggle();
+                                    $(".Reminder,.cancel").click(function(){
+                                        $(".Reminder").hide();
+                                    })
+                                }
+                            }
+                        });
+
+                    }else{
+                        window.location.href = sy() + "/travel/travel/view/travel_service/cost_type.html?transport_type=4";
+                    }
+                },
+                error:function(){}
+            });
+		});
+
+		// 行程订单
+		$("#itinerary_order").click(function(){
+            window.location.href = sy + 'feeInvoice/toXieChengOrderListPage';
+		});
+
+		// 订火车，订酒店
+        $("#ticket").click(function(){
+            window.location.href = sy() + "/feeInvoice/toXieChengTrainPage";
+        });
+        $("#hotel").click(function(){
+            window.location.href = sy() + "/feeInvoice/toXieChengHotelPage";
+        });
+
+	</script>
+</body>
+</html>

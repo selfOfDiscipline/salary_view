@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的发票</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="jack">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../../css/reset.css">
+    <script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/my_invoice.css">
+    <script type="text/javascript" src="../../js/common/jquery-min.js"></script>
+    <script type="text/javascript" src="../../js/common/base.js"></script> 
+    <script type="text/javascript" src="../../js/common/bridge.js"></script> 
+    <script type="text/javascript" src="../../js/my_invoice.js"></script>
+    <script>
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    if(clientWidth>=640){
+                        docEl.style.fontSize = '68.27px';
+                    }else{
+                        docEl.style.fontSize = 68.27 * (clientWidth / 640) + 'px';
+                    }
+                };
+        
+        
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+</head>
+<body>
+<!--<div class="header">
+    <div class="return"><span class="arrowUp"></span>返回</div>
+    <div class="title">我的发票</div>
+    <div class="shut">新建</div>
+</div>-->
+<div class="container">
+    <ul class="nav_ul">
+        <li class="active"> 未使用<span class="underline"></span></li>
+        <!-- <li>使用中<span></span></li> -->
+        <li>已使用<span></span></li>
+    </ul>
+    <div class="screen">
+        <div class="screen_nav">
+            筛 选 <span class="nav_down"></span>
+        </div>
+        <div class="overBag">
+            <ul class="screen_list">
+                <li class="paymentType">
+                    <p>所属系统</p>
+                    <span class="active"  paymentType_code="0">全部</span>
+                    <span  paymentType_code="1">费控系统</span>
+                    <span  paymentType_code="2">成本系统</span>
+                </li>
+                <li class="truthStatus">
+                    <p>发票状态</p>
+                    <span   class="active"  truthStatus_code="0">全部</span>
+                    <span  truthStatus_code="1">查验成功</span>
+                    <span  truthStatus_code="2">查验失败</span>
+                </li>
+                <li class="invoiceType">
+                    <p>发票类型</p>
+                    <span  class="active"  invoiceType_code="0">全部</span>
+                    <span  invoiceType_code="01">增值税专票</span>
+                    <span  invoiceType_code="04">增值税普通发票</span>
+                    <span  invoiceType_code="10">电子发票</span>
+                    <span  invoiceType_code="11">卷式普通发票</span>
+                    <span  invoiceType_code="14">电子普通[通行费]发票</span>
+                    <!-- <span  invoiceType_code="99">火车票</span> -->
+                </li>
+                <li>
+                    <div class="reset" id="reset">重 置</div>
+                    <div class="sure" id="sure">确 定</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+        <div class="shut  newly_build"></div>
+        <div class="special_loading">
+            <img src="../../img/loading.gif" class="img-responsive">
+        </div>
+        <div class="background_remind">
+            暂无相关内容
+        </div>
+        <div class="all_content">
+            <ul class="content_ul clearfix" id="not_use">
+               
+            </ul>
+            <ul class="content_ul clearfix" id="in_use">
+                
+            </ul>
+            <ul class="content_ul clearfix" id="already_used">
+                <!--<li class="wrap">-->
+                    <!--<p class="title">*餐饮服务*-餐费</p>-->
+                    <!--<p class="seller Invoice_detail">销售方：北京伊缘相餐饮有限公司</p>-->
+                    <!--<p class="Invoice_detail"><span class="billing_time">开票时间：2018-09-04</span><span class="amount_invoice">¥419.00</span></p>-->
+                <!--</li>-->
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 我的发票--新建--发票弹框 -->
+<div class="bounced">
+    <ul class="to_lead">
+        <li>手动添加</li>
+        <li id="button_scanQRCode1">扫码添加</li>
+    </ul>
+    <div class="cancel">取消</div>
+</div>
+<!--删除发票-->
+<div class="delete_warn" style="display: none;">
+    <div class="hide_show">
+        <div class="Reminder_con">
+            <p>是否确认删除！</p>
+            <div>
+                <span class="cancel_delete">取消</span>
+                <span class="confirm_deletion">确定</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(".screen_nav").click(function(){
+        $(".nav_down").toggleClass("nav_up");
+        /*setTimeout(function(){
+         $(".screen_list li").each(function(){
+         $(this).children("span").first().addClass("active").siblings("span").removeClass("active");
+         });
+         }, 1000);*/
+        $(this).siblings(".overBag").toggle();
+    });
+
+    //阻止点击遮罩层冒泡
+    $(".overBag").click(function(e){
+        e.stopPropagation();
+        e.cancelBubble = true
+    });
+
+    $(".screen_list li span").click(function(){
+        $(this).addClass("active").siblings("span").removeClass("active");
+    });
+
+    // 重置
+    $("#reset").click(function(){
+        $(".screen_list li").each(function(){
+            $(this).children("span").first().addClass("active").siblings("span").removeClass("active");
+        });
+    });
+   
+
+</script>
+</body>
+</html>

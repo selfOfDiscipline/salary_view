@@ -1,0 +1,225 @@
+.header{
+    background: #FBFBFB;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+}
+/*切换header start*/
+.container .nav_ul{
+    display: flex;
+    width:100%;
+    height: 1.25rem;
+    position: relative;
+    border-bottom: 1px solid #F5F5F5;
+    /*border-bottom: 1px solid #F5F5F5;*/
+}
+
+.container .nav_ul li{
+    float: left;
+    width: 33.33%;
+    text-align: center;
+    font-size: 0.4rem;
+    line-height: 1.35rem;
+}
+.container .active{
+    color: #1660A3 ;
+}
+.container .underline{
+    width: .5rem;
+    height: 2px;
+    background: #1660A3;
+    display: block;
+    margin:  -4px auto 0;
+}
+/*切换header end*/
+/*切换主体*/
+.content{
+    width:100%;
+    /*height: calc(100vh);*/
+    overflow-x: hidden;
+}
+.content .content_invoice{
+    position: relative;
+    width: 92%;
+    height: 1.25rem;
+    line-height: 1.25rem;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: #fff;
+    font-size: .4rem;
+    color: #000000;
+    margin: 0.5rem auto 0.5rem;
+    padding: 0  .375rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+}
+.content .content_invoice .invoice_title{
+    display: inline-block;
+    width: 87%;
+}
+.content .content_invoice .invoice_left{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url(../img/invoice.png)no-repeat center;
+    background-size: cover;
+    vertical-align: middle;
+}
+.content .content_invoice .invoice_icon{
+    position: absolute;
+    top: 0.475rem;
+    display: inline-block;
+    width: 7px;
+    height:12px;
+    background: url("../img/corners_right.png")no-repeat center;
+    background-size: cover;
+}
+.content .content_list{
+    width: 100%;
+    height: 100%;
+    /*display: flex;*/
+    transition: all .5s ease;
+    position: relative;
+    top: 0;
+    left: 0;
+    /*padding-bottom: 0.6rem;*/
+    margin-top: 1rem;
+
+}
+.content .content_list div{
+    width: 92%;
+    height: .5rem;
+    line-height: .5rem;
+    font-size: .45rem;
+    color: #000000;
+    margin: auto;
+}
+.content .content_list div p{
+    display: inline-block;
+    float: right;
+    font-size: .35rem;
+    color: #9B9B9B;
+}
+.content .content_list div .add_invoice{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url(../img/combinedShape.png)no-repeat center;
+    background-size: cover;
+    vertical-align: sub;
+}
+.content .content_list .content_ul{
+    width: 100%;
+    /*height: calc(100vh - 3.6rem);*/
+    padding-bottom: 0.5rem;
+}
+.content .content_list .wrap{
+    width: 92%;
+    height: 2.7rem;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: #fff;
+    margin: 0.3rem auto 0.5rem;
+    padding: .25rem .375rem;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+    border-radius: 10px;
+}
+.content .content_list .wrap .title{
+    width: 100%;
+    height: .55rem;
+    line-height: .55rem;
+    font-family: PingFangSC-Medium;
+    font-size: .4rem;
+    color: #0D0E10;
+    letter-spacing: 0;
+    margin-bottom: .3rem;
+}
+.content .content_list .wrap .title i {
+    font-style: normal;
+    display: inline-block;
+    width: 80%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+.content .content_list .wrap .title span{
+    display: inline-block;
+    width: 30px;
+    height: 15px;
+    border-radius: 5px;
+    line-height: 15px;
+    text-align: center;
+    border: 1px solid #1660A3;
+    color: #1660A3;
+    font-size: 12px;
+    float: right;
+}
+.content .content_list  .wrap .Invoice_detail{
+    width: 100%;
+    height: .45rem;
+    line-height: .45rem;
+    font-family: PingFangSC-Regular;
+    font-size: .3rem;
+    color: #9B9B9B;
+    letter-spacing: 0;
+}
+.content .content_list  .wrap .Invoice_detail span{
+    display: inline-block;
+    width: 23%;
+    /*text-align: right;*/
+}
+.content .content_list  .wrap .Invoice_detail span.amount_invoice{
+    font-family: PingFangSC-Regular;
+    font-size: .3rem;
+    color: #1660A3;
+    letter-spacing: 0;
+    text-align: right;
+    float: right;
+}
+/*切换主体 end*/
+/*我的发票--新建*/
+.bounced{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.50);
+    display: none;
+}
+.bounced .to_lead{
+    position: absolute;
+    bottom:3.05rem;
+    left: 2.5%;
+    width: 95%;
+    background: #fff;
+    border-radius: .3rem;
+}
+.bounced .to_lead li{
+    width: 100%;
+    height: 1.45rem;
+    line-height: 1.45rem;
+    text-align: center;
+    font-family: PingFangSC-Regular;
+    font-size: .5rem;
+    color: #007AFF;
+    letter-spacing: 0;
+}
+.bounced .to_lead li:first-child{
+    border-bottom: 1px solid #F5F5F5;
+}
+.bounced .cancel{
+    position: absolute;
+    bottom:1.35rem;
+    width: 95%;
+    left: 2.5%;
+    height: 1.45rem;
+    line-height: 1.45rem;
+    text-align: center;
+    background: #fff;
+    border-radius: .3rem;
+    font-family: PingFangSC-Regular;
+    font-size: .5rem;
+    color: #1660A3;
+    letter-spacing: 0;
+}

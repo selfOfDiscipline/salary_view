@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发票</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../../css/reset.css">
+    <script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/invoice.css">
+    <script type="text/javascript" src="../../js/common/jquery-min.js"></script>
+    <script src="../../js/common/base.js"></script>
+    <script type="text/javascript" src="../../js/invoice_rise.js"></script>
+    
+</head>
+<body>
+<!--<div class="header">
+    <div class="return"><span class="arrowUp"></span>返回</div>
+    <div class="title">发票</div>
+</div>-->
+<div class="container" id="container">
+    <div class="loading">
+        <img src="../../img/loading.gif" class="img-responsive">
+    </div>
+    <div class="content" style="display: none">
+        <div class="content_invoice" id="content_invoice">
+            <span class="invoice_left"></span>
+            <p class="invoice_title">我的发票</p>
+            <span class="invoice_icon"></span>
+        </div>
+        <div class="content_list">
+            <div>
+                发票抬头
+                <p class="shut"><span class="add_invoice"></span>&nbsp;添加发票抬头</p>
+            </div>
+            <ul class="content_ul" id="invoice_head">
+                <!--<li class="wrap"><p class="title">泰禾集团股份有限公司北京分公司</p><input type="hidden" value="2">
+                    <p class="seller Invoice_detail">纳税识别号：91110105MA00F6YW3Y</p>
+                    <p class="seller Invoice_detail">开户行：招商银行股份有限公司北京大</p>
+                    <p class="seller Invoice_detail">银行账号：6224853199647853159</p>
+                </li>-->
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="Reminder">
+    <div class="hide_show">
+        <div class="Reminder_con">
+            <p>提示</p>
+            <p id="promptContent"></p>
+            <div class="cancel_btn">
+                <span class="cancel">知 道 了</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

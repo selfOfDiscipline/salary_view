@@ -1,0 +1,498 @@
+body,div,ul,ol,dt,dd,dl,li,h1,h2,h3,h4,h5,h6,form,input,select,textarea,p,img,a,span,strong,*{ padding:0; margin:0;}
+html,body{height:100%;background: #fafafa!important;}
+body{ font-size:12px;overflow: scroll;font-family:'PingFangSC-Regular'; color:#000000;}
+body{
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -o-user-select:none;
+    user-select:none;
+}
+i{
+    font-style: normal;
+}
+a:link{text-decoration:none; }  /* 指正常的未被访问过的链接*/
+
+a:visited{text-decoration:none; }/*指已经访问过的链接*/
+
+a:hover{text-decoration:none;}/*指鼠标在链接*/}
+
+a:active{text-decoration:none;}/* 指正在点的链接*/
+/* 清除button点击出现的边框 */
+button:focus {
+    outline: 0!important;
+}
+/*IOS 点击input点击黑背景兼容问题*/
+*{
+    -webkit-tap-highlight-color: transparent;   //设置为透明
+}
+input,textarea{
+    -webkit-appearance: none;
+    outline:none;
+    /*-webkit-tap-highlight-color:rgba(0,0,0,0);*/
+}
+
+/*ios 滑动流畅*/
+*{
+    -webkit-overflow-scrolling: touch;
+}
+input , textarea{
+    -webkit-user-select:text;
+    -moz-user-select:text;
+    -o-user-select:text;
+    user-select:text;
+}
+/*background-color: #FFFFFF;*/
+ul,ol,li{ list-style:none;}
+h1,h2,h3,h4,h5,h6{ font-size:12px; font-weight:normal;}
+img,input,select,textarea{ vertical-align:middle}
+img{ border:none;}
+input{
+	color: #000 !important;
+}
+a:link {
+ color: #000;
+ text-decoration: none;
+}
+a:visited {
+ color: #000;
+ text-decoration: none;
+}
+a:hover {
+ color: #000;
+ text-decoration: none;
+}
+a:active {
+	text-decoration: none ;
+}
+.clear{ clear:both; height:0; width:0; overflow:hidden;}
+
+/* 清除浮动 在称不开父元素宽高的时候使用 */
+.clearfix:after { content:"."; clear: both; height: 0; overflow: hidden; visibility: hidden; display: block; }
+.clearfix { zoom: 1;}
+
+/* 设置HTML5 - placeholder样式  */
+input[placeholder], [placeholder], *[placeholder] {
+    font-family:微软雅黑;
+}
+
+/* 设置HTML5 - 默认 placeholder样式  */
+input::-webkit-input-placeholder {
+}
+input{
+    background: #FFFFFF;
+}
+/* 文字超过一定长度变点点点 */
+.text_overflow{width:237px; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;}
+
+/* 去除Chrome input焦点框框  */
+input{outline:none}
+/*返回尖角*/
+.arrowUp{margin-left: .25rem;margin-right: .1rem;}
+.arrowUp:after {content: '';display: inline-block; width: .3rem;height: .3rem;border-top: 2.5px solid #E53636;border-right: 2.5px solid #E53636;transform: rotate(225deg); -webkit-transform: rotate(225deg);}
+
+/*start*/
+body{
+    background: #FBFBFB;
+    width: 100%;
+}
+/*header start*/
+.header{
+    position: fixed;
+    top: 0;
+    height: 0.8rem;
+    padding:0.225rem 0;
+    width:100%;
+    background: #FFFFFF;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+    z-index: 10;
+    position: relative;
+}
+.wrap_nav{
+    width: 92%;
+    margin: 0 auto;
+}
+.screen_nav{
+    max-width: 3rem;
+    height: .8rem;
+    /* font-family: PingFangSC-Regular; */
+    font-size: 16px;
+    line-height: 0.8rem;
+    color: #1660A3;
+    letter-spacing: 0;
+    text-align: center;
+    float: left;
+    margin-right:5px;
+    border:none;
+}
+.screen_nav .nav_down{
+    display: inline-block;
+    width: 12px;
+    height:8px;
+    vertical-align: middle;
+    background: url("../img/screen_down.png") no-repeat center;;
+    background-size:cover;
+}
+
+.search_input{
+    /* float: right; */
+
+    width:auto;
+    background-color: #ffffff;
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+    display:flex;
+}
+.search_input input{
+    text-indent: 10px;
+    width: 100%;
+    height: 0.8rem;
+    line-height: 0.9rem;
+    float: left;
+    border: 1px solid #E6E6E6;
+    border-radius: 10px;
+    border-radius: 10px;
+    outline: none;
+}
+
+.search_input input::-webkit-input-placeholder{
+    font-size: 14px;
+    color: #D2D2D2;
+    letter-spacing: 0;
+  }
+.search_input i{
+    width: 0.8rem;
+    height: 0.8rem;
+    background: url("../img/search.png")no-repeat center ;
+    /* background: #000;; */
+    position: absolute;
+    top: 0;
+    right:0;
+    /* color: #B2B2B2; */
+}
+.selest_warp{
+    position: absolute;
+    top:1.25rem;
+    left:3px;
+
+    font-size: 16px;
+}
+.selest_warp ul{
+    overflow: hidden;
+    background: #FFFFFF;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+    border-radius: 10px;
+    border-radius: 10px;
+}
+.selest_warp ul li{
+    width: 2.5rem;
+    text-align: center;
+    height: 1rem;
+    line-height: 1rem;
+    color: #666666;
+}
+.selest_warp ul li.active{
+    background-color: #1660A3;
+    color: #fff;
+}
+/* .header .return{
+    float: left;
+    text-align: left;
+    line-height:1.25rem;
+    font-size: .425rem;
+    position: absolute;
+    top: 0;
+    left:2.4%;
+    color: #E53636;
+}
+.header .title{
+    width: 100%;
+    float: left;
+    text-align: center;
+    line-height:1.25rem;
+    font-family: PingFangSC-Regular;
+    font-size: .425rem;
+    color: #000000;
+    letter-spacing: 0;
+}
+.header .arrowUp{
+    margin-left: .25rem;
+    margin-right: .1rem;
+}
+.header .arrowUp:after {
+    content: '';
+    display: inline-block;
+    width: .3rem;
+    height: .3rem;
+    border-top: 2.5px solid #E53636;
+    border-right: 2.5px solid #E53636;
+    transform: rotate(225deg);
+    -webkit-transform: rotate(225deg);
+}
+.header .shut{
+    float: right;
+    text-align: right;
+    line-height: 1.25rem;
+    font-size: .425rem;
+    position: absolute;
+    top: 0;
+    right: 4%;
+    color: #E53636;
+} */
+/*header end*/
+
+/*container  start*/
+.container{
+    position: fixed;
+    top: 0rem;
+    width: 100%;
+    /*height: calc(100vh - 1.25rem);*/
+    height: calc(100vh);
+    overflow: auto;
+    background: #FBFBFB!important;
+}
+/*container  end*/
+
+/*统一提示弹框 start*/
+.Reminder{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 25;
+    background: rgba(0,0,0,0.50);
+    display: none;
+}
+.Reminder .hide_show {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Reminder .Reminder_con{
+    width: 69%;
+    height: 5rem;
+    background: #fff;
+    border-radius: .3rem;
+}
+.Reminder .Reminder_con p{
+    width: 100%;
+    height: 1.65rem;
+    line-height: 1.65rem;
+    text-align: center;
+    font-family: PingFangSC-Medium;
+}
+.Reminder .Reminder_con p:nth-child(1){
+    font-size: .4rem;
+    color: #0D0E10;
+}
+.Reminder .Reminder_con p:nth-child(2){
+    font-size: .3rem;
+    color: #9B9B9B;
+    line-height: .6rem;
+}
+.Reminder .Reminder_con div.cancel_btn{
+    width: 100%;
+    height: 1.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Reminder .Reminder_con div.cancel_btn span.cancel{
+    display: inline-block;
+    width: 50%;
+    height: .6rem;
+    line-height: .6rem;
+    text-align: center;
+    background: #1660A3;
+    border-radius: 100px;
+    font-family: PingFangSC-Regular;
+    font-size: .3rem;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+/*提示弹框 end*/
+
+/*统一类型单选弹框 start*/
+.typeHint{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.50);
+    /*display: none;*/
+}
+.typeHint .hide_show {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.typeHint .Reminder_con{
+    width: 69%;
+    height: 6.125rem;
+    background: #fff;
+    border-radius: .3rem;
+}
+.typeHint .Reminder_con p:nth-child(1){
+    width: 100%;
+    height: 1.65rem;
+    line-height: 1.65rem;
+    text-align: center;
+    font-size: .5rem;
+    letter-spacing: 0;
+    color: #E53636;
+}
+.typeHint .Reminder_con div{
+    height: 1.9rem;
+    line-height: 1.9rem;
+    padding: 0 17px;
+    font-size: 16px;
+    color: #000000;
+    border-bottom: 1px solid  #E0E2E7;
+}
+.typeHint .Reminder_con div span{
+    display: inline-block;
+    width: 87%;
+}
+/*统一类型单选弹框 end*/
+
+/* 是否确认 刪除警告 start*/
+.delete_warn{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background: rgba(0,0,0,0.50);
+    display: none;
+}
+.delete_warn .hide_show {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.delete_warn .Reminder_con{
+    width: 69%;
+    /*height: 6.125rem;*/
+    background: #fff;
+    border-radius: .3rem;
+}
+.delete_warn .Reminder_con p{
+    width: 100%;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    text-align: center;
+    font-size: .5rem;
+    letter-spacing: 0;
+    /*color: #E53636;*/
+    color: #9B9B9B;
+}
+.delete_warn .Reminder_con div{
+    height: 1.3rem;
+    line-height: 1.3rem;
+    /*padding: 0 17px;*/
+    display: flex;
+    /*justify-content: space-between;*/
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: #000000;
+    border-top: 1px solid #E0E2E7;
+}
+.delete_warn .Reminder_con div span{
+    display: inline-block;
+    width: 87%;
+    text-align: center;
+}
+.delete_warn .Reminder_con div span:nth-child(2){
+    border-left: 1px solid #E0E2E7;
+    color: #E53636;
+}
+
+/* 是否确认 刪除警告 end*/
+
+/*单选按钮同一样式 start*/
+input[type="radio"] + label::before {
+    content: "\a0"; /*不换行空格*/
+    display: inline-block;
+    vertical-align: middle;
+    /*font-size: 18px;*/
+    width: .48rem;
+    height: .48rem;
+    margin-right: .4em;
+    border-radius: 50%;
+    border: 2px solid #e8e7e7;
+    background-color: #FFF;
+    text-indent: .15em;
+    line-height: 1;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+
+input[type="radio"]:checked + label::before {
+    border: 5px solid #4787FF;
+    background-color: #FFF;
+    background-clip: content-box;
+    /*padding: .2em;*/
+}
+
+input[type="radio"] {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+/*单选按钮 end*/
+
+/*loading  start*/
+.loading {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: #FBFBFB;
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loading img{
+    width: 1.35rem;
+    height:  1.35rem;
+}
+/*loading  end*/
+
+/*my-invoice特例 loading start*/
+.special_loading {
+    /*position: fixed;*/
+    width: 100%;
+    height: 100%;
+    background: #FBFBFB;
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.special_loading img{
+    width: 1.35rem;
+    height:  1.35rem;
+}
+/*my-invoice特例 loading end*/
+
+/*
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+/*
+box-sizing:border-box;
+-moz-box-sizing:border-box;
+-webkit-box-sizing:border-box;
+*/

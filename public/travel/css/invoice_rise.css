@@ -1,0 +1,249 @@
+.header{
+    background: #FBFBFB;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+}
+/*切换header start*/
+.container{
+    background: #FBFBFB!important;
+    width: 100%;
+}
+.container .nav_ul{
+    display: flex;
+    width:100%;
+    height: 1.25rem;
+    position: relative;
+    border-bottom: 1px solid #F5F5F5;
+}
+
+.container .nav_ul li{
+    float: left;
+    width: 33.33%;
+    text-align: center;
+    font-size: 0.4rem;
+    line-height: 1.35rem;
+}
+.container .active{
+    color: #1660A3 ;
+}
+.container .underline{
+    width: .5rem;
+    height: 2px;
+    background: #1660A3;
+    display: block;
+    margin:  -4px auto 0;
+}
+/*切换header end*/
+/*筛选部分 start*/
+.container .screen{
+    width: 100%;
+    /*height:1.25rem;*/
+    line-height: 1.25rem;
+    text-align: center;
+    font-family: PingFangSC-Regular;
+    font-size: .4rem;
+    color: #9B9B9B;
+    letter-spacing: 0;
+    /*border: 1px solid #F5F5F5;*/
+    /*box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);*/
+}
+.container .screen .screen_nav{
+    border-bottom: 1px solid #F5F5F5;
+}
+.container .screen .screen_nav .nav_down{
+    display: inline-block;
+    width: .15rem;
+    height:.125rem;
+    vertical-align: middle;
+    background: url("../img/screen_down.png") no-repeat center;
+    background-size:cover;
+}
+.container .screen .screen_nav .nav_up{
+    background: url("../img/screen_up.png") no-repeat center;
+    background-size:cover;
+}
+.container .screen ul{
+    width: 100%;
+    height: auto;
+    /*box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);*/
+    padding-top: .15rem;
+    padding-bottom: .75rem;
+    box-shadow: 0px 3px 5px rgba(0,0,0,0.10);
+    display: none;
+}
+.container .screen ul li{
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #9B9B9B;
+    letter-spacing: 0;
+    padding:0  .375rem;
+    text-align: left;
+}
+.container .screen ul li p{
+    line-height: .8rem;
+    text-align: left;
+}
+.container .screen ul li span{
+    display: inline-block;
+    width: auto;
+    height: .65rem;
+    line-height: .65rem;
+    text-align: center;
+    padding:0 .5rem;
+    background: #F0F0F0;
+    border-radius: .325rem;
+    font-size: .3rem;
+    color: #000000;
+    margin-right: .275rem;
+}
+.container .screen ul li span.active{
+    background: #1660A3;
+    color: #FFFFFF;
+}
+.container .screen ul li:last-child{
+    display: flex;
+    justify-content: space-between;
+    margin: .75rem 0 0 0;
+}
+.container .screen ul li div{
+    display: inline-block;
+    width: 48%;
+    height: .95rem;
+    line-height: .95rem;
+    text-align: center;
+    background: #FFFFFF;
+    border: 1px solid #1660A3;
+    border-radius: .475rem;
+    font-family: PingFangSC-Regular;
+    font-size: .325rem;
+    color: #1660A3;
+    letter-spacing: 0;
+}
+.container .screen ul li div.sure{
+    background: #1660A3;
+    border-radius: .475rem;
+    color: #FFFFFF;
+}
+
+
+
+
+/*筛选部分 end*/
+/*切换主体*/
+.content{
+    width:100%;
+    height: calc(100vh);
+    overflow-x: hidden;
+}
+.content .all_content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: all .5s ease;
+    position: relative;
+    top: 0;
+    left: 0;
+    padding-bottom: 0.6rem;
+}
+.content .background_remind{
+    position: absolute;
+    font-family: PingFangSC-Regular;
+    width: 100%;
+    height: 100%;
+    line-height: 100%;
+    padding-top: 7.15rem;
+    font-size: .6rem;
+    color: #E6E6E6;
+    letter-spacing: 0;
+    text-align: center;
+    display: none;
+}
+.content .all_content .content_ul{
+    width: 100%;
+    height: calc(100vh - 2.5rem);
+}
+.content .all_content .content_ul .wrap{
+    width: 92%;
+    height: 2.7rem;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    background: #fff;
+    margin: 0.5rem auto 0.5rem;
+    padding: .25rem .375rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+}
+.content .all_content .content_ul .wrap .title{
+    width: 100%;
+    height: .55rem;
+    line-height: .55rem;
+    font-family: PingFangSC-Medium;
+    font-size: .4rem;
+    color: #0D0E10;
+    letter-spacing: 0;
+    margin-bottom: .5rem;
+}
+.content .all_content .content_ul .wrap .Invoice_detail{
+    width: 100%;
+    height: .425rem;
+    line-height: .425rem;
+    ont-family: PingFangSC-Regular;
+    font-size: .3rem;
+    color: #9B9B9B;
+    letter-spacing: 0;
+}
+.content .all_content .content_ul .wrap .Invoice_detail span.amount_invoice{
+    font-family: PingFangSC-Regular;
+    font-size: .3rem;
+    color: #1660A3;
+    letter-spacing: 0;
+    text-align: right;
+    float: right;
+}
+/*切换主体 end*/
+/*我的发票--新建*/
+.bounced{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.50);
+    display: none;
+}
+.bounced .to_lead{
+    position: absolute;
+    bottom:3.05rem;
+    left: 2.5%;
+    width: 95%;
+    background: #fff;
+    border-radius: .3rem;
+}
+.bounced .to_lead li{
+    width: 100%;
+    height: 1.45rem;
+    line-height: 1.45rem;
+    text-align: center;
+    font-family: PingFangSC-Regular;
+    font-size: .5rem;
+    color: #007AFF;
+    letter-spacing: 0;
+}
+.bounced .to_lead li:first-child{
+    border-bottom: 1px solid #F5F5F5;
+}
+.bounced .cancel{
+    position: absolute;
+    bottom:1.35rem;
+    width: 95%;
+    left: 2.5%;
+    height: 1.45rem;
+    line-height: 1.45rem;
+    text-align: center;
+    background: #fff;
+    border-radius: .3rem;
+    font-family: PingFangSC-Regular;
+    font-size: .5rem;
+    color: #1660A3;
+    letter-spacing: 0;
+}

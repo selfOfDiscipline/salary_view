@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>出差申请</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" type="text/css" href="../../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../../css/draught.css">
+	<script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+	<script type="text/javascript" src="../../js/common/jquery-min.js"></script>
+	<script type="text/javascript" src="../../../../app/js/base/base.js"></script>
+	<script type="text/javascript" src="../../js/draught.js"></script>
+</head>
+<body>
+	<div class="container">
+		<ul class="nav_ul">
+			<li>草稿<span></span></li>
+			<li class="active">待审核<span class="underline"></span></li>
+			<li>已审核<span></span></li>
+		</ul>
+		<div class="ul">
+				<div class="loading">
+				    <img src="../../img/loading.gif" class="img-responsive">
+				</div>
+	        <div class="background_remind">暂无相关内容</div>
+	        <div class="shut"></div>	
+			<div class="all_content">
+				<ul class="content clearfix" id="draught_1">
+					<!-- <li class="wrap">
+						<div class="wrap_new" style="transform: translateX(-66px);">
+							<div class="show_con">
+								<div class="wrap_left">
+							        <div class="subject">'+ resdata[i].theme +'</div>
+							        <div class="details">
+							            <div class="details_left">
+							                <div class="hendline"></div>'
+							                <div class="seriel"></div>
+							            </div>
+							            <div class="details_right">
+							                <div class="date"></div>
+							                <div class="cost"></div>
+							            </div>
+							       </div>
+							   </div>
+							    <div class="wrap_right draught_click" uuid="'+ resdata[i].id +'">
+							        <div class="tates">
+							            <img src="../../img/tates.png">
+							        </div>
+							    </div>
+							</div>
+							<div class="hide_con">删除</div>
+						</div>
+					</li> -->
+				</ul>
+				<ul class="content clearfix" id="draught_2">
+				</ul>
+				<ul class="content clearfix" id="draught_3">
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="Reminder">
+	    <div class="hide_show">
+	        <div class="Reminder_con">
+	            <p>提示</p>
+	            <p id="promptContent">查询失败！</p>
+	            <div class="cancel_btn">
+	                <span class="cancel">知 道 了</span>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+</body>
+</html>

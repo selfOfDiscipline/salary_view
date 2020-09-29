@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>出差申请</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" type="text/css" href="../../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../../css/travel.css">
+    <link rel="stylesheet" type="text/css" href="../../css/index.css">
+	<link rel="stylesheet" type="text/css" href="../../css/mobiscroll/mobiscroll.custom.min.css" />
+	<script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+    <script type="text/javascript" src="../../js/common/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/common/vue.min.js"></script>
+    <script type="text/javascript" src="../../js/common/axios.min.js"></script>
+    <script type="text/javascript" src="../../js/common/request.js"></script>
+    <script type="text/javascript" src="../../js/common/vant.min.js"></script>
+    <script type="text/javascript" src="../../js/common/bridge.js"></script> 
+	<!-- <script type="text/javascript" src="../../js/common/attachmentUpload.js"></script> -->
+	<!-- <script type="text/javascript" src="../../js/travel.js"></script> -->
+	<script type="text/javascript" src="../../js/mobiscroll/mobiscroll.custom.min.js"></script>
+</head>
+<body  style="font-size: 12px;overflow: scroll;">
+    <div id="app">
+        <div class="content_one" v-if="!CityShow">
+            <div class="content_bottom">
+                    <ul class="details clearfix">
+                        <li>
+                            <span class="detailstheme">主题<i class="required">*</i></span>
+                            <span class="detailsLeft">
+                                <input type="text" v-model="form.theme" placeholder="请输入主题"/>
+                            </span>
+                        </li>
+                        <li @click="showPopup(1)">
+                            <span class="detailstheme">申请人<i class="required">*</i></span>
+                            <span class="detailsLeft">
+                                <input type="text"
+                                    v-model="form.businessTripPersonName"
+                                    placeholder="请选择申请人"
+                                    readonly />
+                                <img class="corners_right" src="../../img/corners_right.png">
+                            </span>
+                        </li>
+                        <li  @click="showPopup(2)">
+                            <span class="detailstheme">业务发生部门<i class="required">*</i></span>
+                            <span class="detailsLeft">
+                                <input
+                                    type="text"
+                                    v-model="this.form.departmentName"
+                                    placeholder="请选择业务发生部门"
+                                    readonly
+                                    />
+                                <img class="corners_right" src="../../img/corners_right.png">
+                            </span>
+                        </li>
+                        <li @click="showPopup(3)">
+                            <span class="detailstheme">预算承担部门<i class="required">*</i></span>
+                            <span class="detailsLeft">
+                                <input type="text"
+                                    v-model="budgetDepartmentName"
+                                    placeholder="请选择预算承担部门"
+                                    readonly
+                                />
+                                <img class="corners_right" src="../../img/corners_right.png">
+                            </span>
+                        </li>
+                        <li @click='travelUsershowPopup'>
+                            <span class="detailstheme">同行人</span>
+                            <span class="detailsLeft">
+                                <input
+                                    type="text"
+                                    v-model="form.travelUserName"
+                                    placeholder="请选择同行人"
+                                    readonly/>
+                                <img class="corners_right" src="../../img/corners_right.png">
+                            </span>
+                        </li>
+                        <li>
+                            <span class="detailstheme">预估金额<i class="required">*</i></span>
+                            <span class="detailsLeft">
+                                <input
+                                    v-model="form.businessTripMoney"
+                                    type="text"
+                                    placeholder="请输入预估金额"
+                                    class="the_money business_surplus_money"
+                                />
+                            </span>
+                        </li>
+                        <li class="service_bar_type" style="border-bottom:none">
+                            出差事由<i class="required">*</i>
+                        </li>
+                        <textarea  class="reason inputFocus" v-model="form.remark" placeholder="此处填写事由(必填)" maxlength="200"></textarea>
+                    </ul>
+            </div>
+            <div class="content_footer" v-for="(item,index) in dataList">
+                <div class="content_title">
+                    <div class="theme">出差行程<span class="article">{{index+1}}</span><span class="add plusAdd" @click="addRow"></span></div>
+                </div>
+
+                <ul class="details clearfix" >
+                    <div class="fewer clearfix" v-if="!detailShow">
+                        <div class="few_left">
+                            <div class="destination">
+                                <span class="elapsedCity">请选择</span> - <span class="finishCity">请选择</span>
+                            </div>
+                            <div class="time_bom">
+                                <span class="elapsedTime">2018-12-25 09:00</span>至<span class="finishTime">2018-12-25 09:00</span>
+                            </div>
+                        </div>
+                        <div class="few_right" @click="detailShow = true">
+                            展开
+                        </div>
+                    </div>
+                    <div v-if="detailShow">
+                        <li>
+                            <span class="detailstheme">开始时间<i class="required">*</i></span>
+                            <span class="detailsLeft">
+                                <input
+                                    @click="DateshowPopup(1,index)"
+                                    v-model="item.startDate"
+                                    placeholder="请选择开始时间"
+                                    readonly="readonly"
+                                />
+                            </span>
+                        </li>
+                        <li>
+                            <span class="detailstheme"> 截止日期<i class="required">*</i></span>
+                            <span class="detailsLeft">
+                                <input
+                                    @click="DateshowPopup(2,index)"
+                                    placeholder="请选择截止日期"
+                                    v-model="item.endDate"
+                                    readonly="readonly"
+                                />
+                            </span>
+                        </li>
+                        <li class="rank_rgba_click" @click="CityshowPopup(index,1)">
+                            <span class="detailstheme">出发城市<i class="required">*</i></span>
+                            <span class="detailsLeft">
+                                <input type="text"
+                                    placeholder="请选择出发城市"
+                                    v-model="item.startAddress"
+                                    class="detail_input1 datetimeend"
+                                    readonly="readonly"
+                                    style="border: none;text-align: right;"/>
+                                <!-- <span class="deta_val rankTypeVal">请选择出发城市</span> -->
+                            </span>
+                        </li>
+                        <li class="service_bar_type" @click="CityshowPopup(index,2)">
+                            <span class="detailstheme">到达城市<i class="required">*</i></span>
+                            <span class="detailsLeft">
+                                <input type="text"
+                                    placeholder="请选择到达城市"
+                                    v-model="item.endAddress"
+                                    class="detail_input1 datetimeend"
+                                    readonly="readonly"
+                                    style="border: none;text-align: right;"/>
+                                <!-- <span class="deta_val rankTypeVal">请选择到达城市</span> -->
+                            </span>
+                        </li>
+                        <li class="rank_rgba_click" @click="TypeshowPopup(index)">
+                            <span class="detailstheme">计划类别<i class="required">*</i></span>
+                            <span class="detailsLeft">
+                                <input type="text"
+                                    placeholder="请选择计划类别"
+                                    v-model="item.businessTripLevel"
+                                    readonly="readonly"
+                                    style="border: none;text-align: right;"/>
+                                <!-- <span class="deta_val rankTypeVal">请选择到达城市</span> -->
+                            </span>
+                            <!-- <span class="detailsLeft">
+                                <span class="deta_val rankTypeVal">请选择计划类别</span>
+                            </span> -->
+                        </li>
+                        <li class="service_bar_type" style="border-bottom:none">
+                            备注
+                        </li>
+                        <textarea  class="reason inputFocus" placeholder="备注 "  v-model="item.remarks"></textarea>
+                        <li class="service_bar_type" style="border-top:1px solid #e1e3e4;">
+                            <div class="pack_up" @click="detailShow = false">收起明细</div>
+                            <div class="cencal"  @click="delDatadis(index,item)" >删除明细</div>
+                        </li>
+                    </div>
+
+                </ul>
+
+            </div>
+            <div class="btn_wrap">
+                <button type="button" class="save" id="preserve" @click="save">保存</button>
+                <button type="button" class="next" id="next_step" @click="approval">发起审批</button>
+            </div>
+        </div>
+        <van-popup v-model="Cityshow" position="bottom" :style="{ height: '100%' }" class="Citywrap" >
+            <div class="schbox">
+                <img src="../../img/search.png" class="search_img">
+                <input id="cityipt" placeholder="搜索"  type="text" />
+                <span class="cancel_city" @click="CityShow = false">取消</span>
+            </div>
+            <div class="container_im">
+                <div class="city">
+                    <div class="city-list" id="SearchCityVal">
+                        <p v-for="(item,index) in CityList" @click="Cityconfirm(item.localCity)">{{item.localCity}}</p>
+                    </div>
+                </div>
+            </div>
+        </van-popup>
+        <!-- <div class="Citywrap" v-if="CityShow">
+
+        </div> -->
+        <div class="Reminder">
+            <div class="hide_show">
+                <div class="Reminder_con">
+                    <p>提示</p>
+                    <p id="promptContent">查询失败！</p>
+                    <div class="cancel_btn">
+                        <span class="cancel">知 道 了</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="picker-main">
+            <button @click="showPicker()">选择器</button>
+            <span>{{city}}</span>
+            <div
+              v-if="show"
+              class="picker"
+            >
+              <section class="picker-main">
+                <h3>
+                  <span @click="show = false">取消</span>
+                  <span>请选择申请人</span>
+                  <span @click="sure()" class="sure">确认</span>
+                </h3>
+                <ul ref="ul">
+                  <li
+                    v-for="(item, index) in list"
+                    :key="index"
+                    :class="active==item.id?'active':active==item.id-1||active==item.id+1?'active2':null"
+                    :ref="'li'+item.label"
+                  >{{item.val}}</li>
+                </ul>
+              </section>
+            </div>
+        </div> -->
+        <!-- <div v-show="popup" >
+            <div class="popup_con">
+                <div class="popup_btn">
+                    <img src="../../img/search.png" class="search_img">
+                    <input id="cityipt" placeholder="请输入姓名搜索"  type="text" />
+                    <span class="cancel_city" @click="CityShow = false">取消</span>
+                </div>
+                <div class="popup_center">
+                      <p>Any<img src="../../img/no_selected.png"/></p>
+                </div>
+            </div>
+            <div class="over"></div>
+        </div> -->
+        <!-- <van-cell is-link @click="showPopup">展示弹出层</van-cell> -->
+        <!-- 申请人，业务类型，预算部门 -->
+        <van-popup v-model="show" position="bottom" :style="{ height: '40%' }" >
+            <van-picker
+                :title="title"
+                show-toolbar
+                :columns="columns"
+                :value-key="columnsName"
+                @confirm="onConfirm"
+                @cancel="onCancel"
+            ></van-picker>
+        </van-popup>
+        <!-- 计划类别 -->
+        <van-popup v-model="Typeshow" position="bottom" :style="{ height: '40%' }" >
+            <van-picker
+                title="请选择计划类别"
+                show-toolbar
+                :columns="businessTypeOptions"
+                value-key="value"
+                @confirm="TypeConfirm"
+                @cancel="TypeCancel"
+            ></van-picker>
+        </van-popup>
+        <!-- 时间 -->
+        <van-popup v-model="Dateshow" position="bottom" :style="{ height: '40%' }" >
+            <van-datetime-picker
+                v-model="currentDate"
+                type="datetime"
+                :title="Datetitle"
+                @confirm="DateConfirm"
+                @cancel="DateCancel"
+                :min-date="minDate"
+                :max-date="maxDate"
+            /></van-datetime-picker>
+        </van-popup>
+        <!-- 同行人 -->
+        <van-popup v-model="travelUsershow" position="bottom" :style="{ height: '100%' }" >
+            <van-search
+                v-model="traveluserName"
+                show-action
+                placeholder="请输入姓名进行搜索"
+                @search="onSearch"
+                action-text="取消"
+                @input="traveluserSesrch"
+                @cancel="travelUserCancel"
+            ></van-search>
+            <van-list
+                v-model="loading"
+                :finished="finished"
+                finished-text="没有更多了"
+                @load="onLoad">
+                <!-- <van-cell v-for="item in list" :key="item" :title="item" /> -->
+                <van-checkbox-group v-model="result" checked-color="#1660A3">
+                    <van-cell-group >
+                        <van-cell
+                            v-for="(item, index) in list"
+                            clickable
+                            :key="item"
+                            :title="item.userName"
+                            @click="toggle(index)">
+                            <template #right-icon>
+                                <van-checkbox :name="item" ref="checkboxes"/>
+                            </template>
+                        </van-cell>
+                    </van-cell-group>
+                </van-checkbox-group>
+              </van-list>
+              <button type="button" class="next"
+                      @click="travelUserConifrm"
+                style="
+                position: fixed;
+                bottom: 15px;
+                left: 50%;
+                width: 92%;
+                z-index: 999;
+                margin-left: -46%;
+            ">确定</button>
+        </van-popup>
+        <van-dialog v-model="opinionshow" title="审批意见" show-cancel-button
+            @confirm="opinionConfirm"
+            @cancel="opinionCancel">
+            <input v-model="opinion" style="margin-left: 5%;width: 90%;height: .8rem;border: 1px solid #E6E6E6;border-radius: 10px;border-radius: 4px;"/>
+        </van-dialog>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            traveluserName:'',
+            opinionshow:false,
+            opinion:'',
+            Cityshow:false,
+            value: '',
+            list: [],
+            loading: false,
+            finished: false,
+            list: [],//同行人
+            result: [],
+            travelUsershow: false,
+
+            userCode:'',
+            userList:[],//申请人列表
+            approveConfigList:[],//业务发生部门列表
+            budgetDepartmentList:[], // 预算承担部门
+            show: false,
+            Typeshow: false,
+            businessTypeOptions:[
+                {label:'头等舱',value:'头等舱' },
+                {label:'经济舱',value:'经济舱'},
+                {label:'商务舱',value:'商务舱'},
+                {label:'商务座',value:'商务座'},
+                {label:'一等座',value:'一等座'},
+                {label:'二等座',value:'二等座'},
+                {label:'软卧',value:'软卧'},
+                {label:'硬卧',value:'硬卧'},
+                {label:'软座',value:'软座'},
+                {label:'硬座',value:'硬座'},
+                {label:'其他',value:'其他'},
+            ],
+            columns: [],
+            title:'请选择申请人',
+            columnsName:'userName',
+            clickStuas:1,
+            detailShow:true,
+            CityShow:false,
+            loading:false,
+            dataList:[
+                {
+                    transportType:'', //出差计划类别,1:飞机 2:火车 3:酒店 4:出行用车 5:其他',
+                    businessTripLevel: '', // 舱位/住宿类型'
+                    endDate: '', //到达时间
+                    startDate: '', //开始时间
+                    startAddress:'', //出发城市
+                    endAddress:'', //出发城市
+                    remarks: '', //备注
+                    id:'',
+                }
+            ],
+            searchCriteriaShow:false,
+            userName:'',
+            approveConfig:'',
+            budgetDepartmentName:'',
+            form:{},
+            minDate: new Date(2020, 0, 1),
+            maxDate: new Date(2025, 10, 1),
+            currentDate: new Date(),
+            Dateshow:false,
+            Datetitle:'请选择开始时间',
+            StartToend:'',//开始or结束时间
+            CityList:[],
+            StartToendCity:'',//开始or结束城市
+            TimeNum :'',//某一条数据
+            pageNum:0,
+
+        },
+        
+        methods: {
+
+
+            CityshowPopup(index,e){
+                this.TimeNum = index;
+                this.StartToendCity = e
+                this.Cityshow = !this.Cityshow
+            },
+            Cityconfirm(value){
+                if(this.StartToendCity == 1){
+                    this.dataList[this.TimeNum].startAddress = value;
+                }else{
+                    this.dataList[this.TimeNum].entAddress = value;
+                }
+                this.Cityshow = !this.Cityshow
+            },
+            onSearch(val) {
+                console.log(val);
+            },
+            traveluserSesrch(){
+                this.getroadList()
+            },
+            getroadList(){
+                axiosPostRequst('/user/selectUserListByCondition',{
+                    pageNum:this.pageNum,
+                    pageSize:50,
+                    name:this.traveluserName
+                }).then(res =>{
+                    this.loading = false;
+                    console.log(res,'同行人');
+                    this.list = res.result.res;
+                    if(this.pageNum == 1){
+                        this.list.push(res.result.res);
+                    }else{
+                        this.list=res.result.res
+                    }
+                    if (this.list.length >=res.result.total) {
+                        this.finished = true;
+                    }
+                });
+            },
+            travelUserCancel() {
+
+                this.travelUsershow = !this.travelUsershow
+                // Toast('取消');
+            },
+            travelUserConifrm(){
+                this.form.travelUserName = this.result.map(item => item.userName).toString();
+                this.form.travelUserId = this.result.map(item => item.userCode).toString();
+                this.travelUsershow = !this.travelUsershow
+            },
+            travelUsershowPopup(){
+                this.getroadList();
+                this.travelUsershow = !this.travelUsershow;
+                const that = this
+                setInterval(function(){
+                    const el = document.querySelector('.van-popup');
+                    const offsetHeight = el.offsetHeight;
+                    el.onscroll = () => {
+                        const scrollTop = el.scrollTop;
+                        const scrollHeight = el.scrollHeight;
+                        if ((offsetHeight + scrollTop) - scrollHeight >= -1) {
+                            //每次滚动到底部size+10
+                            console.log(this.pageNum)
+                            that.pageNum++;
+                            that.getroadList();
+                        }
+                    }
+                },10*60);
+            },
+            onLoad() {
+                // this.pageNum++;
+                
+                // this.getroadList()
+               
+            },
+            toggle(index) {
+                this.$refs.checkboxes[index].toggle();
+            },
+
+            // 获取cookie
+            getCookie(name){
+                var arr,reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+                if (arr = document.cookie.match(reg)) {
+                    return unescape(arr[2]);
+                } else {
+                    return null;
+                }
+            },
+            // 时间
+            DateshowPopup(e,index){
+                this.StartToend = e;
+                this.TimeNum = index
+                if(e == 1){
+                    this.Datetitle='请选择开始时间'
+                }else{
+                    this.Datetitle='请选择返程时间'
+                }
+                this.Dateshow = !this.Dateshow;
+            },
+            // 时间确定
+            DateConfirm(value, index){
+                if(this.StartToend == 1){
+                    this.dataList[this.TimeNum].startDate = this.currentdateChange(value);
+                    this.startDateChange();
+                }else{
+                    this.dataList[this.TimeNum].endDate = this.currentdateChange(value);
+                    this.endDateChange();
+                }
+                this.Dateshow = !this.Dateshow;
+            },
+            startDateChange(){
+                if(this.dataList[this.TimeNum].startDate != ""&& this.dataList[this.TimeNum].endDate !=""){
+                    if(this.dataList[this.TimeNum].startDate >= this.dataList[this.TimeNum].endDate){
+                        // this.$message.warning('出差开始时间不能大于结束时间');
+                        vant.Toast('出差开始时间不能大于结束时间');
+                        // return
+                    }
+                }
+
+                let arr = this.dataList;
+                let max = arr[0].startDate;
+                for (let i = 0; i < arr.length - 1; i++) {
+                    max = max > arr[i+1].startDate ? arr[i+1].startDate : max
+                }
+                this.form.businessTripBeginDate = "";
+                this.form.businessTripBeginDate = max;
+                this.changeTripDay();
+
+
+            },
+            endDateChange(){
+                if(this.dataList[this.TimeNum].startDate != ""&& this.dataList[this.TimeNum].endDate !=""){
+                    if(this.dataList[this.TimeNum].startDate >= this.dataList[this.TimeNum].endDate){
+                        vant.Toast('出差开始时间不能大于结束时间');
+                    }
+                }
+                let arr = this.dataList;
+                let min = arr[0].endDate;
+                for (let i = 0; i < arr.length - 1; i++) {
+                    min = min < arr[i+1].endDate ? arr[i+1].endDate : min
+                }
+                this.form.businessTripEndDate = min;
+                this.changeTripDay();
+            },
+            changeTripDay(){
+                if(this.form.businessTripEndDate && this.form.businessTripBeginDate){
+                    if(this.transdate(this.form.businessTripEndDate) > this.transdate(this.form.businessTripBeginDate)){
+                        console.log(this.DateDiff(this.form.businessTripEndDate,this.form.businessTripBeginDate))
+                        let days = this.DateDiff(this.form.businessTripEndDate,this.form.businessTripBeginDate)
+                        this.form.businessTripDay = Math.floor(days + 1);
+                    }else{
+                        vant.Toast('出差开始时间不能大于结束时间');
+                    }
+                }
+            },
+            transdate( time){
+                var date = new Date();
+                date.setFullYear(time.substring(0, 4));
+                date.setMonth(time.substring(5, 7) - 1);
+                date.setDate(time.substring(8, 10));
+                date.setHours(time.substring(11, 13));
+                date.setMinutes(time.substring(14, 16));
+                date.setSeconds(time.substring(17, 19));
+                return Date.parse(date) / 1000;
+            },
+            DateDiff(sDate1, sDate2) {  //sDate1和sDate2是yyyy-MM-dd格式
+                var aDate, oDate1, oDate2, iDays;
+                aDate = sDate1.split("-");
+                oDate1 = new Date(aDate[1] + '-' + aDate[2] + '-' + aDate[0]);  //转换为yyyy-MM-dd格式
+                aDate = sDate2.split("-");
+                oDate2 = new Date(aDate[1] + '-' + aDate[2] + '-' + aDate[0]);
+                iDays = parseInt(Math.abs(oDate1 - oDate2) / 1000 / 60 / 60 / 24); //把相差的毫秒数转换为天数
+
+                return iDays;  //返回相差天数
+            },
+            DateCancel(){
+                this.Dateshow = !this.Dateshow;
+            },
+            TypeshowPopup(index){
+                this.TimeNum = index
+                this.Typeshow = !this.Typeshow
+            },
+            // 计划类型确定
+            TypeConfirm(value, index){
+                this.dataList[this.TimeNum].businessTripLevel = value.label
+                // alert(value)
+                this.Typeshow = !this.Typeshow
+            },
+            TypeCancel(){
+                this.Typeshow = !this.Typeshow
+            },
+
+
+            showPopup(e) {
+                this.clickStuas = e
+                if(e == 1){
+                    this.title = '请选择申请人'
+                    this.columns = this.userList;
+                    this.columnsName = 'userName'
+                }else if(e == 2){
+                    if(this.form.businessTripPersonName){
+                        this.title = '请选择业务发生部门';
+                        this.columns = this.approveConfigList;
+                        this.columnsName = 'orgName';
+
+                    }else{
+                        return
+                    }
+
+                    // this.columns = this.userList
+                }else if(e==3){
+                    this.title = '请选择预算承担部门';
+                    this.columns = this.budgetDepartmentList;
+                    this.columnsName = 'budgetDepartmentFullName'
+                    // this.columns = this.userList
+                }
+                this.show = true;
+            },
+
+            //  查询根据报销人查询相关的配置数据
+            DataByConfig(par){
+                axiosGetRequstpar('/baseConfig/queryDataByConfig',par).then(res =>{
+                    console.log(res,'查询根据报销人查询相关的配置数据成功！');
+                    this.approveConfigList = res.result.approveConfig
+                    this.budgetDepartmentList = res.result.budgetDepartment;
+                    
+                    if(res.result.approveConfig.length == 1){
+                        this.form.departmentName = res.result.approveConfig[0].orgName;//业务部门name
+                        this.form.departmentId = res.result.approveConfig[0].orgCode;//业务部门
+                    }
+                    if(res.result.budgetDepartment.length == 1){
+                        this.budgetDepartmentName = res.result.budgetDepartment[0].budgetDepartmentName;
+                        this.form.budgetDepartmentName = res.result.budgetDepartment[0].budgetDepartmentFullName;//预算部门name
+                        this.form.budgetDepartmentCd = res.result.budgetDepartment[0].departmentId;//预算部门
+                        let par ={
+                            mainType:4,
+                            processType:8,
+                            orgCode:this.form.budgetDepartmentCd
+                        }
+                        this.selectFlow(par);
+                    }
+
+                    // approveConfig //业务发生部门
+                    // budgetDepartment // 预算承担部门
+                    // this.userList = res.result
+                });
+
+            },
+            // 权责事项
+            selectFlow(par){
+                axiosPostRequst('/flowConfig/selectFlowConfig',par).then(res =>{
+                    console.log(res,'权责事项');
+                    if(res.result){
+                        this.form.processCenterName = res.result[0].flowName;
+                        this.form.processCenterId = res.result[0].id;
+                    }else{
+                        alert('权责事项为空！')
+                    }
+                });
+            },
+            // 底部弹出确定
+            onConfirm(value, index) {
+                if(this.clickStuas == 1){
+                    this.form.businessTripPersonName = value.userName;//申请人name
+                    this.form.businessTripPersonId =value.userCode;//申请人name
+                    let lsdata={
+                        userCode:value.userCode,
+                        isPublic:0
+                    }
+                    this.DataByConfig(lsdata);
+
+                }else if(this.clickStuas == 2){
+                    this.form.departmentName = value.orgName;//业务部门name
+                    this.form.departmentId = value.orgCode;//业务部门
+                }else if(this.clickStuas == 3){
+                    this.budgetDepartmentName = value.budgetDepartmentName;
+                    this.form.budgetDepartmentName = value.budgetDepartmentFullName;//预算部门name
+                    this.form.budgetDepartmentCd = value.departmentId;//预算部门
+                    let par ={
+                        mainType:4,
+                        processType:8,
+                        orgCode:value.departmentId
+                    }
+                    this.selectFlow(par);
+                }
+                // alert(`当前值：${value.userName}, 当前索引：${index}`);
+                this.show = !this.show ;
+            },
+
+            // 点击取消
+            onCancel() {
+                // alert('取消');
+                this.show =  !this.show ;
+            },
+
+
+            // 新增一条
+            addRow () {
+                var list = {
+                    transportType:'', //出差计划类别,1:飞机 2:火车 3:酒店 4:出行用车 5:其他',
+                    businessTripLevel: '', // 舱位/住宿类型'
+                    endDate: '', //到达时间
+                    startDate: '', //开始时间
+                    startAddress:'', //出发城市
+                    endAddress:'', //出发城市
+                    remarks: '', //备注
+                    id:this.getRandomArbitrary(0,1),
+                }
+                this.dataList.push(list);
+            },
+            delDatadis(index,row) {
+                let List = [row]
+                if(index != 0){
+                    for (let i = 0; i < List.length; i++) {
+                        let val = List;
+                        val.forEach((val, index) => {
+                            this.dataList.forEach((v, i) => {
+                                if (val.id === v.id) {
+                                    this.dataList.splice(i, 1);
+                                }
+                            })
+                        })
+                    }
+                }
+            },
+            getRandomArbitrary(min, max) {
+                return Math.random() * (max - min) + min;
+            },
+
+            currentdateChange(val){
+                let year = val.getFullYear()
+                let month = val.getMonth() + 1
+                let day = val.getDate()
+                let hour = val.getHours()
+                let minute = val.getMinutes()
+                if (month >= 1 && month <= 9) { month = `0${month}` }
+                if (day >= 1 && day <= 9) { day = `0${day}` }
+                if (hour >= 0 && hour <= 9) { hour = `0${hour}` }
+                if (minute >= 0 && minute <= 9) { minute = `0${minute}` }
+                return timeValue = `${year}-${month}-${day} ${hour}:${minute}`
+
+            },
+
+            save(){
+                this.loading=true;
+                let par = {
+                    itemPOList:this.dataList,
+                    feeNewBusinessTripPO:this.form
+                }
+                axiosPostRequst('/newtravelpc/saveUpdateFeeBusiness',par).then(res => {
+                    vant.Toast('保存成功');
+                    // vant.Toast.success('保存成功');
+                    console.log(res,'保存成功');
+                    this.loading=false;
+                })
+            },
+            opinionConfirm(){
+
+                if(this.opinion != ''){
+                    this.loading=true;
+                    let par = {
+                        opinion:this.opinion,
+                        itemPOList:this.dataList,
+                        feeNewBusinessTripPO:this.form
+                    }
+                    axiosPostRequst('/newtravelpc/startApproval',par).then(res => {
+                        if(res.resultCode == 200){
+                            vant.Toast('发起审批成功!');
+                        }else{
+                            vant.Toast(res.message);
+                        }
+                        this.loading=false;
+                    })
+                    this.opinionshow = false;
+                }
+            },
+            opinionCancel(){
+                this.opinionshow = false;
+                this.opinion="";
+            },
+            approval(){
+                this.opinionshow = true;
+            },
+
+        },
+        mounted(){
+            
+            this.userCode = this.getCookie('AuthUser_LoginId');
+            axiosGetRequstpar('/baseConfig/queryByOperator',{userCode:this.userCode}).then(res =>{
+                console.log(res,'申请人');
+                this.userList = res.result;
+                if(this.userList.length == 1){
+                    this.form.businessTripPersonName = this.userList[0].userName;//申请人name
+                    this.form.businessTripPersonId =this.userList[0].userCode;//申请人name
+                    let lsdata={
+                        userCode:this.form.businessTripPersonId,
+                        isPublic:0
+                    }
+                    this.DataByConfig(lsdata);
+                }
+
+            });
+            let par = {
+                pageNum:console,
+                pageSize:50,
+            }
+
+            axiosGetRequst('/baseCity/selectCityList').then(res =>{
+                console.log(res,'chengshi');
+                this.CityList = res.result
+            });
+            axiosGetRequst('/basecoderule/showRule',{codetypeId:14}).then(res =>{
+                console.log(res,'liushuihao');
+                this.form.applicationCode = res.result
+                this.form.annexUuid = res.result
+                // this.CityList = res.result
+            });
+            
+            
+            // axiosPostRequst('/user/selectUserListByCondition',{par}).then(res =>{
+            //     console.log(res,'同行人');
+            //     this.list = res.result.res
+            // });
+
+
+        }
+    })
+</script>
+<script>
+    Bridge.rightMarkText( 1,'新增','addTravel.html')
+</script>
+<style>
+    .van-picker__confirm{
+        color: #1660a3;
+    }
+    .details li:last-child{
+        border-bottom:none;
+    }
+    .search_img{
+        width: 0.45rem;
+        height: 0.45rem;
+        background: url("../img/search.png")no-repeat center ;
+        /* background: #000;; */
+        position: absolute;
+        top: 0.35rem;
+        left: 0.4rem;
+        /* color: #B2B2B2; */
+    }
+    .container_im{
+        overflow: scroll !important;
+    }
+    .city{
+        width: 100%;
+        height: calc(100vh - 1.25rem) !important;
+        margin-top: 1.25rem !important;
+        overflow-x: hidden;
+    }
+    /*城市弹层*/
+    .Citywrap{
+        width: 100%;
+        height: 100%;
+    }
+
+    .city-list p{
+        color: #afafaf;
+        width: 100%;
+        height: 1rem;
+        line-height: 1rem;
+        border-bottom: 1px solid #e8ecf1;
+        cursor: pointer;
+        font-size: .4rem;
+        padding-left: .5rem;
+    }
+    .UISelect{margin-top:5px}
+    /* 滴滴城市地址模糊搜索 */
+    .schbox input {
+        float: left;
+        background: #FFFFFF;
+        border-radius: 3px;
+        width: 75%;
+        height: .8rem;
+        float: left;
+        margin-top: 2%;
+        margin-left: 2.1%;
+        border: none;
+        font-family: PingFangSC-Regular;
+        font-size: .35rem;
+        color: #9B9B9B !important;
+        letter-spacing: 0;
+        padding-left:10%;
+    }
+    .schbox{
+        width: 100%;
+        height: 1.25rem;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #F5F5F5;
+    }
+    .schbox span {
+        float: left;
+        font-size: .4rem;
+        color: #9ac8e7;
+        float: right;
+        text-align: right;
+        margin-right: .15rem;
+        line-height: 1.25rem;
+    }
+    /* .search_img{
+
+    } */
+    .genre{
+        margin-top:.15rem;
+    }
+
+    .required{
+        color: red;
+    }
+    .next{
+        box-shadow: 0 0 6px 0 rgba(22,96,163,0.20) !important;
+    }
+    .reason{
+        width: 88%;
+        border: 1px solid #F5F5F5;
+        border-radius: 10px;
+        border-radius: 10px;
+        padding: 0.25rem;;
+        margin-left: 3%;
+        margin-bottom:20px;
+        line-height: .525rem;
+
+        font-size: .4rem;
+    }
+    .pack_up{
+        width: 49.85%;
+        height: 1.05rem;
+        float: left;
+        text-align: center;
+        line-height: 1.05rem;
+        padding: .2rem 0 ;
+        border-right: .5px solid #F5F5F5;
+        font-family: PingFangSC-Regular;
+        font-size: .4rem;
+        color: #4787FF;
+    }
+    .cencal{
+        width: 49.85%;
+        height: 1.05rem;
+        float: right;
+        text-align: center;
+        line-height: 1.05rem;
+        padding: .2rem 0 ;
+        font-family: PingFangSC-Regular;
+        font-size: .4rem;
+    }
+    .write_topic span{
+        margin-left: .3rem;
+    }
+    .time_bom{
+        margin-top: .1rem;
+        margin-left: .45rem;
+        font-family: PingFangSC-Regular;
+        font-size: .3rem;
+        color: #9B9B9B;
+    }
+    .destination{
+        font-family: PingFangSC-Regular;
+        font-size: .4rem;
+        color: #262626;
+        margin-top: .1rem;
+        margin-left: .45rem;
+    }
+    .fewer{
+        height: 1.25rem;
+    }
+    .few_left{
+        float: left;
+        width: 78%;
+    }
+    .few_right{
+        width: 20%;
+        float: right;
+        text-align: center;
+        line-height: 1.25rem;
+        font-family: PingFangSC-Medium;
+        font-size: .35rem;
+        color: #D2D2D2;
+        letter-spacing: 0;
+        border-left: 1px solid #E6E6E6;
+    }
+    .detailstheme{
+        float: left;
+    }
+    .detailsLeft{
+        color: #999999;
+    }
+    .detailsLeft input{
+        color: #999999 !important;
+        border:none;
+        text-align: right;
+    }
+    .details {
+        background: #fff;
+        width: 92%;
+        margin: 0 auto;
+        border-radius: 10px;
+        /* margin-bottom: 20px; */
+    }
+    .add{
+        float: right;
+        display:inline-block;
+        width: .4rem;
+        height: .4rem;
+        background: url(../../img/combinedShape.png)no-repeat center;
+        background-size: cover;
+        vertical-align: middle;
+        float: right;
+        margin-right: 5%;
+        font-size: .8rem;
+        color:  #1660A3;
+        margin-top: .425rem;
+    }
+    .van-search{
+        width: 100%;
+        position: fixed;
+        top: 0;
+        z-index: 999;
+        left: 0;
+    }
+    .van-list{
+        margin-top: 50px;
+    }
+</style>
+</html>

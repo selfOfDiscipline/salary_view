@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="../css/reset.css">
+<script type="text/javascript" src="../js/common/flexible_css.js"></script>
+<script type="text/javascript" src="../js/common/jquery-min.js"></script>
+<script>
+    var quickResponseCode = getUrlParam('quickResponseCode');
+    // var quickResponseCode = '234567890111'
+    function getUrlParam(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg); //匹配目标参数
+        if (r!=null) return unescape(r[2]);
+        return null; //返回参数值
+    }
+    if(quickResponseCode){
+        window.location.href="invoice/invoice_details.html?quickResponseCode="+quickResponseCode+"&from="+2;
+    }else{
+        window.history.back(-1);
+    }
+    
+</script>
+</head>
+<body>
+	
+</body>
+
+</html>

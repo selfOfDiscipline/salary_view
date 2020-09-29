@@ -1,0 +1,413 @@
+@import './variables.scss';
+@import './mixin.scss';
+@import './transition.scss';
+@import './element-ui.scss';
+@import './sidebar.scss';
+@import './common.scss';
+
+@font-face{
+  font-family: PingFangSC-Regular;
+  //src:url('../fonts/PingFangRegular.otf')
+  font-family: "Microsoft YaHei";
+  src:url('../fonts/msyh.ttf')
+}
+ 
+* {
+  font-size: 12px;
+  //font-family: PingFangSC-Regular;
+  font-family: "Microsoft YaHei";
+}
+.el-message__content {
+  font-size: 12px!important;
+}
+.el-button, .el-button--primary.is-plain {
+  color: #1660a3;
+  background: #e1f1ff;
+  border-color: #1660a3;
+  border-radius: 8px;
+  padding: 0 26px;
+  height: 30px!important;
+  font-size: 12px;
+  &:hover, &:active {
+    @extend .el-button
+  }
+}
+.el-table {
+  color: #333333;
+}
+.el-table thead .cell {
+  color: #333!important;
+  font-size: 12px;
+  font-weight: 600!important;
+  letter-spacing: 1.2px;
+  //font-family: PingFangSC-Medium;
+}
+.el-table td, .el-table th {
+  text-align: center;
+  padding: 8px 0;
+}
+.el-table .cell {
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+  padding-right: 10px;
+}
+.el-table .el-checkbox__inner {
+  width: 16px;
+  height: 16px;
+  &::after {
+    top: 2px;
+    left: 5px;
+  }
+}
+.el-table--striped .el-table__body tr.el-table__row--striped.current-row td, .el-table__body tr.current-row>td {
+  background-color: #d9e5fd!important;
+}
+.el-tooltip__popper.is-dark{
+  max-width: 300px;
+}
+.el-form-item.is-required:not(.is-no-asterisk)>.el-form-item__label {
+  &::before{
+    content: '';
+    margin: 0;
+  }
+  &::after{
+    content: '*';
+    color: #F58181;
+    margin-left: 4px;
+  }
+}
+.el-form-item__error{
+  color: #F58181;
+}
+.el-form-item {
+  font-size: 14px!important;
+  min-height: 34px;
+  line-height: 34px;
+  margin-bottom: 18px;
+  .el-form-item{
+    margin-bottom: 0!important;
+  }
+  .el-select {
+    width: 100%;
+  }
+  label {
+    font-weight: normal;
+  }
+  .el-form-item__content{
+    line-height: 34px;
+  }
+  input, textarea {
+    font-size: 12px;
+    outline: 0;
+    height: 34px;
+    line-height: 34px;
+    color: #666666!important;
+    font-weight: normal;
+    font-family: PingFangSC-Regular;
+  }
+  .el-input__icon {
+    line-height: 34px;
+  }
+}
+.el-form-item__label{
+  line-height: 34px!important;
+  font-size: 12px!important;
+  color: #666!important;
+}
+.el-dialog {
+  padding: 10px;
+  .app-container{
+    position: relative;
+    .btn-area {
+      position: absolute;
+      top: -67px;
+      right: 25px;
+      left: auto !important;
+      bottom: auto !important;
+      transform:translateX(0) !important;
+      margin: 0 !important;
+    }
+  }
+  .el-dialog__headerbtn {
+    top: 17px;
+  }
+  .formbtn .el-form-item__content{
+    margin-left: 0!important;
+    display: flex;
+    justify-content: space-between;
+  }
+  .el-form-item.is-required:not(.is-no-asterisk) {
+    .el-form-item__label-wrap>.el-form-item__label {
+      &::before{
+        content: '';
+        margin: 0;
+      }
+      &::after{
+        content: '*';
+        color: #F58181;
+        margin-left: 4px;
+      }
+    }
+  }
+  .el-dialog__header{
+    padding: 5px;
+    height: 45px;
+    padding-left: 0;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding-top: 7px;
+    border-bottom: 1px solid #e6e6e6;
+    .el-dialog__title {
+      display: inline-block;
+      padding-left: 0;
+      font-family: PingFangSC-Medium;
+      font-size: 14px;
+      color: #333;
+      margin-left: -6px;
+      font-weight: 700;
+      line-height: 1;
+      &::before{
+        content: "";
+        width: 4px;
+        height: 16px;
+        background: #2395f7;
+        display: inline-block;
+        position: relative;
+        left: -6px;
+        top: 3px;
+        border-radius: 2px;
+      }
+    }
+  }
+  .el-dialog__body {
+    padding: 20px 20px 0;
+  }
+}
+body {
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+label {
+  font-weight: 700;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#app {
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+div:focus {
+  outline: none;
+}
+.el-scrollbar__view{
+  @extend .el-scrollbar
+}
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+ html::-webkit-scrollbar,
+.app-main::-webkit-scrollbar,
+.el-menu--inline::-webkit-scrollbar{
+  display: none;
+}
+.el-scrollbar__wrap::-webkit-scrollbar{
+  display: block;
+
+}
+// .scrollbar-wrapper::-webkit-scrollbar {
+//   width: 5px;
+//   height: 5px;
+//   display: block;
+// }
+
+// .scrollbar-wrapper::-webkit-scrollbar-thumb {
+//   background: #c5daff;
+//   border-radius: 10px;
+// }
+// /*高亮*/
+// ::-webkit-scrollbar-thumb:hover {
+//   background: #c5daff;
+// }
+// .el-scrollbar__wrap { overflow: scroll; width: 10%; height: 10%; }
+// .app-main .el-table ::-webkit-scrollbar,
+// .app-main .el-table ::-webkit-scrollbar，
+// .app-main .el-table .el-scrollbar__bar{
+//   display: block;
+// }
+// .scrollbar-wrapper {
+//   width: 100%;
+// }
+
+//::-webkit-scrollbar{
+//  display: none;
+//}
+
+// main-container global css
+// .el-menu--popup{
+//   z-index: 99999;
+//   border: none;
+//   position: absolute;
+//   left: 225px;
+//   top: -55px;
+//   padding: 0;
+// }
+// .el-menu--popup-right-start{
+//   top: 0px;
+//   left: 0px;
+// }
+.csclass{
+  left: 54px;
+}
+.el-menu .el-menu--inline{
+  position: absolute;
+  bottom: 0px;
+  left: 100%;
+  z-index: 9999;
+  overflow: scroll;
+  max-height: 400px !important;
+  overflow:hidden;
+  height: fit-content !important;
+}
+.el-scrollbar,.el-scrollbar__view{
+  overflow: visible !important;
+}
+#app .sidebar-container .scrollbar-wrapper{
+  overflow: visible !important;
+}
+.el-submenu{
+  position: relative;
+  &.is-active .el-submenu__title {
+    background: #08467e !important;
+    color: #ffffff !important;
+  }
+}
+#app .sidebar-container .el-menu{
+  width: auto !important;
+}
+#app .hideSidebar .el-submenu{
+  overflow: visible !important;
+}
+#app .sidebar-container{
+  z-index: 2001;
+}
+
+#app .sidebar-container .submenu-title-noDropdown:hover, #app .sidebar-container .el-submenu__title:hover{
+  color: #00102e !important;
+}
+
+.el-menu--vertical .el-menu .el-menu-item{
+  color: #a2a5aa !important;
+}
+// .el-menu--vertical {
+//   border-radius: 7px;
+//   box-shadow: 0 2px 3px 0 #000e1b;
+// }
+
+.el-menu .el-menu .el-menu-item{
+  color: #a2a5aa !important;
+}
+.el-menu {
+  // border-radius: 7px;
+  box-shadow: 0 2px 3px 0 #000e1b;
+}
+.el-menu el-menu--inline{
+  border-radius: 7px;
+  box-shadow: 0 2px 3px 0 #000e1b;
+}
+.el-menu--vertical .el-menu {
+  background: #ddeefe!important;
+  z-index: 9999999;
+}
+.el-menu--vertical .el-menu .el-menu-item {
+  color: #a2a5aa!important;
+  margin: 0!important;
+  background: #ddeefe!important;
+  position: relative;
+}
+#app .el-menu-item, #app .el-submenu__title, .el-submenu .el-menu-item {
+  height: 40px;
+  line-height: 40px;
+}
+#app .sidebar-container a {
+  display: inline-block;
+  width: 100%;
+  overflow: visible;
+}
+.el-menu-item *,.el-submenu__title *{
+  font-size: 14px;
+}
+#app .sidebar-container .el-scrollbar, #app .sidebar-container .el-scrollbar__view {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#app .el-menu-vertical-demo:not(.el-menu--collapse) .el-submenu.is-active .el-submenu__title {
+  background: #08467e!important;
+  color: #fff!important;
+}
+.el-menu-item.is-active {
+  background: #08467e !important;
+  color: #ffffff !important;
+}
+.inlinebtn{
+  display: inline-block;
+}
+.el-tree-node__label{
+  font-size: 12px;
+}
+
+#app .sidebar-container .nest-menu .el-submenu>.el-submenu__title:hover, #app .sidebar-container .el-submenu .el-menu-item:hover {
+  color: black !important;
+}
+.el-submenu .el-menu-item{
+  padding-left: 40px !important;
+  padding-right: 20px !important;
+}
+
+.max-zindex {
+  z-index: 9999999!important;
+}
+.link{
+  cursor: pointer;
+  color: #2395f7;
+  &:hover{
+    text-decoration: underline;
+  }
+}

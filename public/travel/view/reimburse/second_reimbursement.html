@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>报销申请</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" type="text/css" href="../../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../../css/second_reimbursement.css">
+	<link rel="stylesheet" type="text/css" href="../../css/mobiscroll/mobiscroll.custom.min.css">
+	<script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+	<script type="text/javascript" src="../../js/common/jquery-min.js"></script>
+	<script type="text/javascript" src="../../../../app/js/base/base.js"></script>
+	<script type="text/javascript" src="../../js/common/attachmentUpload.js"></script>
+	<script type="text/javascript" src="../../js/mobiscroll/mobiscroll.custom.min.js"></script>
+	<script type="text/javascript" src="../../js/second_reimbursement.js"></script>
+	<style type="text/css">
+		input{
+			border: none;
+			text-align: right;
+			color: #000;
+			background: transparent;
+		}
+		.overnowrap{
+		    width: 6rem;
+		    white-space:nowrap;
+		    text-overflow:ellipsis;
+		    -o-text-overflow:ellipsis;
+		    overflow:hidden;
+		    text-align: right;
+		}
+	</style>
+	<script>
+		// 金额保留两位小数
+	    function clearNoNum(obj){
+	        if(obj.value){
+	            obj.value = obj.value.replace(/[^\d.]/g,"");  //清除“数字”和“.”以外的字符
+	            obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个. 清除多余的
+	            obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+	            obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');//只能输入两个小数
+	            if(obj.value.indexOf(".")< 0 && obj.value !=""){//以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的金额
+	                obj.value= parseFloat(obj.value);
+	            }
+	        }
+	    }
+	</script>
+</head>
+<body>
+	<div class="content_two">
+		<div class="content_title">
+			<div class="theme">明细类别</div>
+			<span class="article">合计<i>0</i>元</span>
+			<div class="add"></div>
+		</div>
+		<ul class="form">
+			<li class="stay">
+				<div class="stay_text">
+					<span>增值税明细</span>
+					<img class="copy" src="../../img/copy.png">
+				</div>
+				<div class="wrap_details details_box" id="accommodation">
+					
+				</div>
+			</li>
+			<li class="train">
+				<div class="stay_text">
+					<span>火车明细</span>
+					<img class="copy" src="../../img/copy.png">
+				</div>
+				<div class="wrap_details details_box" id="choochoo">
+					
+				</div>
+			</li>
+			<li class="rests">
+				<div class="stay_text">
+					<span>其他明细</span>
+					<img class="copy" src="../../img/copy.png">
+				</div>
+				<div class="wrap_details details_box" id="rest">
+					
+				</div>
+			</li>
+			<!-- 餐旅补助 -->
+			<div class="train">
+				<div class="stay_text">
+					<span style="line-height: 1.25rem; margin-left: 3%;font-family: PingFangSC-Regular;font-size: 16px;color: #262626;">误餐补助</span>
+					<img class="copy" src="../../img/copy.png" style="border: 0;float: right;margin-right: 3%;margin-top: .5rem;">
+				</div>
+				<div id="wrap_details " class="wrap_details" >
+					<div class="stay_details" style="height: 5.25rem;">
+						<ul id="allowance">
+							<!-- <li>出差开始时间<span class="right_important black businessTripBeginDate">2018-10-10 09:00</span></li>
+							<li>出差结束时间<span class="right_important black businessTripEndDate">2018-10-10 09:00</span></li> -->
+							<!-- <li>出差天数<span class="right_important black businessTripDay">0</span></li>
+							<li>每日餐补金额<span class="right_important black tax">¥102</span></li> -->
+							<li>总金额<span class="right_important black taxIncludedAmount">0</span></li>
+							<li class="black">本次使用金额
+								<span class="right_important blue">
+									<input type="text" value="0" placeholder="0.00" class="resmoney amountUsed" name="" id="allmoney">
+								</span>
+							</li>
+                            <input type="hidden" class="budgetBody" value="1">
+                           	<li class="black">预算主体
+                           		<img class="corners" src="../../img/corners_right.png">
+                           		<span class="right_important rankTypeVal gray departmentName">请选择</span>
+                           	</li>
+                            <input type="hidden" class="costSubject" value="1">
+                            <li class="black costClick">费用科目
+                            	<img class="corners" src="../../img/corners_right.png">
+                            	<span class="right_important gray costSubjectVal">请选择</span>
+                            </li>
+                            
+                            <input type="hidden" class="fundTypeval" value="5">
+                           	<li class="black fundType">款项类型
+                           		<img class="corners" src="../../img/corners_right.png">
+                           		<span class="right_important gray fundType">误餐补助</span>
+                           	</li>
+                           	
+                           	
+                            <li class="black">分摊金额
+	                            <span class="right_important blue">
+                            		<input type="text" value="0" placeholder="0.00" class="sharemoney apportionedAmount inputFocus" name="" id="sharemoney">
+                            	</span>
+                            </li>
+						</ul>
+						<div class="delete_detail">删除明细</div>
+					</div>
+				</div>
+			</div>
+		</ul>
+		<!-- 冲账 -->
+		<div class="balance">
+		 	<div class="Enclosure" id="balanceAdd">
+            	冲账
+            	<span class="add_theme"></span>
+            </div>
+            <ul class="form">
+            	<li>
+	            	<div class="stay_text">
+						<span style="line-height: 1.25rem; margin-left: 3%;font-family: PingFangSC-Regular;font-size: 16px;color: #262626;">冲账明细</span>
+						<img class="copy" src="../../img/copy.png" style="border: 0;float: right;margin-right: 3%;margin-top: .5rem;">
+					</div>
+					<div id="balanceDom" class="wrap_details" >
+						
+					</div>
+            	</li>
+            </ul>
+		</div>
+		<div class="identity">提交身份</div>
+		<div class="identity_wrap">
+			<span>>集团部门员工>泰禾集团/集团总部/信息流程部/平台应用组/页面规</span>
+			<img class="corners_right" src="../../img/corners_right.png" style="float: right;margin-top: .15rem;">
+		</div>
+		<div class="content">
+            <div class="Enclosure" id="addEnclosure">
+            	附件
+            	<span class="add_theme"></span>
+            </div>
+            <ul class="enclosure_list">
+                <li id="noAttachment">暂无附件</li>
+                <!-- <li>
+                    <span class="list_left"></span>
+                    <p>client2018-07-26.doc</p>
+                    <span class="list_right"></span>
+                </li>
+                <li>
+                    <span class="list_left"></span>
+                    <p>760B2170-C024-48C8-AA760B2170-C024.doc</p>
+                    <span class="list_right"></span>
+                </li> -->
+            </ul>
+        </div>
+	</div>
+	<!-- 提交身份选择弹出框 -->
+	<div class="rank_rgba">
+		<div class="rank_type">
+			<h2>请选择提交身份</h2>
+			<ul class="ranktype_ul">
+				
+			</ul>
+		</div>
+	</div>
+	<!-- 住宿款项类型选择弹出框 -->
+	<div class="business_fix">
+		<div class="business_type">
+			<h2>请选择款项类型</h2>
+			<ul class="business_ul">
+				
+			</ul>
+		</div>
+	</div>
+	<!-- 其他发票添加 -->
+	<div class="content_ul" style="height: 0px;">
+        <div>
+            <ul class="wrap">
+                <li class="invoice_Click">
+                    <span class="line_tit">发票类型</span>
+                    <input type="text" class="line_val" id="invoiceDataCode"  placeholder="请选择" readonly />
+                </li>
+                <li class="fund_Click">
+                    <span class="line_tit">款项类型</span>
+                    <input type="text" class="line_val" id="invoiceNumber"  placeholder="请选择" readonly />
+                </li>
+                <li>
+                    <span class="line_tit" >票据金额</span>
+                    <input type="text" id="totalAmount" class="line_val" onkeyup="clearNoNum(this)" maxlength="10" placeholder="请填写">
+                </li>
+                <li>
+                    <span class="line_tit" >税率</span>
+                    <input type="text" id="taxRate" class="rate_val" maxlength="6" placeholder="请填写" value="0.00%" readonly />
+                </li>
+                <li>
+                    <span class="line_tit">开票/发生日期</span>
+                    <input type="text" id="billingTime" class="detail_input1 datetimeend" readonly="readonly" placeholder="请选择"  value=""  style="border: none;text-align: right;float: right;width: 50%;height: 100%;color: #9B9B9B!important;font-size: .4rem;"/>
+                </li>
+            </ul>
+            <div class="sure_train" id="trainSure">确  定</div>
+        </div>
+    </div>
+	<!-- 提交身份选择弹出框 -->
+	<div class="corporation_fix">
+		<div class="corporation_type">
+			<h2>请选择提交身份</h2>
+			<ul class="corporation_ul">
+				
+			</ul>
+		</div>
+	</div>
+	<!-- 发票类型选择弹出框 -->
+	<div class="linear_fix">
+		<div class="linear_type">
+			<h2>请选择发票类型</h2>
+			<ul class="linear_ul">
+				
+			</ul>
+		</div>
+	</div>
+	<!-- 款项类型选择弹出框 -->
+	<div class="subject_fix">
+		<div class="subject_type">
+			<h2>请选择款项类型</h2>
+			<ul class="subject_ul">
+			</ul>
+		</div>
+	</div>
+	<div class="btn_wrap">
+		<button type="button" class="save" id="preserve">保存</button>
+		<button type="button" class="next" id="next_step">提交</button>
+	</div>
+	<div class="invoice_wrap">
+		<div class="invoice">
+			<ul class="invoice_ul clearfix">
+				<li class="import">导入我的发票</li>
+				<li class="rest">添加其他明细</li>
+				<li class="manual">手动添加</li>
+				<li class="sweeptheyard" id=button_scanQRCode1>扫码添加</li>
+			</ul>
+		</div>
+		<div class="invoice_cancel">取消</div>
+	</div>
+	<div class="Reminder">
+	    <div class="hide_show">
+	        <div class="Reminder_con">
+	            <p>提示</p>
+	            <p id="promptContent">查询失败！</p>
+	            <div class="cancel_btn">
+	                <span class="cancel">知 道 了</span>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div class="loading">
+	    <img src="../../img/loading.gif" class="img-responsive">
+	</div>
+	<!--删除弹框-->
+	<div class="delete_warn" style="display: none;">
+	    <div class="hide_show">
+	        <div class="Reminder_con">
+	            <p>是否确认删除！</p>
+	            <div>
+	                <span class="cancel_delete">取消</span>
+	                <span class="confirm_deletion">确定</span>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+</body>
+</html>	

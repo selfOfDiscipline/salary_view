@@ -1,0 +1,277 @@
+.header{
+    background: #FBFBFB;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+}
+/*切换header start*/
+.container{
+    width: 100%;
+}
+.container .nav_ul{
+    display: flex;
+    width:100%;
+    height: 1.25rem;
+    box-shadow: 0 2px 9px 0 rgba(0,0,0,.1);
+    position: relative;
+}
+
+.container .nav_ul li{
+    float: left;
+    width: 50%;
+    text-align: center;
+    font-size: 0.4rem;
+    line-height: 1.35rem;
+}
+.container .active{
+    color: #1660A3 ;
+}
+.container .underline{
+    width: .5rem;
+    height: 2px;
+    background: #1660A3;
+    display: block;
+    margin:  -4px auto 0;
+}
+/*切换header end*/
+/*切换主体*/
+.content{
+    width:100%;
+    /*height: calc(100vh - 1.25rem);*/
+    height: calc(100vh);
+    overflow-x: hidden;
+}
+.content .invoiceRise{
+    width: 92%;
+    height: .85rem;
+    line-height: .85rem;
+    margin: 0.5rem auto auto;
+    font-size: .45rem;
+    color: #000000;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    padding: 0 4%;
+    font-family: PingFangSC-Semibold;
+    font-weight: bold;
+}
+.content .invoiceRise span{
+    float: right;
+    font-size: .4rem;
+    color: #1660A3;
+}
+.content .all_content{
+    width: 100%;
+    /*height: 100%;*/
+    height: calc(100vh - 1.35rem);
+    display: flex;
+    transition: all .5s ease;
+    position: relative;
+    top: 0;
+    left: 0;
+
+}
+.content .all_content .content_ul{
+    position: relative;
+    width: 100%;
+    /*height: calc(100vh - 1.25rem);*/
+    height: calc(100vh - 1.35rem);
+}
+.content .all_content .content_ul .wrap{
+    width: 92%;
+    background: #fff;
+    margin: 0.1rem auto auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+}
+.content .all_content .content_ul .wrap li {
+    width: 100%;
+    /*height: 1.25rem;*/
+    line-height: 1.25rem;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    padding: 0  .375rem;
+    font-family: PingFangSC-Regular;
+    font-size: .4rem;
+    color: #262626;
+    border-bottom: 1px solid #F5F5F5;
+
+}
+.content .all_content .content_ul .wrap li .line_tit{
+    width: 35%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.content .all_content .content_ul .wrap li>div{
+    display: inline-block;
+    float: right;
+    font-size: .4rem;
+    color: #9B9B9B;
+}
+.content .all_content .content_ul .wrap li>div.female{
+    margin-right: 0.2rem;
+}
+.content .all_content .content_ul .wrap li .line_con{
+    display: inline-block;
+    width: 63%;
+    vertical-align: middle;
+    /* float: right; */
+    color: #9B9B9B;
+     text-align: right;
+    line-height: 0.8rem;
+}
+
+.content .all_content .content_ul .wrap li .checkBox{
+    position: relative;
+    display: inline-block;
+    width: 39px;
+    height:20px;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    line-height: 20px;
+    background: #E6E6E6;
+    border-radius: 10px;
+    vertical-align: middle;
+    padding-left: 5px;
+    padding-right: 5px;
+    /*float: right;*/
+}
+ .checkBoxChange{
+    background: #1660A3!important;
+}
+
+.checkBoxChanges{
+    background: #E6E6E6!important;
+}
+.content .all_content .content_ul .wrap li .checkBox span{
+    position: absolute;
+    top: 4px;
+    left: 5px;
+    display: inline-block;
+    width: 12px;
+    height:12px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    box-shadow: 0 0 10px 0 #9699A4;
+}
+
+
+.content .all_content .content_ul .wrap li .line_con_radio{
+    display: inline-block;
+    vertical-align:middle;
+    float: right;
+    color: #9B9B9B;
+}
+.content .all_content .content_ul .wrap li input.line_val{
+    margin-top: .2rem;
+    height: .8rem;
+    /*height: 1.25rem;
+    line-height: 1.25rem;*/
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    font-size: .4rem;
+    color: #9B9B9B;
+    float: right;
+    /*text-overflow: ellipsis;
+    white-space: nowrap;*/
+    border: none;
+    width: 65%;
+    text-align: right;
+    /*overflow: hidden;*/
+}
+.content .all_content .content_ul .wrap li input::-webkit-input-placeholder {
+    color: #9B9B9B;
+}
+
+/*.content .all_content .content_ul .wrap li:nth-child(3){
+    padding: .375rem;
+}
+.content .all_content .content_ul .wrap li:nth-child(3) p{
+    width: 5.5rem;
+    line-height: .7rem;
+    text-align: right;
+}*/
+
+/*.content .all_content .content_ul .wrap li:last-child{
+    padding: .375rem;
+}
+.content .all_content .content_ul .wrap li:last-child p{
+    width: 5.5rem;
+    line-height: .7rem;
+    text-align: right;
+}*/
+.content .all_content .content_ul .sure{
+    position: absolute;
+    /* position: static; */
+    bottom: 1.6rem;
+    /* left: 4%; */
+    width: 92%;
+    margin-left: 4%;
+    height: 1rem;
+    line-height: 1rem;
+    text-align: center;
+    font-family: PingFang-SC-Regular;
+    font-size: .4rem;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    background: #1660A3;
+    box-shadow: 0 0 6px 0 rgba(0,0,0,0.20);
+    border-radius: 100px;
+}
+/*切换主体 end*/
+
+.dw-i{
+    text-align: center!important;
+}
+/*联想*/
+.ac_results {
+    border: 1px solid #FBFBFB;
+    background-color: #FFF;
+    /*border-radius: .25rem;*/
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+    overflow: hidden;
+    z-index: 10;
+}
+
+.ac_results ul {
+    width: 100%;
+}
+
+.ac_results li {
+    line-height: .8rem;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    padding-left: .1rem;
+    font-size: .4rem;
+    color: #9B9B9B;
+    border-bottom: 1px solid #FBFBFB;
+    text-align: left;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.ac_results li strong{
+    font-weight:normal;
+    color: #9B9B9B;
+}
+
+.ac_results li:last-child{
+    border:none;
+}
+
+/*.ac_loading {
+    background: white url("indicator.gif") right center no-repeat;
+}*/
+
+.ac_odd {
+    background-color: #FFF;
+}
+
+/*.ac_over {
+    background-color: #0A246A;
+    color: white;
+}*/

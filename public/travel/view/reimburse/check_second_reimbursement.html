@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>报销申请</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" type="text/css" href="../../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../../css/second_reimbursement.css">
+	<link rel="stylesheet" type="text/css" href="../../css/mobiscroll/mobiscroll.custom.min.css">
+	<script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+	<script type="text/javascript" src="../../js/common/jquery-min.js"></script>
+	<script type="text/javascript" src="../../../../app/js/base/base.js"></script>
+	<script type="text/javascript" src="../../js/common/attachmentUpload.js"></script>
+	<script type="text/javascript" src="../../js/check_second_reimbursement.js"></script>
+	<script type="text/javascript" src="../../js/mobiscroll/mobiscroll.custom.min.js"></script>
+	<style type="text/css">
+		input{
+			border: none;
+			text-align: right;
+			color: #000;
+			background: transparent;
+		}
+		.overnowrap{
+		    width: 6rem;
+		    white-space:nowrap;
+		    text-overflow:ellipsis;
+		    -o-text-overflow:ellipsis;
+		    overflow:hidden;
+		    text-align: right;
+		}
+	</style>
+</head>
+<body>
+	<!-- <div class="header">
+		<div class="return"><span class="arrowUp"></span>返回</div>
+		<div class="title">报销申请</div>
+		<div class="shut">关闭</div>
+	</div> -->
+	<!-- 报销申请 - 2 -->
+	<div class="content_two">
+		<div class="content_title">
+			<div class="theme">明细类别</div>
+			<span class="article">合计<i>0</i>元</span>
+			<div class="add "></div>
+		</div>
+		<ul class="form">
+			<li class="stay">
+				<div class="stay_text">
+					<span>增值税明细</span>
+					<img class="copy" src="../../img/copy.png">
+				</div>
+				<div class="wrap_details" id="accommodation">
+				</div>
+			</li>
+			<li class="train">
+				<div class="stay_text">
+					<span>火车明细</span>
+					<img class="copy" src="../../img/copy.png">
+				</div>
+				<div class="wrap_details" id="choochoo">
+				</div>
+			</li>
+			<li class="rests">
+				<div class="stay_text">
+					<span>其他明细</span>
+					<img class="copy" src="../../img/copy.png">
+				</div>
+				<div class="wrap_details details_box" id="rest">
+					
+				</div>
+			</li>
+			<!-- 餐旅补助 -->
+			<div class="train">
+				<div class="stay_text">
+					<span style="line-height: 1.25rem; margin-left: 3%;font-family: PingFangSC-Regular;font-size: 16px;color: #262626;">误餐补助</span>
+					<img class="copy" src="../../img/copy.png" style="border: 0;float: right;margin-right: 3%;margin-top: .5rem;">
+				</div>
+				<div class="wrap_details" id="allowance">
+					
+				</div>
+			</div>
+		</ul>
+		<!-- 冲账 -->
+		<div class="balance">
+		 	<div class="Enclosure" id="balanceAdd">
+            	冲账
+            	<span class="add_theme"></span>
+            </div>
+            <ul class="form">
+            	<li>
+	            	<div class="stay_text">
+						<span style="line-height: 1.25rem; margin-left: 3%;font-family: PingFangSC-Regular;font-size: 16px;color: #262626;">冲账明细</span>
+						<img class="copy" src="../../img/copy.png" style="border: 0;float: right;margin-right: 3%;margin-top: .5rem;">
+					</div>
+					<div id="balanceDom" class="wrap_details" >
+						
+					</div>
+            	</li>
+            </ul>
+		</div>
+		<div class="identity">提交身份</div>
+		<div class="identity_wrap">
+			<span>>集团部门员工>泰禾集团/集团总部/信息流程部/平台应用组/页面规</span>
+			<img class="corners_right" src="../../img/corners_right.png" style="float: right;margin-top: .15rem;">
+		</div>
+		<div class="content">
+            <div class="Enclosure" id="addEnclosure">附件<span class="add_theme"></span></div>
+            <ul class="enclosure_list">
+                <li id="noAttachment">暂无附件</li>
+                <!-- <li>
+                    <span class="list_left"></span>
+                    <p>client2018-07-26.doc</p>
+                    <span class="list_right"></span>
+                </li>
+                <li>
+                    <span class="list_left"></span>
+                    <p>760B2170-C024-48C8-AA760B2170-C024.doc</p>
+                    <span class="list_right"></span>
+                </li> -->
+            </ul>
+        </div>
+	</div>
+	
+	<!-- 职级类型选择弹出框 -->
+	<div class="rank_rgba">
+		<div class="rank_type">
+			<h2>请选择提交者岗位</h2>
+			<ul class="ranktype_ul">
+				<!-- <li>
+					<div class="rankleft">
+						<h3>集团部门员工</h3>
+						<p>泰禾集团/集团总部/信息流程部/业务管理组-地产/主数据</p>
+					</div>
+					<div class="rankright">
+						<img class="no_selected" src="../../img/no_selected.png">
+					</div>
+				</li>
+				<li>
+					<div class="rankleft">
+						<h3>集团部门员工</h3>
+						<p>泰禾集团/集团总部/信息流程部/业务管理组-地产/主数据</p>
+					</div>
+					<div class="rankright">
+						<img class="no_selected" src="../../img/no_selected.png">
+					</div>
+				</li> -->
+			</ul>
+		</div>
+	</div>
+	<div class="btn_wrap">
+		<!-- <button type="button" class="save" id="preserve">返回列表</button> -->
+		<button type="button" class="next" id="next_step" style="width:92%;">返回列表</button>
+	</div>
+	<div class="invoice_wrap">
+		<div class="invoice">
+			<ul class="invoice_ul clearfix">
+				<li class="import">导入我的发票</li>
+				<li class="manual">手动添加</li>
+				<li class="sweeptheyard">扫码添加</li>
+			</ul>
+		</div>
+		
+		<div class=invoice_cancel>取消</div>
+	</div>
+	<div class="Reminder">
+	    <div class="hide_show">
+	        <div class="Reminder_con">
+	            <p>提示</p>
+	            <p id="promptContent">查询失败！</p>
+	            <div class="cancel_btn">
+	                <span class="cancel">知 道 了</span>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div class="loading">
+	    <img src="../../img/loading.gif" class="img-responsive">
+	</div>
+</body>
+</html>	

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>差旅服务 - 场景</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../../css/reset.css">
+    <script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/travel_cost_type.css">
+    <script type="text/javascript" src="../../js/common/jquery-min.js"></script>
+    <script src="../../../../app/js/base/base.js"></script>
+    <style>
+        .content .background_remind{
+            position: absolute;
+            font-family: PingFangSC-Regular;
+            width: 100%;
+            height: calc(100vh - 3.75rem);
+            line-height: 100%;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            padding-top: 5.15rem;
+            margin-top: 2rem;
+            font-size: .6rem;
+            color: #E6E6E6;
+            letter-spacing: 0;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<!--<div class="header">
+    <div class="return"><span class="arrowUp"></span>返回</div>
+    <div class="title">费用类型</div>
+</div>-->
+<div class="container">
+    <div class="content">
+        <div class="background_remind">
+            无查看权限
+        </div>
+        <div class="all_content">
+            <ul class="content_ul" id="cost_type_list">
+                <li class="wrap" id="travel-expenses" style="display: none">出差</li>
+                <li class="wrap" id="city-traffic" style="display: none">市内交通</li>
+                <li class="wrap" id="visit_family" style="display: none">探亲</li>
+                <li class="wrap" id="entertain" style="display: none">招待</li>
+                <li class="wrap" id="recruit" style="display: none">招聘</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="Reminder">
+    <div class="hide_show">
+        <div class="Reminder_con">
+            <p>提示</p>
+            <p id="promptContent"></p>
+            <div class="cancel_btn">
+                <span class="cancel">知 道 了</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 获取？参数值
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+
+    // 查看按钮权限
+    // $.ajax({
+    //     url:sy()+'/feeInvoice/judgeUserPermissionWithMay',
+    //     type : 'get',
+    //     dataType: 'json',
+    //     contentType : 'application/json;charset=UTF-8',
+    //     //data: JSON.stringify(idData),
+    //     success: function (data) {
+    //         if(data){ // true  有查看权限
+                com()
+    //         }else{ // 无查看权限
+    //             $(".background_remind").show();
+    //         }
+    //     },
+    //     error:function(){}
+    // });
+
+    function com(){
+        //订飞机，打滴滴共用一个类型列表
+        if(parseInt(getQueryString("transport_type")) == 1){
+            $("#city-traffic").hide();
+            $("#travel-expenses").show();
+            $("#visit_family").show();
+            $("#entertain").show();
+            $("#recruit").show();
+
+            // 出差
+            $("#travel-expenses").click(function(){
+                window.location.href = sy() + "/travel/travel/view/travel_service/travel_application_form.html" + window.location.search +"&&coseFlag=100&&from=chailv";
+            });
+
+            // 跳转到携程预订机票页面
+            $('#visit_family').click(function(){
+                window.location.href = sy() + "/feeInvoice/toXieChengFlightPage";
+            });
+
+        }else if(parseInt(getQueryString("transport_type")) == 4){
+            $.ajax({
+                url:sy()+'/travelServer/judgeUserRank',
+                type : 'get',
+                dataType: 'json',
+                contentType : 'application/json;charset=UTF-8',
+                //data: JSON.stringify(idData),
+                success: function (data) {
+                    if(data){
+                        $("#city-traffic").show();
+                        $("#city-traffic").click(function(){
+                            $.ajax({
+                                url:sy()+'/didi/api/loginDiDi',
+                                type : 'GET',
+                                dataType: 'json',
+                                contentType : 'application/json;charset=UTF-8',
+                                success: function (data) {
+                                    // true  /  false 权限页面
+                                    if(data.resultCode == 0){
+                                        window.location.href = "openapp://?name="+ encodeURIComponent(data.result) +"&url=https://dc.tt/esappd";
+                                    }else{
+                                        $("#promptContent").html(data.message);
+                                        $(".Reminder").fadeToggle();
+                                        $(".Reminder,.cancel").click(function(e){
+                                            $(".Reminder").hide();
+                                        })
+                                    }
+                                }
+                            });
+                        })
+
+                    }else{
+                        $("#city-traffic").hide();
+                    }
+                },
+                error:function(){}
+            });
+            $("#travel-expenses").show();
+            $("#travel-expenses").click(function(){
+                window.location.href = sy() + "/travel/travel/view/travel_service/travel_application_form.html" + window.location.search;
+            });
+        }
+    }
+</script>
+</body>
+</html>

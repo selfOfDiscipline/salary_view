@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我的发票</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" type="text/css" href="../../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../../css/import_invoice.css">
+	<script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+	<script type="text/javascript" src="../../js/common/jquery-min.js"></script>
+	<script type="text/javascript" src="../../../../app/js/base/base.js"></script>
+	<script type="text/javascript" src="../../js/import_invoice.js"></script>
+	<style>
+		/* .content li:last-child{
+			margin-bottom: 3rem;
+		} */
+		.wrap_determine{
+		    height: 2.5rem;
+		    width: 100%;
+		    background: #fbfbfb;
+		    position: fixed;
+		    bottom: 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="background_remind">暂无相关内容</div>
+	<ul class="content" style=" padding-bottom: 3rem;">
+		<!-- <div class="wrap">
+			<div class="wrap_left"> 
+				<div class="subject">
+					*餐饮服务*-餐费
+				</div>
+				<div class="details">
+					<div class="details_left">
+						<div class="hendline">销售方：北京伊缘相餐饮有限公司</div>
+						<div class="seriel">开票时间：2018-09-04</div>
+					</div>
+					<div class="details_right">
+						<div class="date"></div>
+						<div class="cost">¥419.00</div>
+					</div>
+				</div>
+			</div>
+			<div class="wrap_right">
+				<div class="tates" uuid="1133" style="width: .5rem;">
+					<img src="../../img/no_selected.png">
+				</div>
+			</div>
+		</div> -->
+	</ul>
+	<div class="wrap_determine">
+		<div class="determine">确定</div>
+	</div>
+	<div class="Reminder">
+	    <div class="hide_show">
+	        <div class="Reminder_con">
+	            <p>提示</p>
+	            <p id="promptContent">查询失败！</p>
+	            <div class="cancel_btn">
+	                <span class="cancel">知 道 了</span>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div class="loading">
+	    <img src="../../img/loading.gif" class="img-responsive">
+	</div>
+</body>
+</html>

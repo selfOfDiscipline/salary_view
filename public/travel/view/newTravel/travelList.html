@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>出差申请</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="../../css/travelreset.css">
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/draught.css">
+    <script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+    <script type="text/javascript" src="../../js/common/vue.min.js"></script>
+    <script type="text/javascript" src="../../js/common/axios.min.js"></script>
+    <script type="text/javascript" src="../../js/common/request.js"></script>
+    <!-- <script type="text/javascript" src="../../js/common/travelUrl.js"></script> -->
+	<script type="text/javascript" src="../../js/common/jquery-min.js"></script>
+    <script type="text/javascript" src="../../js/common/base.js"></script>
+    <script type="text/javascript" src="../../js/common/index.js"></script>
+</head>
+<body>
+    <div id="app">
+            <!-- <div @click="addClick" style="position: fixed; bottom: 5px; left: 0px; z-index: 100; width: 100%; font-size: 0px;"><img data-v-8834e51c="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAABK1JREFUeAHlW89rE0EUfrOpFiqBNm3Fg4qnFqwnxVPBmwcLVlp76kkqFLwUb/4NIqj0IhQsnnrqD1SoB8GD0JPoyQrtRVEPYtu0UCxYm4zvm9k0mx+b7GyyySbzIN3t7uzM+768mcy8/UZQ1La6308Hh9e4mSEiOcjHASLRx8ckSf7ABO3zX/7IbT5u8oUNPq5T18n3NJLc4vPITERS88reFcpkJhngdQZ3iaQM144Qkuv4zHW8pURigca6P9bb33COlfPipUzSUXqasjTF3+TFckVqvya+kEPz1JGao1sCUVOz1U7Aym43HWXvsyczDLynZo8CVSB2udgsdThPaaxnL9AjPoXCE4CwXknfoYx8yHX3+9Qf9eUtSogHNJZ6QeguISwcAa/T5+mvXOC+PRyizfo/IsQadYpJupn6blq5OQFL6WGS2WUenE6bNhZpeUG/STjjdDu1ZtKOY1KYFnemKCvfxQ48QOALgW/w0cCCESBlgit+zCH/nFs6aVB/g4uyb/BR+5oI0nj1LqDBL3Nlo0EqjFGZVzTRO86DY6aST9UjYCn9qAXBA/Moad8r4ec5ViVDf1JhX6lQzO8JcZcjYd7PS/8IUKM9PfN7sNbrN86coB8j3eqD88hMMgZg8bHyEaB+57MfohztAf5slx6nfh5k6NxqTRM6H3juZfxEdjpXy80TSiMAMzw1yYn2dz4HHi56zysjCXkXP5F64lbyhZcSgOltXGZ4IfGWfQyYgK3ICgnAwkbP7YuKtcm/wAaMHiskQK/qmrWw8bgV2Wm/u3I9biBPANbzakl7fK9dT2ZIY1X48gQgmdGw9XwzueWchcKqfcgToDI5zXSsgW17sGoCkMOLLI3VQGCBm+KUncJMnGGDIYFpm7mYNQHI3tpmLmaHkLdH6to2A2bG7qiXFmHz9q1MGjDzCxt0AX5jY60NMQHqdZWlDMhBRAC/q7PWBpgA9aLSUgZEXwcjxxogsCF7M3f5VN3X8HKiN7AP5QoiqTL96Q+9+fWv3G2/a0mHsz5GBEQB3s87k+tIqsA3I2PsGAOsNocnQUavmRFmCLe4Wa4LGPnF2AW/RfnKKbALRg/WoXBxnxeLO3Wo1bAKIb5hHgBZiqUmtzEGsCbHWtvEPACCJEtNbCAC1i1FD9jrjpKihZSXtDRxwMwyPEfp8CBFs82AmTWI6AI8DLAOzzZzMWsCIEK0zVzMmgClwGQRojXGWF3VqSYAwKHAtMU8WPMEQH5KSoHZ5jQwRoVVw8wToLW3s22OHvBmvTrjPAG4Be0tUaTydDTTRNtyMR67UEgAhMfQ3rarKV1xobi6kAAA18JjI7lpS/AFPTGwFVkpAZgiQngMYVGE5k2qeM8jaVKJpICpVFFeSgA8gOoawmMSh5E4xJXmMkuhMjlGTjEGYPFRkpeopgrqtlooCSagsBTiSQEprfQPfK+gEgWUyhGAEtaLpaG21qrr1okE/c1XVYoHiwCUypkaE6AfjuueAQx4dK9a2Ofg4Fi9C3hL49zqLTMgAHtyIDzGxCIupjZNsU+G+4XgvnkE5EBbvW0uRwKO1m6c9JKAc2u3zhYTgf+t3Dxdjghci/n2+f/ZPaTgKHPxKwAAAABJRU5ErkJggg==" style="width: 32px; margin: auto; display: block; line-height: 50px;"></div> -->
+        <div class="container">
+            <div class="header">
+                <div class="wrap_nav">
+                    <div class="screen_nav" @click="search" v-model="couponSelected">
+                        {{couponSelectename}}
+                        <span class="nav_down"></span>
+                    </div>
+                    <div class="search_input">
+                        <input id="q"  type="text" placeholder="请输入关键词搜索" v-model="theme">
+                        <i class="am-icon-search search" id="q_i" @click="getList(1)"></i>
+                    </div>
+                </div>
+                <div class="selest_warp" v-if="searchCriteriaShow">
+                    <ul>
+                        <li
+                        :value="item.value"
+                        v-for="(item,index) in criteriaOptions"
+                        @click="getCouponSelected(item,index)"
+                        :class="{active:active == index}"
+                        >{{item.lable}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ul">
+                <div class="background_remind">暂无相关内容</div>
+                <!-- <div class="shut"></div>	 -->
+                <div class="all_content" >
+                    <div class="loading" v-if="loading">
+                        <img src="../../img/loading.gif" class="img-responsive">
+                    </div>
+                    <ul class="content clearfix" id="all_con">
+                        <li class="wrap" v-for="(item,i) in list">                            
+                            <div class="show_con">
+                                <div class="wrap_left" @click="editClick(item.id)">
+                                    <div class="subject">
+                                        <span :class="item.approveStatus |classfilter">{{ item.approveStatus | statusfilter }}</span>
+                                        {{item.theme}}
+                                    </div>
+                                    <div class="details">
+                                        <div class="details_left">
+                                            <div class="hendline">申请人：{{item.responsiblePersonName}}</div>
+                                            <div class="seriel">出差日期：{{subStringTime(item.businessTripBeginDate)}}至{{subStringTime(item.businessTripEndDate)}}</div>
+                                        </div>
+                                   </div>
+                                </div>
+                            </div>
+                            <div class="wrap_right pending_click" v-if="item.approveStatus == 0" @click="reset(item.id)">
+                                <div class="tated" style="line-height: 3rem;margin-top: 0;border-bottom:0">重置</div>
+                            </div>
+                            <div class="wrap_right pending_click" v-else-if="item.approveStatus == 1" @click="dataDel(item.id)">
+                                <div class="tated" style="line-height: 3rem;margin-top: 0;border-bottom:0">删除</div>
+                            </div>
+                            <div class="wrap_right pending_click" v-else-if="item.approveStatus == 3">
+                                <div class="tated">预定</div>
+                                <div class="examine"  @click="process(item.flowCode)">流程 </div>
+                            </div>
+                            <div class="wrap_right pending_click" @click="process(item.flowCode)" v-else>
+                                <div class="tated" style="line-height: 3rem;margin-top: 0;border-bottom:0">流程</div>
+                            </div>
+                        </li>
+                      <h3 @click="handleScroll" class="loadingMessage">{{loadingMessage}}</h3>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="Reminder" v-if="Reminder">
+            <div class="hide_show">
+                <div class="Reminder_con">
+                    <p>提示</p>
+                    <p id="promptContent">{{promptContent}}</p>
+                    <div class="cancel_btn">
+                        <span class="cancel" @click="Reminder = false">知 道 了</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    new Vue({
+        el:"#app",
+        data:{
+            promptContent:'提示',
+            Reminder:false,
+            dialogshow:false,
+            loading:false,
+            list:[],
+            searchCriteriaShow:false,
+            criteriaOptions:[
+                {value:"",lable:'全部'},
+                {value:1,lable:'未提交'},
+                {value:2,lable:'审批中'},
+                {value:3,lable:'审批通过'},
+                {value:4,lable:'审批不通过'},
+                {value:5,lable:'驳回'},
+                {value:0,lable:'作废'},
+            ],
+            active:0,
+            pageNum:1,
+            pageSize:10,
+            loadingMessage:"点击加载更多~",
+            isTrue: false,
+            couponSelected: '',
+            theme:'',
+            couponSelectename:''
+        },
+        created(){
+            this.couponSelected = this.criteriaOptions[0].value;
+            this.couponSelectename = this.criteriaOptions[0].lable;
+        },
+        filters:{
+            statusfilter(e){
+                switch(e){
+                    case 0:
+                    return '作废'
+                    case 1:
+                    return '未提交'
+                    case 2:
+                    return '审批中'
+                    case 3:
+                    return '通过'
+                    case 4:
+                    return '不通过'
+                    case 5:
+                    return '驳回'
+                }
+            },
+            classfilter(e){
+                switch(e){
+                    case 0:
+                    return 'gray  '
+                    case 1:
+                    return 'blue'
+                    case 2:
+                    return 'green'
+                    case 3:
+                    return 'green'
+                    case 4:
+                    return 'gray'
+                    case 5:
+                    return 'gray'
+                }
+            }
+        },
+        
+        methods: {
+            addClick(){
+                window.location='addTravel.html'
+            },
+            editClick(id){
+                window.location='editTravel.html?id='+id
+            },
+            handleScroll() {
+                //判断滚动到底部
+                this.loading = true
+                    let that = this
+                // if (document.body.scrollTop >= document.body.clientHeight - window.screen.availHeight) { //滚动高度>=页面高度-屏幕高度
+                    if (that.isTrue) {
+                        that.loadingMessage = "正在加载中~";
+                        setTimeout(function() {
+                            that.pageNum++;
+
+                            that.getList();
+                        }, 1000);
+                        //防止连续下拉
+                        that.isTrue = false;
+                    }
+                // }
+            },
+            subStringTime(time){
+                if (time !== '' && time !== null) {
+                    time = time.substring(0,10);
+                  //   time = time.replace(/-/,'年').replace(/-/,'月') + "日";
+                    return time;
+                }
+            },
+            
+            // 下拉条件
+            getCouponSelected (item, index) {
+                this.couponSelected = item.value;
+                this.couponSelectename = item.lable;
+                this.active=index;
+                this.searchCriteriaShow = !this.searchCriteriaShow;
+                this.getList(1);
+            },
+            search(){
+                this.searchCriteriaShow = !this.searchCriteriaShow;
+                console.log(this.couponSelected,'获取选中')
+            },
+            getList(e){
+                this.loading = true
+                if(e){
+                    document.getElementById("all_con").animate({scrollTop:0},0)
+                    this.pageNum = 1
+                }
+                let par = {
+                    pageNum:this.pageNum ,
+                    pageSize:10,
+                    approveStatus:this.couponSelected,
+                    theme:this.theme
+                }
+                axiosPostRequst('/newtravelpc/selectFeeBusinessListByCondition',par).then(res =>{
+                    console.log(res);
+                    let lists = res.result.res;
+                    this.pageNum == 1 ? this.list = lists : this.list = this.list.concat(lists);
+                    console.log(this.list)
+                    if (lists.length < this.pageSize) {
+                        this.isTrue = false;
+                        this.loadingMessage = "暂时没有更多数据了哦~";
+                    } else {
+                        this.isTrue = true;
+                        this.loadingMessage = "点击加载更多~";
+                    }
+                    this.loading = false;
+                });
+
+            },
+            // 删除
+            dataDel(id){
+                axiosGetRequst('/newtravelpc/deleteFeeBusinessByIds',{ids:id}).then(res =>{
+                    console.log(res);
+                    this.getList();
+                    
+                });
+            },
+            // 重置
+            reset(id){
+                axiosGetRequstpar('/feeExpense/updateModuleStatus',{id:id,code:13}).then(res =>{
+                    console.log(res,'重置');
+                    this.getList();
+                    
+                })
+            },
+            process(e){
+                if(e){
+                    axiosGetRequst('/baseFlow/toPageFlow',{flowCode:e}).then(res =>{
+                        console.log(res,'流程');
+                        
+                    })
+                }else{
+                    this.Reminder = true;
+                    this.promptContent = '该条数据暂无法查看流程！'
+                }
+            }
+        },
+        
+        mounted() {
+           
+            //监听滚动
+
+            // window.onload = function () {
+            //     let targetScroll = document.getElementById("all_con")
+            //     targetScroll.addEventListener("scroll", () => {
+            //         alert(12)
+            //         this.handleScroll()
+            //     });
+            // }
+
+            // window.addEventListener('scroll', () => {
+            //     alert(12)
+            //     this.handleScroll();
+            // });
+            this.getList();
+
+        },
+    })
+</script>
+<script>
+    $(function  () {
+        Bridge.rightMarkText( 1,'新增','addTravel.html')
+    })
+</script>
+<style>
+    .loadingMessage{
+        color:#999;
+        height: 30px;
+        font-size: 12px;
+        text-align: center;
+        line-height: 30px;
+    }
+    
+    .blue{
+        width: 1.2rem;
+        float: left;
+        display: block;
+        height: 0.5rem;
+        line-height: .5rem;
+        margin-right: 5px;
+        font-size: 12px;
+        letter-spacing: 0px;
+        border-radius: 4px;
+        text-align: center;
+        border: 1px solid #1660A3;
+        color: #1660A3;
+    }
+    .gray{
+        width: 1.2rem;
+        float: left;
+        display: block;
+        height: 0.5rem;
+        line-height: .5rem;
+        margin-right: 5px;
+        font-size: 12px;
+        letter-spacing: 0px;
+        border-radius: 4px;
+        text-align: center;
+        border: 1px solid #666666;
+        color: #666666;
+    }
+    .green{
+        width: 1.2rem;
+        float: left;
+        display: block;
+        height: 0.5rem;
+        line-height: .5rem;
+        margin-right: 5px;
+        font-size: 12px;
+        letter-spacing: 0px;
+        border-radius: 4px;
+        text-align: center;
+        border: 1px solid rgb(22, 163, 81);
+        color: rgb(22, 163, 81);
+        
+    }
+</style>
+</html>

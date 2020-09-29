@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>差旅服务 - 出差申请单</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../../css/travel_application_form.css">
+    <script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+    <script type="text/javascript" src="../../js/common/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/travel_application_form.js"></script>
+    <script src="../../../../app/js/base/base.js"></script>
+    <style>
+        .content .background_remind{
+            position: absolute;
+            font-family: PingFangSC-Regular;
+            width: 100%;
+            height: calc(100vh - 3.75rem);
+            line-height: 100%;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            padding-top: 5.15rem;
+            margin-top: 2rem;
+            font-size: .6rem;
+            color: #E6E6E6;
+            letter-spacing: 0;
+            text-align: center;
+            display: none;
+        }
+        #Jurisdiction{
+            display: none;
+            position: fixed;
+            z-index: 10;
+            bottom: 1.35rem;;
+            left: 0;
+            width: 92%;
+            height: 1rem;
+            line-height: 1rem;
+            border: 1px solid #1660A3;
+            background: #FFFFFF;
+            border-radius: 19px;
+            margin-left:4%;
+            font-size: 14px;
+            color: #1660A3;
+            letter-spacing: 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="container" style="box-sizing: border-box;padding-bottom: 2.8rem;">
+    <div class="loading">
+        <img src="../../img/loading.gif" class="img-responsive">
+    </div>
+    <div class="content" id="content">
+        <div class="background_remind">
+            暂无相关内容
+        </div>
+        <ul class="details clearfix"></ul>
+    </div>
+</div>
+<div class="Reminder">
+    <div class="hide_show">
+        <div class="Reminder_con">
+            <p>提示</p>
+            <p id="promptContent"></p>
+            <div class="cancel_btn">
+                <span class="cancel">知 道 了</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="Jurisdiction">无需申请，直接预订</div>
+</body>
+</html>

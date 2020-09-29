@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>报销申请</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" type="text/css" href="../../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../../css/apply_reimbursement.css">
+	<link rel="stylesheet" type="text/css" href="../../css/mobiscroll/mobiscroll.custom.min.css">
+	<script type="text/javascript" src="../../js/common/jquery-min.js"></script>
+	<script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+	<script type="text/javascript" src="../../../../app/js/base/base.js"></script>
+	<script type="text/javascript" src="../../js/common/attachmentUpload.js"></script>
+	<script type="text/javascript" src="../../js/check_apply_reimbursement.js"></script>
+	<script type="text/javascript" src="../../js/mobiscroll/mobiscroll.custom.min.js"></script>
+</head>
+<body>
+	<!-- <div class="header">
+		<div class="return"><span class="arrowUp"></span>返回</div>
+		<div class="title">报销申请</div>
+		<div class="shut">关闭</div>
+	</div> -->
+	<!-- 报销申请 - 1 -->
+	<div class="content_one">
+		<div class="content_top">
+			<div class="theme">标题</div>
+			<div class="write_topic">
+				<span>
+					<input name="" readonly  class="themeval" id="themeval" type="text" placeholder="此处填写主题" maxlength="25"/>
+				</span>
+			</div>
+		</div>
+		<div class="content_bottom">
+			<div class="theme">基本信息</div>
+			<ul class="details clearfix">
+				
+			</ul>
+		</div>
+		<div class="content_footer">
+			<div class="theme">事由</div>
+			<div class="write_topic ">
+				<textarea  class="reason" readonly style="padding:.25rem 0;" placeholder="请填写"></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="btn_wrap">
+		<!-- <button type="button" class="save" id="preserve">返回列表</button> -->
+		<button type="button" class="next" id="next_step" style="width:92%;">下一步</button>
+	</div>
+	<!-- 职级类型选择弹出框 -->
+	<div class="rank_rgba">
+		<div class="rank_type">
+			<h2>请选择提交者岗位</h2>
+			<ul class="ranktype_ul">
+				<li>
+					<div class="rankleft">
+						<h3>集团部门员工</h3>
+						<!--<p>泰禾集团/集团总部/信息流程部/业务管理组-地产/主数据</p>-->
+					</div>
+					<div class="rankright">
+						<img class="no_selected" src="../../img/no_selected.png">
+					</div>
+				</li>
+				<li>
+					<div class="rankleft">
+						<h3>集团部门员工</h3>
+						<!--<p>泰禾集团/集团总部/信息流程部/业务管理组-地产/主数据</p>-->
+					</div>
+					<div class="rankright">
+						<img class="no_selected" src="../../img/no_selected.png">
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="Reminder">
+	    <div class="hide_show">
+	        <div class="Reminder_con">
+	            <p>提示</p>
+	            <p id="promptContent">查询失败！</p>
+	            <div class="cancel_btn">
+	                <span class="cancel">知 道 了</span>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div class="loading">
+	    <img src="../../img/loading.gif" class="img-responsive">
+	</div>
+</body>
+</html>	

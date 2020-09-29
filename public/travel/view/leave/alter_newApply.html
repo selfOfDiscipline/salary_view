@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>出差申请</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" type="text/css" href="../../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../../css/newApply.css">
+	<link rel="stylesheet" type="text/css" href="../../css/mobiscroll/mobiscroll.custom.min.css" />
+	<!--<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>-->
+	<script type="text/javascript" src="../../js/common/flexible_css.js"></script>
+	<script type="text/javascript" src="../../js/common/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../../app/js/base/base.js"></script>
+	<script type="text/javascript" src="../../js/common/attachmentUpload.js"></script>
+	<script type="text/javascript" src="../../js/common/cityList.js"></script>
+	<script type="text/javascript" src="../../js/alter_newApply.js"></script>
+	<script type="text/javascript" src="../../js/mobiscroll/mobiscroll.custom.min.js"></script>
+	<script type="text/javascript">
+	    function onlyNumber(obj){    
+             //得到第一个字符是否为负号    
+             var t = obj.value.charAt(0);      
+             //先把非数字的都替换掉，除了数字和.和-号    
+             obj.value = obj.value.replace(/[^\d\.\-]/g,'');       
+             //前两位不能是0加数字      
+             obj.value = obj.value.replace(/^0\d[0-9]*/g,''); 
+             //必须保证第一个为数字而不是.       
+             obj.value = obj.value.replace(/^\./g,'');       
+             //保证只有出现一个.而没有多个.       
+             obj.value = obj.value.replace(/\.{2,}/g,'.');       
+             //保证.只出现一次，而不能出现两次以上       
+             obj.value = obj.value.replace('.','$#$').replace(/\./g,'').replace('$#$','.');  
+             //如果第一位是负号，则允许添加    
+             obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');  
+            if(t == '-'){ return; }    
+       }
+	</script>
+	<style type="text/css">
+		input::-webkit-input-placeholder {
+			color: #9B9B9B;
+	    }
+		.departure_city >input{
+		    border: none;
+		    text-align: right;
+		    color: #9B9B9B !important;
+		    font-size: .4rem;
+		    background: transparent;
+		}
+		.traveldaysVal,.remark{pointer-events: none;!important}
+	</style>
+</head>
+<body>
+	<div id="newApply">
+		<input type="hidden" name="id" id="resultId">
+		<div class="content_one">
+			<div class="content_title">
+				<div class="theme">出差计划（<span class="article">0</span>条）</div>
+				<span class="add plusAdd"></span>
+			</div>
+			<div class="content_wrap">
+				
+			</div>
+			<div class="identity">提交身份</div>
+			<div class="identity_wrap">
+				<span>>集团部门员工>泰禾集团/集团总部/信息流程部/平台应用组/页面规</span>
+				<img class="corners_right" src="../../img/corners_right.png" style="float: right;margin-top: .15rem;">
+			</div>
+			<div class="content">
+	            <div class="Enclosure" id="addEnclosure">附件<span class="add_theme"></span></div>
+	            <ul class="enclosure_list">
+	               <li id="noAttachment">暂无附件</li>
+	                <!-- <li>
+	                    <span class="list_left"></span>
+	                    <p>client2018-07-26.doc</p>
+	                    <span class="list_right"></span>
+	                </li>
+	                <li>
+	                    <span class="list_left"></span>
+	                    <p>760B2170-C024-48C8-AA760B2170-C024.doc</p>
+	                    <span class="list_right"></span>
+	                </li> -->
+	            </ul>
+	        </div>
+		</div>
+		<div class="btn_wrap">
+			<!-- <button type="button" class="save" id="preserve">保存</button> -->
+			<button type="button" class="next" id="next_step" style="width:92%">返回列表</button>
+		</div>
+	</div>
+		<div class="Reminder">
+	    <div class="hide_show">
+	        <div class="Reminder_con">
+	            <p>提示</p>
+	            <p id="promptContent">查询失败！</p>
+	            <div class="cancel_btn">
+	                <span class="cancel">知 道 了</span>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+	</form>
+	<div class="loading">
+	    <img src="../../img/loading.gif" class="img-responsive">
+	</div>
+	
+</body>
+</html>	

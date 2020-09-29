@@ -1,0 +1,84 @@
+.header{
+    background: #FBFBFB;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+}
+/*切换header start*/
+.container{
+    background: #FBFBFB!important;
+    width: 100%;
+}
+.container .nav_ul{
+    display: flex;
+    width:100%;
+    height: 1.25rem;
+    position: relative;
+    border-bottom: 1px solid #F5F5F5;
+}
+
+.container .nav_ul li{
+    float: left;
+    width: 33.33%;
+    text-align: center;
+    font-size: 0.4rem;
+    line-height: 1.35rem;
+}
+.container .active{
+    color: #1660A3 ;
+}
+.container .underline{
+    width: .5rem;
+    height: 2px;
+    background: #1660A3;
+    display: block;
+    margin:  -4px auto 0;
+}
+/*切换header end*/
+/*切换主体*/
+.content{
+    width:100%;
+    /*height: calc(100vh);*/
+    overflow-x: hidden;
+}
+.content .all_content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: all .5s ease;
+    position: relative;
+    top: 0;
+    left: 0;
+    padding-bottom: 0.6rem;
+}
+.content .background_remind{
+    position: absolute;
+    font-family: PingFangSC-Regular;
+    width: 100%;
+    height: 100%;
+    line-height: 100%;
+    padding-top: 7.15rem;
+    font-size: .6rem;
+    color: #E6E6E6;
+    letter-spacing: 0;
+    text-align: center;
+    display: none;
+}
+.content .all_content .content_ul{
+    width: 100%;
+    height: calc(100vh - 2.5rem);
+}
+.content .all_content .content_ul .wrap{
+    width: 92%;
+    height: 1.25rem;
+    line-height: 1.25rem;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    background: #fff;
+    font-size: .4rem;
+    color: #0D0E10;
+    margin: 0.5rem auto 0.5rem;
+    padding: 0 .375rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+}
+/*切换主体 end*/
