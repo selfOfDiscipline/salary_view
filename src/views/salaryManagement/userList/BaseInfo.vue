@@ -61,8 +61,8 @@
                     <el-date-picker :disabled="isDisable"
                         v-model="form.userEntryDate"
                         type="date"
-                        value-format="yyyy-MM-dd"
-                        format="yyyy-MM-dd"
+                        value-format="yyyy-MM-dd HH:mm:ss"
+                        format="yyyy-MM-dd HH:mm:ss"
                         placeholder="请选择入职日期">
                     </el-date-picker>
                 </el-form-item>
@@ -70,8 +70,8 @@
                     <el-date-picker :disabled="isDisable"
                         v-model="form.planChangeFormalDate"
                             type="date"
-                        value-format="yyyy-MM-dd"
-                        format="yyyy-MM-dd"
+                        value-format="yyyy-MM-dd HH:mm:ss"
+                        format="yyyy-MM-dd HH:mm:ss"
                         placeholder="请选择预计转正日期111111111">
                     </el-date-picker>
                 </el-form-item>
@@ -79,8 +79,8 @@
                     <el-date-picker :disabled="isDisable"
                         v-model="form.realityChangeFormalDate"
                             type="date"
-                        value-format="yyyy-MM-dd"
-                        format="yyyy-MM-dd"
+                        value-format="yyyy-MM-dd HH:mm:ss"
+                        format="yyyy-MM-dd HH:mm:ss"
                         placeholder="请选择实际转正日期">
                     </el-date-picker>
                 </el-form-item>
@@ -88,8 +88,8 @@
                     <el-date-picker :disabled="isDisable"
                         v-model="form.userLeaveDate"
                             type="date"
-                        value-format="yyyy-MM-dd"
-                        format="yyyy-MM-dd"
+                        value-format="yyyy-MM-dd HH:mm:ss"
+                        format="yyyy-MM-dd HH:mm:ss"
                         placeholder="请选择离职日期">
                     </el-date-picker>
                 </el-form-item>
@@ -97,8 +97,8 @@
                     <el-date-picker :disabled="isDisable"
                         v-model="form.socialSecurityStartDate"
                             type="date"
-                        value-format="yyyy-MM-dd"
-                        format="yyyy-MM-dd"
+                        value-format="yyyy-MM-dd HH:mm:ss"
+                        format="yyyy-MM-dd HH:mm:ss"
                         placeholder="请选择社保开始缴纳日期">
                     </el-date-picker>
                 </el-form-item>

@@ -164,12 +164,10 @@
         }
         
         }
-        </script>
-          <style>
-          .el-form-item__content{
-            width: 220px;
-          }
-          
-          
-          </style>
+</script>
+<style lang="scss" scoped>
+    .el-form-item__content{
+        width: 220px;
+    }
+</style>
             
