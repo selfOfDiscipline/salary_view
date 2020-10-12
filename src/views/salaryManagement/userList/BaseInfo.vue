@@ -72,7 +72,7 @@
                             type="date"
                         value-format="yyyy-MM-dd HH:mm:ss"
                         format="yyyy-MM-dd HH:mm:ss"
-                        placeholder="请选择预计转正日期111111111">
+                        placeholder="请选择预计转正日期">
                     </el-date-picker>
                 </el-form-item>
                 <el-form-item label="实际转正日期" prop="realityChangeFormalDate">
