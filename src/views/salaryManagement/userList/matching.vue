@@ -101,7 +101,7 @@
 <script>
     import {BoxCard} from '@/layout/components'
     import {selectDeptList,selectRoleList,selectSalaryDeptList,saveOrUpdateManageUser} from '@/api/userList'
-    
+    import myTree from "./myTree"
     
     import RoleTree from "@/layout/components/Tree"
     import { rules,RankTypeOption, } from "./utils";

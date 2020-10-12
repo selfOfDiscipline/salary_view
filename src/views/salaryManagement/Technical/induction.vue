@@ -48,7 +48,7 @@
                             {{ (pageNum - 1) * pageSize + scope.$index + 1 }}
                             </template>
                         </el-table-column>
-                        <el-table-column label="员工姓名" prop="userName" />
+                        <el-table-column label="员工姓名" prop="userName" show-overflow-tooltip min-width="120"/>
                 
                         <el-table-column label="薪资归属部门" show-overflow-tooltip min-width="120" prop="salaryDeptName">
                             <template slot-scope="scope">
@@ -58,7 +58,11 @@
                        
                         <el-table-column label="基本工资" prop="monthBaseSalary" min-width="120" show-overflow-tooltip></el-table-column>
                         <!-- 绩效占比 -->
-                        <el-table-column label="绩效占比" prop="monthPerformanceRatio" min-width="100" show-overflow-tooltip></el-table-column>
+                        <el-table-column label="绩效占比" prop="monthPerformanceRatio" min-width="100" show-overflow-tooltip>
+                            <template slot-scope="scope">
+                                <el-input size="small" v-model="scope.row.monthPerformanceRatio"></el-input>
+                            </template>
+                        </el-table-column>
                         <!-- 绩效数 -->
                         <el-table-column label="出勤" prop="newEntryAttendanceDays;" min-width="120">
                             <template slot-scope="scope">
