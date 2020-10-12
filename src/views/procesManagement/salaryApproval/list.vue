@@ -42,7 +42,11 @@
                     </el-table-column> -->
                     <el-table-column label=" 流程名称" prop="flowName"></el-table-column>
                     <el-table-column label=" 适用部门名称" prop="flowSalaryDeptName"></el-table-column>
-                    <el-table-column label="创建时间 " prop="createTime"></el-table-column>
+                    <el-table-column label="创建时间 " prop="createTime">
+                        <template slot-scope="scope">
+                            <span>{{ scope.row.createTime.substr(0,10)}}</span>
+                        </template>
+                    </el-table-column>
                     <el-table-column label="操作" prop="businessTripMoney" width="100" fixed="right">
                         <template slot-scope="scope">
                             <el-tooltip placement="top">

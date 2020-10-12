@@ -32,10 +32,10 @@
                         </el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="状态" prop="flowRoleName">
-                    <el-radio-group v-model="form.flowRoleName">
-                        <el-radio :label = '0'>启用</el-radio>
-                        <el-radio :label = '1'>停用</el-radio>
+                <el-form-item label="状态" prop="useFlag">
+                    <el-radio-group v-model="form.useFlag">
+                        <el-radio :label = 0>启用</el-radio>
+                        <el-radio :label = 1>停用</el-radio>
                     </el-radio-group>   
                 </el-form-item>
             </el-form>
