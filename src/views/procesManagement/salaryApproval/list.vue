@@ -50,8 +50,8 @@
                                 <svg-icon icon-class="del" @click="delFlow(scope.row)" style="cursor: pointer;"/>
                             </el-tooltip>
                             <el-tooltip placement="top">
-                                <div slot="content">查看</div>
-                                <svg-icon icon-class="eye" @click="goedit('edit',scope.row)" style="cursor: pointer;"/>
+                                <div slot="content">编辑</div>
+                                <svg-icon icon-class="edit" @click="goedit('edit',scope.row)" style="cursor: pointer;"/>
                             </el-tooltip>
                         </template>
                     </el-table-column>
@@ -171,18 +171,18 @@
                 this.createTime = ''
             },
             goadd(name) {
-                this.isAdd = true
+                this.isAdd = true;
+                this.salaryId = '';
                 this.dialogName = name
                 this.editFormVisible = !this.editFormVisible
-            
             },
             goedit(name,data) {
-                this.salaryId = data.id;
+                console.log(data.id)
+                debugger
                 // this.isAdd = false
+                this.salaryId = data.id;
                 this.dialogName = name;
-                
                 this.editFormVisible = !this.editFormVisible
-            
             },
             delFlow(data) {
                 this.$confirm('是否确认删除?', '提示', {

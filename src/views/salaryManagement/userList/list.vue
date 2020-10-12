@@ -45,6 +45,9 @@
             </template>
           </el-table-column>
           <el-table-column label="基本工资" prop="standardSalary">
+              <template slot-scope="scope">
+                  {{ scope.row.standardSalary | moneyFormit }}
+              </template>
           </el-table-column>
           <el-table-column label="工作性质" prop="userRankType">
             <template slot-scope="scope">
@@ -55,7 +58,7 @@
             <template slot-scope="scope">
                 <el-tooltip placement="top">
                     <div slot="content">修改全量信息</div>
-                    <svg-icon icon-class="edit" @click="goedit('edit',scope.row,1)" style="cursor: pointer;"/>
+                    <svg-icon icon-class="edit" @click="goedit('edit',scope.row,0)" style="cursor: pointer;"/>
                 </el-tooltip>
                 <el-tooltip placement="top">
                     <div slot="content">删除</div>
@@ -259,22 +262,25 @@
             this.createTime = ''
         },
         goedit(name, data, status) {
+            // this.isAdd = false
             this.status = status;
             this.userId = data.id;
             console.log(this.userId);
-            
-            // this.isAdd = false
             this.dialogName = name
             this.editFormVisible = !this.editFormVisible
         },
         // 修改在职状态
         positive(data){
+            this.userId = ''
+            this.status = '';
             this.positiveId = data.id;
             this.positiveName = data.userName;
             this.isAdd = true
             this.positiveFormVisible = !this.positiveFormVisible
         },
         goadd(name) { 
+            this.userId = ''
+            this.status = '';
             this.isAdd = true
             this.dialogName = name
             this.editFormVisible = !this.editFormVisible

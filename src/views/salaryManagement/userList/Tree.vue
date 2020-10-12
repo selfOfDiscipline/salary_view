@@ -16,6 +16,7 @@
         @node-click="getCheckedNodes"
         :filter-node-method="filterNode"
         node-key="id"
+        :default-expanded-keys="expandKeys"
         :default-checked-keys="expandKeys"
       ></el-tree>
     </div>

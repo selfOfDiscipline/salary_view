@@ -37,9 +37,7 @@ export default {
         if(this.userId){
             this.getUser(this.userId,this.status);
             console.log(this.baseInfoData,'185');
-            
         }
-        
     },
     components: {
         BoxCard,
@@ -55,12 +53,12 @@ export default {
         return{
             isDisable:false,
             resove: true,//是否加载完成数据
-          baseInfoData:{},
-          issuingBankData:{},
-          otherBanksData:{},
-          matchingData:{},
-          socialSecurityData:{},
-          otherDeductionData:{},
+            baseInfoData:{},
+            issuingBankData:{},
+            otherBanksData:{},
+            matchingData:{},
+            socialSecurityData:{},
+            otherDeductionData:{},
             SalaryDeptlist: [],
             cascaderList: [], // 弹窗树
             showName: '', //弹窗树显示的字段名
@@ -102,7 +100,6 @@ export default {
                 roleIds:'',
             },
             
-           
             
             processOptions:[],
             tableData: [],//行内编辑的list
@@ -144,44 +141,46 @@ export default {
                 delete query.userDetail.salaryDeptName;
                 delete query.userDetail.roleIds
                 console.log(query)
-                
-                if(this.status == 1){
-                    updateUserByCondition(query).then(res => {
-                        console.log(res);
-                        
-                        if(res.code == 200){
-                            this.$message({
-                                type: 'success',
-                                message: '保存成功！'
-                            })
-                            this.$emit('reload')
-                            this.callBack();
-                        }else{
-                            this.$message({
-                                type: 'error',
-                                message:res.message
-                            })
-                        }
-                    })
-                }else{
-                    saveOrUpdateManageUser(query).then(res => {
-                        console.log(res);
-                        
-                        if(res.code == 200){
-                            this.$message({
-                                type: 'success',
-                                message: '保存成功！'
-                            })
-                            this.$emit('reload')
-                            this.callBack();
-                        }else{
-                            this.$message({
-                                type: 'error',
-                                message:res.message
-                            })
-                        }
-                    })
+                if(query.user && query.userDetail){
+                    if(this.status == 1){
+                        updateUserByCondition(query).then(res => {
+                            console.log(res);
+                            
+                            if(res.code == 200){
+                                this.$message({
+                                    type: 'success',
+                                    message: '保存成功！'
+                                })
+                                this.$emit('reload')
+                                this.callBack();
+                            }else{
+                                this.$message({
+                                    type: 'error',
+                                    message:res.message
+                                })
+                            }
+                        })
+                    }else{
+                        saveOrUpdateManageUser(query).then(res => {
+                            console.log(res);
+                            
+                            if(res.code == 200){
+                                this.$message({
+                                    type: 'success',
+                                    message: '保存成功！'
+                                })
+                                this.$emit('reload')
+                                this.callBack();
+                            }else{
+                                this.$message({
+                                    type: 'error',
+                                    message:res.message
+                                })
+                            }
+                        })
+                    }
                 }
+               
             })
             
            
@@ -202,6 +201,7 @@ export default {
             getUserInfoById({id:id}).then(res=>{
                 const {roleNames,deptName} =res.data;
                 const {
+                    userDeptId,
                     userName,
                     userAccount,userSex,userCard,userTel,userEmail,socialSecurityCard,
                     salaryDeptId,userEntryDate,planChangeFormalDate,realityChangeFormalDate,
@@ -220,7 +220,8 @@ export default {
                 } = res.data.user
                 const {
                     childEducation,continueEducation,homeLoanInterest,homeRents,supportParents,otherDeduct,
-                    userDeptId,standardSalary,salaryGrantRatio,performanceRatio,bankSalary, stipulationStartTaxMoney, postSalary, postSubsidy,  otherSubsidy, addComputerSubsidy,deductOther,
+                    // userDeptId,
+                    standardSalary,salaryGrantRatio,performanceRatio,bankSalary, stipulationStartTaxMoney, postSalary, postSubsidy,  otherSubsidy, addComputerSubsidy,deductOther,
                     yilGongsShengyBaseMoney,yilPersonRatio,yilCompanyRatio,yilPersonAddMoney,gongsPersonRatio, gongsCompanyRatio,shengyPersonRatio, shengyCompanyRatio,yanglShiyBaseMoney,yanglPersonRatio,yanglCompanyRatio,shiyPersonRatio,shiyCompanyRatio, housingFundBaseMoney,housingFundPersonRatio,housingFundCompanyRatio,
 
                 } = res.data.userDetail
@@ -230,6 +231,7 @@ export default {
                 }
                 // 基本信息
                 this.baseInfoData ={
+                    userDeptId:userDeptId,
                     userPostType:userPostType,
                     userRankType:userRankType,
                     userName:userName,
@@ -288,7 +290,7 @@ export default {
                 }
                
                 this.matchingData = {
-                    userDeptId:userDeptId,
+                    // userDeptId:userDeptId,
                     roleIds:roleIds,
                     userDeptName:roleNames,
                     userRoleName:deptName,

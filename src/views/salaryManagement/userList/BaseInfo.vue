@@ -39,6 +39,9 @@
                         </el-option>
                     </el-select>
                 </el-form-item>
+                <el-form-item label="业务归属部门" prop="userDeptId">
+                    <el-input clearable v-model="form.userDeptName" :disabled="isDisable" placeholder="请选择业务归属部门" @focus="openDialog('业务归属部门选择','deptName',false)"></el-input>
+                </el-form-item>
                 <el-form-item label="岗位类型" prop="userPostType">
                     <el-select v-model="form.userPostType" filterable placeholder="请选择岗位类型" :disabled="isDisable">
                         <el-option v-for="item in PostTypeOption"
@@ -129,12 +132,28 @@
                 </el-form-item>
             </el-form>
         </BoxCard>
+        <el-dialog
+            :title="dialogTitle"
+            :visible.sync="dialogVisible"
+            modal-append-to-body  
+            append-to-body
+            width="300px"
+            height="450px"
+            :before-close="handleClose">
+            <my-tree v-if="dialogVisible" :isMultiple="isMultiple" @chekedList="chekedList" :label="showName"></my-tree>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="handleClose">取 消</el-button>
+                <el-button type="primary" @click="confirmClose">确 定</el-button>
+            </span>
+        </el-dialog>
     </div>
+
 </template>
       
 <script>
     import {BoxCard} from '@/layout/components'
     import {selectDeptList,selectRoleList,selectSalaryDeptList,saveOrUpdateManageUser} from '@/api/userList'
+    import myTree from "./myTree"
     import { rules ,RankTypeOption,PostTypeOption} from "./utils";
     export default {
         props: {
@@ -153,6 +172,7 @@
         },
         components: {
             BoxCard,
+            myTree
         },
         created(){
             if(this.baseInfoData){
@@ -168,6 +188,7 @@
                 form:{
                     userName:'',
                     userAccount:'',
+                    userDeptId:'',
                     userSex:0,
                     userCard:'',
                     userTel:'',
@@ -189,12 +210,76 @@
                 SalaryDeptlist:[],
                 RankTypeOption:RankTypeOption,
                 PostTypeOption:PostTypeOption,
+                cascaderList: [], // 弹窗树
+                showName: '', //弹窗树显示的字段名
+                expandedKeys: [],//弹窗树默认显示
+                checkedTreeData: [],
+                dialogVisible: false,
+                dialogTitle: '',
+                selectDeptlist:null,
+                selectRolelist:null,
+                defaultProps: {
+                    children: 'childList',
+                    label: 'roleName'
+                },
             }
         },
         mounted(){
             this.SalaryDeptList()
         },
         methods: {
+            handleClose(){
+                this.dialogVisible = false
+            },
+            chekedList(data){
+                this.checkedTreeData = data;//保存用户选择的的树
+            },
+            confirmClose(){
+            // 点击弹窗确定，重新负值
+                this.dialogVisible = false
+                if(this.checkedTreeData.length){
+                    let leng = this.checkedTreeData.length
+                    if(this.showName === "deptName"){//部门
+                        let arrId = []
+                        let depName = []
+                        for(let i=0;i<leng;i++){
+                            arrId.push(this.checkedTreeData[i].id)
+                            depName.push(this.checkedTreeData[i].deptName)
+                        }
+                        this.form.userDeptName = depName.join("，")
+                        this.form.userDeptId = arrId.join(",")
+                    }else if(this.showName === "roleName"){//角色
+                        let arrId = []
+                        let roleName = []
+                        for(let i=0;i<leng;i++){
+                            arrId.push(this.checkedTreeData[i].id)
+                            roleName.push(this.checkedTreeData[i].roleName)
+                        }
+                        console.log(roleName)
+                        // 
+                        this.form.userRoleName = roleName.join("，")
+                        this.form.roleIds = arrId.join(",")
+                    }
+                }else{
+                    if(this.showName === "deptName"){
+                        this.form.userDeptName = ''
+                        this.form.userDeptId = ''
+                    }else if(this.showName === "roleName"){
+                        this.userRoleName = ''
+                        this.roleIds = ''
+                    }
+                }
+            },
+            openDialog(title,showName,bool){
+            // 注：bool为true则多选，为false则单选
+                this.isMultiple = bool //暂无多选接口
+                this.checkedTreeData = [] //重新选择的时候清空原来的数据
+                this.dialogTitle = title
+                this.dialogVisible = true
+                this.cascaderList = this.depOptions
+                // this.showName = "departmentName"
+                this.showName = showName
+            },
             SalaryDeptList(){
                 let par={
                     pageNum: 1,

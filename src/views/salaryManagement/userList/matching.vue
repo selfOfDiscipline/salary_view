@@ -10,9 +10,9 @@
                 class="form-area" 
                 label-width="130px" 
                 slot="main">
-                <el-form-item label="业务归属部门" prop="userDeptId">
+                <!-- <el-form-item label="业务归属部门" prop="userDeptId">
                     <el-input clearable v-model="form.userDeptName" :disabled="isDisable" placeholder="请选择业务归属部门" @focus="openDialog('业务归属部门选择','deptName',false)"></el-input>
-                </el-form-item>
+                </el-form-item> -->
                 <el-form-item label="角色" prop="roleIds">
                         <el-input :disabled="isDisable"
                         v-model="form.userRoleName" 
@@ -74,7 +74,7 @@
                 <el-button type="primary" @click="confirmClose">确 定</el-button>
             </span>
         </el-dialog>
-        <!-- 预算归属公司 -->
+        <!-- -->
         <el-dialog
             title="角色选择"
             :visible.sync="BudgetCompany"
@@ -101,7 +101,7 @@
 <script>
     import {BoxCard} from '@/layout/components'
     import {selectDeptList,selectRoleList,selectSalaryDeptList,saveOrUpdateManageUser} from '@/api/userList'
-    import myTree from "./myTree"
+    
     
     import RoleTree from "@/layout/components/Tree"
     import { rules,RankTypeOption, } from "./utils";

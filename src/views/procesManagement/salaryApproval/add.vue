@@ -34,9 +34,9 @@
                 </el-form-item>
                 <el-form-item label="状态" prop="flowRoleName">
                     <el-radio-group v-model="form.flowRoleName">
-                        <el-radio :label=0>启用</el-radio>
-                        <el-radio :label=1>停用</el-radio>
-                    </el-radio-group>
+                        <el-radio :label = '0'>启用</el-radio>
+                        <el-radio :label = '1'>停用</el-radio>
+                    </el-radio-group>   
                 </el-form-item>
             </el-form>
         </BoxCard>
@@ -131,12 +131,11 @@ export default {
             roleOption:[
                 {
                     name:'副总',
-                    roleId:2
-
+                    roleId:'2'
                 },
                 {
                     name:'核算人员',
-                    roleId:12
+                    roleId:'12'
                 }
             ],
             TypeOptions:[
@@ -170,6 +169,7 @@ export default {
         getFlowConfigById(id){
             getFlowConfigById({id:id}).then(res =>{
                 console.log(res);
+                debugger
                 const { baseFlowConfig,baseFlowConfigDetailList} = res.data;
                 this.form = baseFlowConfig;
                 baseFlowConfigDetailList.forEach((item, index) => {
@@ -221,18 +221,21 @@ export default {
                     //     // this.tableData.approverIds= iterator.approverIds.toString()
                     // }
                     console.log(this.tableData,'111111');
-                    
+                    if(this.salaryId){
+                        this.form.id = this.salaryId
+                    }
                     let par ={
                         baseFlowConfig:this.form,
                         baseFlowConfigDetailList:this.tableData
                     }
                     console.log(par)
-                    
+                    debugger
                     saveOrUpdateFlowConfig(par).then(res =>{
-                        console.log(res);
-                        this.$emit('reload')
-                        this.callBack()
-                        
+                        console.log(res);   
+                        if(res.code == 200){
+                            this.$emit('reload')
+                            this.callBack()
+                        }
                     })
                 } else {
                     return false;
@@ -266,7 +269,6 @@ export default {
         },
         // 新增一行
         addRow (e) {
-            ;
             let list = {
                 sortNum:'',
                 nodeName:'',
