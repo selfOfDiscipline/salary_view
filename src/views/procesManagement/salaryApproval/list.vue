@@ -93,7 +93,7 @@
       <script>
       import { BoxCard } from '@/layout/components'
       import Add from './add'
-      import { selectFlowList } from '@/api/salaryApproval'
+      import { selectFlowList,deleteFlowConfigByIds } from '@/api/salaryApproval'
       export default {
         name: 'FlowList',
         components: {
@@ -194,6 +194,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
+                    debugger
                     const lsdata = { ids: data.id }
                     deleteFlowConfigByIds(lsdata).then(res => {
                         console.log(res)
@@ -212,13 +213,7 @@
                             })
                         }
                     })
-                }).catch(() => {
-                    this.$message({
-                    type: 'info',
-                    message: '已取消删除'
-                    })
                 })
-               
             }
         }
     }

@@ -9,7 +9,15 @@
                     <el-input v-model="querydata.userName" placeholder="请输入员工姓名" />
                     </el-form-item>
                     <el-form-item>
-                    <el-input v-model="querydata.salaryDeptName" placeholder="请输入部门名称"/>
+                        <el-select v-model="querydata.salaryDeptId" filterable placeholder="请选择薪资归属部门">
+                            <el-option v-for="item in SalaryDeptlist"
+                                :key="item.id"
+                                :label="item.salaryDeptName"
+                                :value="item.id">
+                            </el-option>
+                        </el-select>
+                    <!-- <el-input v-model="querydata.salaryDeptName" placeholder="请输入部门名称"/> -->
+
                     </el-form-item>
               </el-form>
             </div>
@@ -124,7 +132,7 @@
   </template>
   <script>
   import { BoxCard } from '@/layout/components'
-  import {selectUserList,deleteUserByIds} from '@/api/userList'
+  import {selectUserList,deleteUserByIds,selectSalaryDeptList} from '@/api/userList'
   import Add from './add'
   import Positive from './positive'
   
@@ -161,6 +169,7 @@
     },
     data() {
       return {
+        SalaryDeptlist:[],
         name:'',
         userId:'',
         status:0,
@@ -220,9 +229,25 @@
     },
     mounted() {
       this.fetchData()
+      this.SalaryDeptList()
   
     },
     methods: {
+        SalaryDeptList(){
+                let par={
+                    pageNum: 1,
+                    pageSize: 10,
+                    salaryDeptName: ""
+                }
+                selectSalaryDeptList(par).then(res => {
+                    console.log(res)
+                    // 
+                    if(res.code == 200){
+                        this.SalaryDeptlist = res.data.dataList
+
+                    }
+                })
+            },
         // 关闭弹窗，不可以删这个方法
         handleCloseBindWarnStandard() {
             this.$emit('closeBindWarnStandard')

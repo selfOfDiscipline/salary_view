@@ -134,8 +134,9 @@ export default {
         onSubmit(){
             this.$refs['form'].validate((valid) => {
                 if (valid) {
-                    
+                    let salaryDeptId = ''
                     if(this.form.userPostType == 1){
+                        salaryDeptId = Number(this.form.salaryDeptId)
                         if(!this.form.salaryDeptId){
                             this.$message({
                                 type: 'warning',
@@ -143,10 +144,12 @@ export default {
                             })
                             return false;
                         }
+                    }else{
+                        salaryDeptId =null;
                     }
-                    // this.form.salaryDeptId = Number(this.form.salaryDeptId)
+                   
                     let par = {
-                        salaryDeptId:Number(this.form.salaryDeptId),
+                        salaryDeptId:salaryDeptId,
                         userPostType:this.form.userPostType,
                     }
                     // let par ={...this.form};
