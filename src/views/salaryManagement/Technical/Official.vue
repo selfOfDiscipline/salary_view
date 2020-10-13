@@ -59,7 +59,7 @@
                             {{ scope.row.monthBaseSalary | moneyFormit }}
                         </template>
                     </el-table-column>
-                    <el-table-column label="绩效占比" prop="monthPerformanceRatio" min-width="100" show-overflow-tooltip>
+                    <el-table-column label="绩效占比" prop="monthPerformanceRatio" min-width="100">
                         <template slot-scope="scope">
                             <el-input size="small" v-model="scope.row.monthPerformanceRatio"></el-input>
                         </template>

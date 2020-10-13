@@ -176,7 +176,8 @@
         },
         created(){
             if(this.baseInfoData){
-                console.log(this.isDisable)
+                console.log( this.baseInfoData)
+                debugger
                 // this.isDisable = this.isdisable;
                 this.form = this.baseInfoData
             }

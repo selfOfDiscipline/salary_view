@@ -60,7 +60,7 @@
                             </template>
                         </el-table-column> -->
                         <el-table-column label="基本工资" prop="monthBaseSalary" min-width="80" show-overflow-tooltip></el-table-column>
-                        <el-table-column label="绩效占比" prop="monthPerformanceRatio" min-width="100" show-overflow-tooltip>
+                        <el-table-column label="绩效占比" prop="monthPerformanceRatio" min-width="100">
                             <template slot-scope="scope">
                                 <el-input size="small" v-model="scope.row.monthPerformanceRatio"></el-input>
                             </template>
@@ -266,6 +266,7 @@ export default {
             }
         },
         mounted() {
+            this.fetchData()
             this.SalaryDeptList()
         },
         methods: {
@@ -330,7 +331,7 @@ export default {
                     this.querydata.pageSize = this.pageSize
                     selectUserListBySalaryUser(this.querydata).then(res => {
                         this.list = res.data.dataList
-                        this.total = res.data.total
+                        this.total = Number(res.data.total)
                         this.listLoading = false
                     })
                 // }else{

@@ -232,6 +232,7 @@ export default {
                 // 基本信息
                 this.baseInfoData ={
                     userDeptId:userDeptId,
+                    userDeptName:deptName,
                     userPostType:userPostType,
                     userRankType:userRankType,
                     userName:userName,
@@ -290,10 +291,10 @@ export default {
                 }
                
                 this.matchingData = {
-                    // userDeptId:userDeptId,
+                    // userDeptId:userDeptId,userDeptName:deptName,
                     roleIds:roleIds,
-                    userDeptName:roleNames,
-                    userRoleName:deptName,
+                    
+                    userRoleName:roleNames,
                     standardSalary:standardSalary,
                     salaryGrantRatio:salaryGrantRatio,
                     performanceRatio:performanceRatio,
