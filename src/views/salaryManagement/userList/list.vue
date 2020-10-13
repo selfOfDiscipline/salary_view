@@ -9,7 +9,7 @@
                     <el-input v-model="querydata.userName" placeholder="请输入员工姓名" />
                     </el-form-item>
                     <el-form-item>
-                        <el-select v-model="querydata.salaryDeptId" filterable placeholder="请选择薪资归属部门">
+                        <el-select v-model="querydata.userSalaryDeptId" filterable placeholder="请选择薪资归属部门">
                             <el-option v-for="item in SalaryDeptlist"
                                 :key="item.id"
                                 :label="item.salaryDeptName"
