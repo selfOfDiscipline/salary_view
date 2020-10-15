@@ -63,7 +63,7 @@ console.log(res,1111111122222)
           window.location.href = golink
         }
       }
-      return Promise.reject(new Error(res.message || 'Error'))
+      // return Promise.reject(new Error(res.message || 'Error'))
     } else{
       return res
     }

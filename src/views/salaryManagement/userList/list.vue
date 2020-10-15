@@ -269,9 +269,23 @@
             this.querydata.pageSize = this.pageSize
             selectUserList(this.querydata).then(res => {
                 // console.log(res)
-                this.list = res.data.dataList
-                this.total = Number(res.data.total)
-                this.listLoading = false
+                this.listLoading = false;
+                if(res.code == 200){
+                    this.list = res.data.dataList
+                    this.total = Number(res.data.total);
+                    this.listLoading = false;
+                }else{
+                    this.$message({
+                        type: 'error',
+                        message: res.message
+                    })
+                    // this.$message({
+                    //     showClose: true,
+                    //     message: res.message || 'error',
+                    //     type: 'error'
+                    // })
+                   
+                }
             })
         },
         search() {

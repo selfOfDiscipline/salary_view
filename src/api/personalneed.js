@@ -42,4 +42,11 @@ export function startSalaryFlow(params) {
   })
 }
 
-
+// 查询该流程工资列表
+export function selectSalaryByApplicationCode(params) {
+  return request({
+    url: '/agenda/selectSalaryByApplicationCode',
+    method: 'get',
+    params
+  })
+}
