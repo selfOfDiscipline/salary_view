@@ -55,7 +55,7 @@ console.log(res,1111111122222)
       Message({
         message: res.message || 'Error',
         type: 'error',
-        duration: 5 * 10000
+        duration: 3 * 1000
       })
       if (res.resultCode > 1000) {
         if (res.result) {
@@ -84,7 +84,7 @@ console.log(res,1111111122222)
     Message({
       message: error.message,
       type: 'error',
-      duration: 5 * 1000
+      duration: 3 * 1000
     })
     return Promise.reject(error)
   }
