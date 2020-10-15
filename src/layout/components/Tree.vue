@@ -6,7 +6,7 @@
 <template>
     <!-- 审批--对公--修改--预算归属公司 -->
     <div>
-      <el-input style="width: 390px" placeholder="输入关键字进行过滤" v-model="filterText"></el-input>
+      <!-- <el-input style="width: 390px" placeholder="输入关键字进行过滤" v-model="filterText"></el-input> -->
       <el-tree
         class="cards"
         v-loading="loading"
@@ -20,6 +20,7 @@
         @node-click="getCheckedNodes"
         :filter-node-method="filterNode"
         node-key="id"
+        default-expand-all
         :default-checked-keys="expandKeys"
       ></el-tree>
     </div>
@@ -32,13 +33,13 @@
   export default {
     name: "corporateBusines",
     props: ["male"],
-    getCheckedNodes: "",
+    // getCheckedNodes: "",
   
     watch: {
-      filterText(val) {
-        console.log(val, "jsiudb");
-        this.$refs.tree.filter(val);
-      }
+      // filterText(val) {
+      //   console.log(val, "jsiudb");
+      //   this.$refs.tree.filter(val);
+      // }
     },
     data: function() {
       return {

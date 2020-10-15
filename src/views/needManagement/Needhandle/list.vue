@@ -21,7 +21,7 @@
                     </el-col>
                 </el-row>
             </div>
-            <BoxCard title="个人待办列表">
+            <BoxCard title="待办列表">
                 <template #btnarea>
                     <!-- <el-button type="primary" plain @click="goadd('add')">新增</el-button> -->
                 </template>
@@ -73,30 +73,29 @@
                 </div>
             </BoxCard>
             <el-dialog  
-                width="400px"
-                height="400px"
-                modal-append-to-body  
+                fullscreen 
+                modal-append-to-body
                 append-to-body
                 :title="dialogName === 'edit' ? '编辑' : '新增'" 
                 :visible.sync="editFormVisible" 
                 :close-on-click-modal="false" 
                 @close="editFormVisible = false">
-                <Add v-if="isAdd && editFormVisible"
+                <Details v-if="isAdd && editFormVisible"
                     @reload="fetchData"
                     @closeDialog="editFormVisible = false" >
-                </Add>
+                </Details>
             </el-dialog>
         </div>
     </template>
       <script>
       import { BoxCard } from '@/layout/components'
-      import Add from './add'
-      import { selectPersonAgendaList } from '@/api/personalneed'
+      import Details from './details'
+      import { selectPersonAgendaList,selectSalaryByApplicationCode} from '@/api/personalneed'
       export default {
         name: 'FlowList',
         components: {
           BoxCard,
-          Add
+          Details
         },
         filters: {
          
@@ -132,11 +131,11 @@
             pageNum: 1,
             querydata: {},
             isall: -1,
-            isAll: false,
+            isAll: true,
             dialogName: '',
             isAdd: true, //true新增 false修改
             dialogVisible: false,//新增编辑弹窗
-            editFormVisible:false,
+            editFormVisible:true,
           }
         },
         

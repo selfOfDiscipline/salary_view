@@ -13,6 +13,7 @@
             node-key="id"
             :filter-node-method="filterNode"
             @check-change="getCheckedNodes"
+            default-expand-all
             ref="tree"
           ></el-tree>
         </div>
