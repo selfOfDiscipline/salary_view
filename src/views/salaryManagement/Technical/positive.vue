@@ -35,6 +35,7 @@
                             <el-button type="primary" plain @click="click" >一键生成</el-button>
                     </template>
                     <el-table
+                        :cell-style="cellStyle" 
                         slot="main"
                         v-loading="listLoading"
                         :data="list"
@@ -93,6 +94,11 @@
                         <el-table-column label="转正后病假缺勤" prop="positiveAfterSickAttendanceDays" min-width="120">
                             <template slot-scope="scope">
                                 <el-input size="small" v-model="scope.row.positiveAfterSickAttendanceDays"></el-input>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="奖惩金额" prop="monthRewordsMoney;" min-width="120">
+                            <template slot-scope="scope">
+                                <el-input size="small" v-model="scope.row.monthRewordsMoney"></el-input>
                             </template>
                         </el-table-column>
                         <el-table-column label="税前工资" prop="bankTaxBeforeShouldSalary" width="80">
@@ -241,12 +247,12 @@ export default {
                 listLoading: false,
                 currentPage: 1,
                 total: 10,
-                pageSize: 10,
+                pageSize: 100,
                 pageNum: 1,
                 querydata:{
                     menuType: 1,
                     pageNum: 1,
-                    pageSize: 10,
+                    pageSize: 100,
                     // thisDateLastMonth: "2020-09-22T03:16:54.117Z",
                     // thisDateMonth: "2020-09-22T03:16:54.117Z",
                     userName: "",
@@ -270,6 +276,14 @@ export default {
             this.SalaryDeptList()
         },
         methods: {
+            //设置指定行、列、具体单元格颜色
+        cellStyle(row, column, rowIndex, columnIndex){
+            if(row.row.currentComputeFlag === 1){ //指定坐标rowIndex ：行，columnIndex ：列
+               return 'background:#e1f1ff' 
+            }else{
+                return ''
+            }
+        },
             SalaryDeptList(){
                 let par={
                     pageNum: 1,
@@ -295,12 +309,14 @@ export default {
                 console.log(row)
                 let par = {
                     id: row.id,
+                    monthPerformanceRatio:row.monthPerformanceRatio,//绩效占比
                     positiveAfterAttendanceDays: row.positiveAfterAttendanceDays,
                     positiveAfterOtherAttendanceDays: row.positiveAfterOtherAttendanceDays,
                     positiveAfterSickAttendanceDays: row.positiveAfterSickAttendanceDays,
                     positiveBeforeAttendanceDays: row.positiveBeforeAttendanceDays,
                     positiveBeforeOtherAttendanceDays: row.positiveBeforeOtherAttendanceDays,
                     positiveBeforeSickAttendanceDays: row.positiveBeforeSickAttendanceDays,
+                    monthRewordsMoney:row.monthRewordsMoney
                 }
                 lastMonthBecomeCompute(par).then(res => {
                     if(res.code == 200){

@@ -136,6 +136,10 @@ export default {
                 {
                     name:'核算人员',
                     roleId:'12'
+                },
+                {
+                    name:'汇总人员',
+                    roleId:'14'
                 }
             ],
             TypeOptions:[

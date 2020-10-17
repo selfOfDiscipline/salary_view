@@ -1,165 +1,106 @@
 <template>
-    <div class="app-container">
-        <el-dialog
-            title="审批意见"
-            :visible.sync="showopinion"
-            width="30%"
-            @close="showopinionClick"
-            append-to-body>
-            <el-input
-                type="textarea"
-                placeholder="请输入审批意见"
-                v-model="opinion"
-                show-word-limit>
-            </el-input>
-            <span slot="footer">
-                <el-button @click="showopinionClick">取 消</el-button>
-                <el-button type="primary"  @click="opinion_Confirm('form')">确 定</el-button>
-            </span>
-        </el-dialog>
+    <div class="app-container" v-loading="approvalLoading">
         <BoxCard title="基本信息" class="modelbox">
-            <el-form :inline="true" :model="form" ref="form" label-position="right" 
+            <el-form :inline="true" :model="form" :rules="rules" ref="form" label-position="right" 
                 class="form-area" 
                 label-width="100px" 
                 slot="main">
-                <el-form-item label="单据编号" prop="applicationCode">
-                    <el-input v-model="form.applicationCode" disabled></el-input>
+                <el-form-item label="流程编号" prop="flowEnCode">
+                    <el-input v-model="form.flowEnCode" placeholder="请输入流程编号" ></el-input>
                 </el-form-item>
-                <el-form-item label="创建人" prop="createName">
-                    <el-input v-model="form.createName" disabled></el-input>
+                <el-form-item label="流程名称" prop="flowName">
+                    <el-input v-model="form.flowName" placeholder="请输入流程名称" ></el-input>
                 </el-form-item>
-                <el-form-item label="创建时间" prop="createTime">
-                    <el-input v-model="form.createTime" disabled></el-input>
+                <el-form-item label="流程类型" prop="flowType">
+                    <el-input v-model="form.flowType" placeholder="请输入流程类型" maxlength="18"></el-input>
                 </el-form-item>
-
-                <el-form-item label="薪资归属部门" prop="salaryDeptName">
-                    <el-input v-model="form.salaryDeptName" disabled ></el-input>
+                <el-form-item label="薪资归属部门" prop="flowSalaryDeptId">
+                    <el-select v-model="form.flowSalaryDeptId" filterable placeholder="请选择薪资归属部门" @change="depChange">
+                        <el-option v-for="item in SalaryDeptlist"
+                            :key="item.id"
+                            :label="item.salaryDeptName"
+                            :value="item.id">
+                        </el-option>
+                    </el-select>
                 </el-form-item>
-                
+                <el-form-item label="适用角色" prop="flowRoleId">
+                    <el-select v-model="form.flowRoleId" filterable placeholder="请选择适用角色">
+                        <el-option v-for="item in roleOption"
+                            :key="item.roleId"
+                            :label="item.name"
+                            :value="item.roleId">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="状态" prop="useFlag">
+                    <el-radio-group v-model="form.useFlag">
+                        <el-radio :label = 0>启用</el-radio>
+                        <el-radio :label = 1>停用</el-radio>
+                    </el-radio-group>   
+                </el-form-item>
             </el-form>
         </BoxCard>
-        <BoxCard title="薪资列表" class="modelbox">
-                <el-table
-                slot="main" v-loading="listLoading"
-                :data="list" element-loading-text="Loading"
-                fit stripe highlight-current-row height=320px>
-                <el-table-column label="序号" width="55" type="index">
-                    
-                </el-table-column>
-                <el-table-column label="所属日期" show-overflow-tooltip min-width="120" prop="salaryDate">
+        <BoxCard title="流程明细" class="modelbox">
+            <template  #btnarea>
+                <el-button type="primary" plain @click="delData">删除</el-button>
+                <el-button type="primary" plain @click="addRow(this)">新增</el-button>
+            </template>
+            <!-- @selection-change="selectRow"  -->
+            <el-table
+                :data="tableData"
+                stripe
+                class="table-area"
+                highlight-current-row
+                @selection-change="selectRow"
+                slot="main">
+                <el-table-column type="selection" width="50" ></el-table-column>
+                <el-table-column label="流程序号"  prop="sortNum">
                     <template slot-scope="scope">
-                        <span>{{ scope.row.salaryDate.substr(0, 7) }}</span>
+                        <el-input size="small" v-model="scope.row.sortNum"></el-input>
                     </template>
                 </el-table-column>
-                <el-table-column label="员工姓名" prop="userName"></el-table-column>
-                <el-table-column label="实付工资" show-overflow-tooltip min-width="120" prop="totalIncomeMoney">
+                <el-table-column label="节点名称"  prop="nodeName">
                     <template slot-scope="scope">
-                        <span>{{ scope.row.totalIncomeMoney |moneyFormit }}</span>
+                        <el-input size="small" v-model="scope.row.nodeName"></el-input>
                     </template>
                 </el-table-column>
-                <el-table-column label="薪资归属部门" show-overflow-tooltip min-width="120" prop="salaryDeptName">
+                <el-table-column label="是否是第一节点"  prop="firstFlag">
                     <template slot-scope="scope">
-                        <span>{{ scope.row.salaryDeptName}}</span>
+                        <el-select v-model="scope.row.firstFlag"  placeholder="是否是第一节点" size="mini">
+                            <el-option v-for="item in TypeOptions"
+                                :key="item.id"
+                                :label="item.type"
+                                :value="item.id">
+                            </el-option>
+                        </el-select>
                     </template>
                 </el-table-column>
-                <el-table-column label="税前工资" prop="bankTaxBeforeShouldSalary" width="80">
+                <el-table-column label="是否是最后节点"  prop="lastFlag">
                     <template slot-scope="scope">
-                        {{ scope.row.bankTaxBeforeShouldSalary | moneyFormit }}
+                        <el-select v-model="scope.row.lastFlag"  placeholder="是否是第一节点" size="mini">
+                            <el-option v-for="item in TypeOptions"
+                                :key="item.id"
+                                :label="item.type"
+                                :value="item.id">
+                            </el-option>
+                        </el-select>
                     </template>
                 </el-table-column>
-                <el-table-column label="代发实付工资" prop="bankRealitySalary" width="120">
+                <el-table-column label="审批人"  prop="approverIds" width="400">
                     <template slot-scope="scope">
-                        {{ scope.row.bankRealitySalary | moneyFormit }}
+                        <el-select v-model="scope.row.approverIds" @change="approverChange(scope.$index,scope.row.approverIds)" multiple  filterable  placeholder="审批人" size="mini" style="width:400px !important;" >
+                            <el-option v-for="item in usreList"
+                                :key="item.id"
+                                :label="item.userName"
+                                :value="item.id">
+                            </el-option>
+                        </el-select>
                     </template>
                 </el-table-column>
-                <el-table-column label="他行实付工资" prop="otherBankRealitySalary" width="120">
-                    <template slot-scope="scope">
-                        {{ scope.row.otherBankRealitySalary | moneyFormit }}
-                    </template>
-                </el-table-column>
-                <el-table-column label="实付总计" prop="monthSalaryRealityTotal" width="120">
-                    <template slot-scope="scope">
-                        {{ scope.row.monthSalaryRealityTotal | moneyFormit }}
-                    </template>
-                </el-table-column>
-                <el-table-column label="公司缴纳">
-                    <el-table-column label="养老" prop="yanglCompanyPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.yanglCompanyPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="工伤" prop="gongsCompanyPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.gongsCompanyPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="生育" prop="shengyCompanyPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.shengyCompanyPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="失业" prop="shiyCompanyPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.shiyCompanyPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="医疗" prop="yilCompanyPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.yilCompanyPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="公积金" prop="housingFundCompanyPayTotal" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.housingFundCompanyPayTotal | moneyFormit }}
-                        </template>     
-                    </el-table-column>
-                </el-table-column>
-                <el-table-column label="个人缴纳">
-                    <el-table-column label="养老" prop="yanglPersonPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.yanglPersonPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="工伤" prop="gongsPersonPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.gongsPersonPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="生育" prop="shengyPersonPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.shengyPersonPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="失业" prop="shiyPersonPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.shiyPersonPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="医疗" prop="yilPersonPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.yilPersonPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="公积金" prop="housingFundPersonPayTotal" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.housingFundPersonPayTotal | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                </el-table-column>
-                
-                <!-- <el-table-column label="操作" prop="businessTripMoney" width="100" fixed="right">
-                    <template slot-scope="scope">
-                        <el-tooltip placement="top">
-                            <div slot="content">删除</div>
-                            <svg-icon icon-class="del" @click="delFlow(scope.row)" style="cursor: pointer;"/>
-                        </el-tooltip>
-                    </template>
-                </el-table-column> -->
             </el-table>
         </BoxCard>
         <div class="btn-area">
-            <el-button type="primary" plain @click="handleThisNode(0)">同意</el-button>
-            <el-button type="primary" plain @click="handleThisNode(1)">驳回</el-button>
+            <el-button type="primary" plain @click="SaveSubmit()">保存</el-button>
             <el-button type="primary" plain @click="callBack">关闭</el-button>
         </div>
     </div>
@@ -167,30 +108,26 @@
           
 <script>
 import {BoxCard} from '@/layout/components'
-import { selectPersonAgendaList,getSalaryInfoByApplicationCode} from '@/api/personalneed'
-// import { rules ,RankTypeOption,PostTypeOption} from "./utils";
-import { saveOrUpdateFlowConfig,getFlowConfigById,handleThisNode } from '@/api/salaryApproval'
+import { rules ,RankTypeOption,PostTypeOption} from "./utils";
+import { saveOrUpdateFlowConfig,getFlowConfigById } from '@/api/salaryApproval'
 import {selectDeptList,selectRoleList,selectSalaryDeptList,selectAllUserList} from '@/api/userList'
 export default {
     props: {
-        rowData:'',
+        salaryId:'',
     },
     components: {
         BoxCard,
     },
     created(){
-        if(this.rowData){
-            this.form = this.rowData;
-            console.log(this.form)
-            this.getSalaryInfoByApplicationCode(this.rowData.applicationCode)
+        console.log(this.salaryId);
+        
+        if(this.salaryId){
+            this.getFlowConfigById(this.salaryId)
         }
     },
     data() {
         return {
-            status:'',
-            opinion:'',
-            showopinion:false,
-            listLoading:false,
+            approvalLoading:false,
             roleOption:[
                 {
                     name:'副总',
@@ -216,6 +153,7 @@ export default {
                 },
             ],
             form:{},
+            rules:rules,
             SalaryDeptlist:[],
             usreList:[],
             // RankTypeOption:RankTypeOption,
@@ -224,64 +162,29 @@ export default {
             tableData:[],
             editRow: {},//当前选中行
             selectlistRow:[],
-            list:[],
         }
     },
     mounted(){
         console.log(this.salaryId);
         this.SalaryDeptList()
-        // this.selectAllUserList();
+        this.selectAllUserList();
     },
     methods: {
-        showopinionClick(){
-            this.opinion="";
-            this.showopinion = false;
-        },
-        opinion_Confirm(){
-            if(this.opinion == ''){
-                this.$message.warning('请输入审批意见！')
-            }else{
-                let approverStatus = ''
-                if(this.status == 0 ){
-                    approverStatus = 0
-                }else{
-                    approverStatus = 1
-                }
-                let par = {
-                    approverStatus:approverStatus,
-                    id:this.form.id,
-                    opinion:this.opinion
-                }
-                handleThisNode( par ).then(res =>{
-                    if(res.code == 200){
-                        this.$emit('reload')
-                        this.$emit('closeDialog');
-                        this.callBack()
-                    }else{
-
-                    }
+        getFlowConfigById(id){
+            getFlowConfigById({id:id}).then(res =>{
+                console.log(res);
+                debugger
+                const { baseFlowConfig,baseFlowConfigDetailList} = res.data;
+                this.form = baseFlowConfig;
+                baseFlowConfigDetailList.forEach((item, index) => {
+                    console.log(item,index)
+                    baseFlowConfigDetailList[index].approverIds =item.approverIds.split(',');
                 })
-            }
-        },
-        handleThisNode(status){
-            this.status = status;
-            this.showopinion = true;
-        },
-        // 同意
-        agree(){},
-        // 驳回
-        rejected(){},
-        getSalaryInfoByApplicationCode(code){
-            this.listLoading = true
-            getSalaryInfoByApplicationCode({applicationCode:code}).then(res =>{
-                if(res.code == 200){
-                     this.list=res.data
-                     this.listLoading = false
-                }
+                this.tableData = baseFlowConfigDetailList
             })
         },
         depChange(e){
-            for (const iterator of this.SalaryDeptlist) {
+                for (const iterator of this.SalaryDeptlist) {
                 if(iterator.id==e){
                     this.form.flowSalaryDeptName = iterator.salaryDeptName
                 }
@@ -298,17 +201,17 @@ export default {
             // this.approverIds = this.sels.map(item => item.id).toString();
             // approverChange
         },
-        // selectAllUserList(){
-        //     let par ={
-        //         pageNum: 1,
-        //         pageSize:1000,
-        //     }
-        //     selectAllUserList(par).then(res =>{
-        //         console.log(res);
-        //         this.usreList = res.data.dataList
+        selectAllUserList(){
+            let par ={
+                pageNum: 1,
+                pageSize:1000,
+            }
+            selectAllUserList(par).then(res =>{
+                console.log(res);
+                this.usreList = res.data.dataList
                 
-        //     })
-        // },
+            })
+        },
         SaveSubmit(){
             this.$refs['form'].validate((valid) => {
                 if (valid) {

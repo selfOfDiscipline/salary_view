@@ -7,7 +7,8 @@ const getDefaultState = () => {
     antRouter:[],
     token: getToken(),
     name: '',
-    avatar: ''
+    avatar: '',
+    userInfo:'',
   }
 }
 
@@ -28,7 +29,13 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
-  }
+  },  
+  SET_USERINFO: (state, userInfo) => {
+    state.userInfo = userInfo
+  },
+  SET_USERNAME: (state, username) => {
+    state.username = username
+  },
 }
 
 const actions = {
@@ -40,13 +47,17 @@ const actions = {
       login({ account: username.trim(), password: password }).then(response => {
         debugger
         // console.log( process.env.VUE_APP_BASE_API)
-        window.location.href = window.location.href +'salaryManagement/userList'
+        window.location.href = window.location.href +'personalCenter/editpassword'
         // this.$router.push({ path: '/salaryManagement/userList' })
-        const { data } = response
+        const { data } = response;
+        
         commit('SET_TOKEN', data.tokenKey)
         setToken(data.tokenKey)
-        
+        sessionStorage.setItem("userName",data.userName);
+        sessionStorage.setItem("allowCollectFlag",data.allowCollectFlag);
+        commit('SET_USERINFO', data)
         resolve()
+       
       }).catch(error => {
         reject(error)
       })

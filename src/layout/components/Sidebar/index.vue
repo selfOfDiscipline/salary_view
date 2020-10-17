@@ -6,8 +6,8 @@
       <div class="avatar-wrapper">
           <!-- female -->
           <img src="@/assets/male.png" :class="isCollapse?'user-avatar2':'user-avatar'">
-          <!-- <p v-if="!isCollapse" class="usertext">{{userInfo.name}}</p> -->
-          <!-- <p v-if="!isCollapse" class="usertext">费控管理系统</p> -->
+          <p v-if="!isCollapse" class="usertext">{{userName}}</p>
+          <!-- <p v-if="!isCollapse" class="usertext">薪资管理系统</p> -->
       </div>
       <div class="menuBigBox" id="menuBigBox" @mousemove="handlerSetScroll" @mouseleave="handlerSetHidden">
       <div class="menuBox" id="menuBox" @mousemove="checkLeave">
@@ -45,6 +45,7 @@ import { mapGetters } from 'vuex'
 import {logout} from '@/api/user'
 import Logo from './Logo'
 import SidebarItem from './SidebarItem'
+// import SidebarItem from './sidebarItemNews'
 import variables from '@/styles/variables.scss'
 import { removeToken } from '@/utils/auth'
 
@@ -56,6 +57,7 @@ computed: {
     'userInfo'
   ]),
   routes() {
+    console.log(this.$store.state.user.antRouter,'caodan =====')
     // return this.$router.options.routes
     return this.$store.state.user.antRouter
 
@@ -93,6 +95,9 @@ data () {
 },
 
 mounted() {
+  this.userName = sessionStorage.getItem('userName');
+  // this.userName =getAttribute("userName")   
+  // this.userName = this.$store.state.user.userInfo.userName
     this.RetutnUrl = window.location.href;
     this.$nextTick(function(){
       this.setMenuW()

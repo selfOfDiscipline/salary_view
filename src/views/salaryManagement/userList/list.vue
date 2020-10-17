@@ -64,10 +64,10 @@
           </el-table-column>
           <el-table-column label="操作" prop="businessTripMoney" width="100" fixed="right">
             <template slot-scope="scope">
-                <el-tooltip placement="top">
+                <!-- <el-tooltip placement="top">
                     <div slot="content">修改全量信息</div>
                     <svg-icon icon-class="edit" @click="goedit('edit',scope.row,0)" style="cursor: pointer;"/>
-                </el-tooltip>
+                </el-tooltip> -->
                 <el-tooltip placement="top">
                     <div slot="content">删除</div>
                     <svg-icon icon-class="del" @click="delFlow(scope.row)" style="cursor: pointer;"/>

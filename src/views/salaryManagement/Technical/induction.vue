@@ -35,6 +35,8 @@
                     <el-button type="primary" plain @click="click" >一键生成</el-button>
                 </template>
                 <el-table
+                    :cell-style="cellStyle" 
+                    :header-cell-style="headCellStyle"
                     slot="main"
                     v-loading="listLoading"
                     :data="list"
@@ -43,6 +45,9 @@
                     stripe
                     highlight-current-row
                     :height="tableheight">
+
+                    
+
                     <el-table-column label="序号" width="55">
                         <template slot-scope="scope">
                         {{ (pageNum - 1) * pageSize + scope.$index + 1 }}
@@ -69,7 +74,11 @@
                             <el-input size="small" v-model="scope.row.newEntryAttendanceDays"></el-input>
                         </template>
                     </el-table-column>
-
+                    <el-table-column label="奖惩金额" prop="monthRewordsMoney;" min-width="120">
+                        <template slot-scope="scope">
+                            <el-input size="small" v-model="scope.row.monthRewordsMoney"></el-input>
+                        </template>
+                    </el-table-column>
                     <el-table-column label="税前工资" prop="bankTaxBeforeShouldSalary" width="80">
                         <template slot-scope="scope">
                             {{ scope.row.bankTaxBeforeShouldSalary | moneyFormit }}
@@ -217,12 +226,12 @@ export default {
             listLoading: false,
             currentPage: 1,
             total: 10,
-            pageSize: 10,
+            pageSize: 100,
             pageNum: 1,
             querydata:{
                 menuType: 0,
                 pageNum: 1,
-                pageSize: 10,
+                pageSize: 100,
                 userSalaryDeptId:'',
                 // thisDateLastMonth: "2020-09-22T03:16:54.117Z",
                 // thisDateMonth: "2020-09-22T03:16:54.117Z",
@@ -272,7 +281,9 @@ export default {
             console.log(row,index)
             let par = {
                 id: row.id,
+                monthPerformanceRatio:row.monthPerformanceRatio,//绩效占比
                 newEntryAttendanceDays: row.newEntryAttendanceDays,
+                monthRewordsMoney:row.monthRewordsMoney
             }
             lastMonthIncomeCompute(par).then(res => {
                 if(res.code == 200){
@@ -319,9 +330,26 @@ export default {
         showall() {
             this.isAll = !this.isAll
         },
-            resetform() {
+        resetform() {
             this.querydata = {}
             this.createTime = ''
+        },
+        // 表头行的 style 的回调方法
+        headCellStyle({ row, column, rowIndex, columnIndex }) {
+            console.log(row,'具体单元格')
+            if (columnIndex === 0 && rowIndex === 0) {
+                return `padding-left:40px;`;
+            } else {
+                return ''
+            }
+        },
+       //设置指定行、列、具体单元格颜色
+       cellStyle(row, column, rowIndex, columnIndex){
+            if(row.row.currentComputeFlag === 1){ //指定坐标rowIndex ：行，columnIndex ：列
+               return 'background:#e1f1ff' 
+            }else{
+                return ''
+            }
         },
     }
 }

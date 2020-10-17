@@ -8,10 +8,6 @@
           <span class="el-dropdown-link">
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
-          <el-dropdown-menu slot="dropdown" >
-            <el-dropdown-item command="1">我的发票</el-dropdown-item>
-            <el-dropdown-item command="2">个人设置</el-dropdown-item>
-          </el-dropdown-menu>
         </el-dropdown> -->
       </div>
     </div>

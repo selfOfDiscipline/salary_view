@@ -22,7 +22,7 @@ export function filterAsyncRouter(asyncRouterMap) { //遍历后台传来的路�
             route.children = filterAsyncRouter(route.children)
         }
     }
-    if(route.children&&route.children.length&&route.children[0].meta.title==="首页"){
+    if(route.children&&route.children.length&&route.children[0].title==="首页"){
         delete route.children[0].children
     }
     return true

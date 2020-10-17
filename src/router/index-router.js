@@ -53,6 +53,12 @@ export const constantRoutes = [
 					meta: { title: '薪资部门' }
 				},
 				{
+					path: 'salaryApproval',
+					name: 'salaryApproval',
+					component: () => import('@/views/systemSettings/salaryApproval/list'),
+					meta: { title: '流程列表' }
+				},
+				{
 					path: 'businessDepartment',
 					name: 'businessDepartment',
 					component: () => import('@/views/systemSettings/businessDepartment/list'),
@@ -92,40 +98,20 @@ export const constantRoutes = [
 			meta: { title: '财务管理', icon: 'example' },
 			children: [
 				{
-					path: 'userList',
-					name: 'userList',
+					path: 'salary',
+					name: 'salary',
 					component: () => import('@/views/salary/salary/list'),
 					meta: { title: '汇总工资' }
 				},
 				{
-					path: 'Management',
-					name: 'Management',
+					path: 'historicalWages',
+					name: 'historicalWages',
 					component: () => import('@/views/salary/historicalWages/list'),
 					meta: { title: '历史工资' }
 				}
 			]
 	  	},
-		// {
-		// 	path: '/salaryManagement',
-		// 	component: Layout,
-		// 	redirect: '/salaryManagement',
-		// 	name: 'Example',
-		// 	meta: { title: '员工管理', icon: 'example' },
-		// 	children: [
-		// 		{
-		// 			path: 'userList',
-		// 			name: 'userList',
-		// 			component: () => import('@/views/salaryManagement/userList/list'),
-		// 			meta: { title: '管理岗员工' }
-		// 		},
-		// 		{
-		// 			path: 'Management',
-		// 			name: 'Management',
-		// 			component: () => import('@/views/salaryManagement/Management/list'),
-		// 			meta: { title: '技术岗员工' }
-		// 		}
-		// 	]
-		// },
+		
 		{
 			path: '/procesManagement',
 			component: Layout,
@@ -154,10 +140,16 @@ export const constantRoutes = [
 			name: 'Example',
 			meta: { title: '薪资管理', icon: 'example' },
 			children: [
-				{
+				{//可以修改基本信息
 					path: 'userList',
 					name: 'userList',
 					component: () => import('@/views/salaryManagement/userList/list'),
+					meta: { title: '员工列表' }
+				},
+				{//可以修改全量信息
+					path: 'alluserList',
+					name: 'alluserList',
+					component: () => import('@/views/salaryManagement/alluserList/AllList'),
 					meta: { title: '员工列表' }
 				},
 				// {
@@ -192,24 +184,32 @@ export const constantRoutes = [
 					path: 'personalneedHandle',
 					name: 'personalneedHandle',
 					component: () => import('@/views/needManagement/personalneedHandle/list'),
-					meta: { title: '个人待办' }
+					meta: { title: '个人发起' }
+				}
+			]
+		},
+		{
+			path: '/personalCenter',
+			component: Layout,
+			redirect: '/personalCenter',
+			name: 'Example',
+			meta: { title: '个人管理', icon: 'example' },
+			children: [
+				{
+					path: 'editpassword',
+					name: 'editpassword',
+					component: () => import('@/views/personalCenter/editpassword/index'),
+					meta: { title: '个人中心' }
 				}
 			]
 		},
 		// {
-		// 	path: '/personalManagement',
+		// 	path: '/personalCenter',
 		// 	component: Layout,
-		// 	redirect: '/personalManagement',
+		// 	component: () => import('@/views/personalCenter/editpassword/index'),
 		// 	name: 'Example',
-		// 	meta: { title: '个人管理', icon: 'example' },
-		// 	children: [
-		// 		{
-		// 			path: 'personalCenter',
-		// 			name: 'personalCenter',
-		// 			component: () => import('@/views/personalManagement/personalCenter/list'),
-		// 			meta: { title: '个人中心' }
-		// 		}
-		// 	]
+		// 	meta: { title: '个人中心', icon: 'example' },
+			
 		// },
 ]
 const createRouter = () =>

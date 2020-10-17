@@ -1,4 +1,5 @@
 <template>
+        <!-- 待办列表 -->
         <div class="mainconbox">
             <div class="topTool">
                 <el-row>
@@ -22,42 +23,49 @@
                 </el-row>
             </div>
             <BoxCard title="待办列表">
-                <template #btnarea>
-                    <!-- <el-button type="primary" plain @click="goadd('add')">新增</el-button> -->
+                <template #btnarea v-if="allowCollectFlag">
+                    <el-button type="primary" plain  @click="collect">汇总</el-button>
                 </template>
                 <el-table
                     slot="main" v-loading="listLoading"
                     :data="list" element-loading-text="Loading"
+                    @selection-change="selectRow"
                     fit stripe highlight-current-row :height="tableheight">
+                    <el-table-column
+                        type="selection"
+                        width="55">
+                    </el-table-column>
                     <el-table-column label="序号" width="55">
                         <template slot-scope="scope">
-                        {{ (pageNum - 1) * pageSize + scope.$index + 1 }}
+                            {{ (pageNum - 1) * pageSize + scope.$index + 1 }}
                         </template>
                     </el-table-column>
-                    <el-table-column label="单据编号" prop="applicationCode"></el-table-column>
-                    <el-table-column label="处理人名称" show-overflow-tooltip min-width="120" prop="salaryDeptName">
+                    <el-table-column label="单据编号" prop="applicationCode" show-overflow-tooltip  min-width="120">
                         <template slot-scope="scope">
-                            <span>{{ scope.row.approverName }}</span>
+                            <a @click="goadd(scope.row)">{{scope.row.applicationCode}}</a>
                         </template>
                     </el-table-column>
                     <el-table-column label="节点名称" prop="nodeName"></el-table-column>
-                    <el-table-column label="审批意见" prop="approverOpinion"></el-table-column>
-                    <el-table-column label="创建人名称" prop="createName"></el-table-column>
-                    
+                    <el-table-column label="创建人" prop="createName"></el-table-column>
+                    <el-table-column label="创建时间" show-overflow-tooltip min-width="120" prop="createTime">
+                        <template slot-scope="scope">
+                            <span>{{ scope.row.createTime.substr(0,10) }}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="审批人" prop="editName"></el-table-column>
                     <el-table-column label="审批状态" show-overflow-tooltip min-width="120" prop="approverStatus">
                         <template slot-scope="scope">
                             <span >{{ scope.row.approverStatus | statusfilter }}</span>
                         </template>
                     </el-table-column>
-                   
-                    <el-table-column label="操作" prop="businessTripMoney" width="100" fixed="right">
+                    <!-- <el-table-column label="操作" prop="businessTripMoney" width="100" fixed="right">
                         <template slot-scope="scope">
                             <el-tooltip placement="top">
                                 <div slot="content">审批</div>
                                 <svg-icon icon-class="eye" @click="delFlow(scope.row)" style="cursor: pointer;"/>
                             </el-tooltip>
                         </template>
-                        </el-table-column>
+                    </el-table-column> -->
                 </el-table>
                 <div id="pageFooter" slot="foot">
                     <el-pagination
@@ -76,12 +84,13 @@
                 fullscreen 
                 modal-append-to-body
                 append-to-body
-                :title="dialogName === 'edit' ? '编辑' : '新增'" 
+                :title="dialogName === 'edit' ? '薪资审批' : '薪资审批'" 
                 :visible.sync="editFormVisible" 
                 :close-on-click-modal="false" 
                 @close="editFormVisible = false">
                 <Details v-if="isAdd && editFormVisible"
                     @reload="fetchData"
+                    :rowData="rowData"
                     @closeDialog="editFormVisible = false" >
                 </Details>
             </el-dialog>
@@ -90,7 +99,8 @@
       <script>
       import { BoxCard } from '@/layout/components'
       import Details from './details'
-      import { selectPersonAgendaList,selectSalaryByApplicationCode} from '@/api/personalneed'
+      import {collectTheMonthSalaryFlow} from '@/api/salaryApproval'
+      import {selectSalaryByApplicationCode,selectPersonAgendaList} from '@/api/personalneed'
       export default {
         name: 'FlowList',
         components: {
@@ -107,22 +117,26 @@
                 } else {
                     return 'calc(100vh - 254px)'
                 }
-            }
+            },
         },
         filters:{
             statusfilter(e){
                 switch(e){
-                    case 0:
-                    return '通过'
+                    case 2:
+                    return '审批通过'
                     case 1:
                     return '驳回'
+                    case 0:
+                    return '待审'
                 }
             }
         },
         data() {
           return {
+            allowCollectFlag:null,
             name:'',
-            
+            rowData:"",
+            selectlistRow:[],
             list:[],
             listLoading: false,
             currentPage: 1,
@@ -135,18 +149,47 @@
             dialogName: '',
             isAdd: true, //true新增 false修改
             dialogVisible: false,//新增编辑弹窗
-            editFormVisible:true,
+            editFormVisible:false,
           }
         },
         
         created() {
-    
+            this.allowCollectFlag =  sessionStorage.getItem('allowCollectFlag') ==="false" ? false : true;;
+            // console.log(this.allowCollectFlag);
         },
         mounted() {
-          this.fetchData()
-      
+            this.fetchData()
+            // this.panduan();
         },
         methods: {
+            // panduan(){
+            //     this.allowCollectFlag =  sessionStorage.getItem('allowCollectFlag');
+            //     console.log(this.allowCollectFlag);
+            // },
+             // 行内编辑选中的数据
+            selectRow (val) {
+                this.selectlistRow = val
+            },  
+            collect(){
+                console.log(this.selectlistRow)
+                if(this.selectlistRow){
+                    let ids = this.selectlistRow.map(item => item.id).toString();
+                    collectTheMonthSalaryFlow({ids:ids}).then(res => {
+                        if(res.code  == 200 ){
+                            this.$message({
+                                showClose: true,
+                                message:res.message,
+                                type: 'success'
+                            })
+                            console.log(res)
+                            // this.list = res.data.dataList;
+                        }
+                    })
+                }
+                
+               
+                // collectTheMonthSalaryFlow
+            },
             handleCurrentChange(e) {
                 console.log(e, '页码')
                 this.pageNum = e
@@ -180,7 +223,8 @@
                 this.querydata = {}
                 this.createTime = ''
             },
-            goadd(name) {
+            goadd(row) {
+                this.rowData = row;
                 this.isAdd = true
                 this.dialogName = name
                 this.editFormVisible = !this.editFormVisible

@@ -157,11 +157,12 @@
                 this.querydata.pageNum = this.pageNum
                 this.querydata.pageSize = this.pageSize
                 selectFlowList(this.querydata).then(res => {
+                    this.listLoading = false
                     if(res.code  == 200 ){
                         this.list = res.data.dataList;
                     }
                     this.total = Number(res.data.total)
-                    this.listLoading = false
+                    
                 })
             },
             search() {

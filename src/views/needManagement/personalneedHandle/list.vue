@@ -21,7 +21,7 @@
                 </el-col>
             </el-row>
         </div>
-        <BoxCard title="个人待办列表">
+        <BoxCard title="个人发起列表">
             <template #btnarea>
                 <el-button type="primary" plain @click="goadd('add')">新增</el-button>
             </template>
@@ -35,29 +35,45 @@
                     </template>
                 </el-table-column>
                 <el-table-column label="单据编号" prop="applicationCode"></el-table-column>
-                <el-table-column label="处理人名称" show-overflow-tooltip min-width="120" prop="salaryDeptName">
+                <el-table-column label="薪资归属部门" prop="salaryDeptName" show-overflow-tooltip min-width="150"></el-table-column>
+                <el-table-column label="薪资归属日期" show-overflow-tooltip min-width="120" prop="createTime">
                     <template slot-scope="scope">
-                        <span>{{ scope.row.approverName }}</span>
+                        <span>{{ scope.row.createTime.substr(0,10) }}</span>
                     </template>
                 </el-table-column>
-                <el-table-column label="节点名称" prop="nodeName"></el-table-column>
-                <el-table-column label="审批意见" prop="approverOpinion"></el-table-column>
-                <el-table-column label="创建人名称" prop="createName"></el-table-column>
-                
+                <el-table-column label="创建人" prop="createName"></el-table-column>
+                <el-table-column label="创建时间" show-overflow-tooltip min-width="120" prop="createTime">
+                    <template slot-scope="scope">
+                        <span>{{ scope.row.createTime }}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column label="审批人" prop="editName"></el-table-column>
+                <el-table-column label="审批时间" show-overflow-tooltip min-width="120" prop="createTime">
+                    <template slot-scope="scope">
+                        <span>{{ scope.row.createTime.substr(0,10) }}</span>
+                    </template>
+                </el-table-column>
                 <el-table-column label="审批状态" show-overflow-tooltip min-width="120" prop="approverStatus">
                     <template slot-scope="scope">
                         <span >{{ scope.row.approverStatus | statusfilter }}</span>
                     </template>
                 </el-table-column>
+                <el-table-column label="审批意见" prop="handleOpinion"></el-table-column>
+                
+                <el-table-column label="单据类型" show-overflow-tooltip min-width="120" prop="approverStatus">
+                    <template slot-scope="scope">
+                        <span >{{ scope.row.applicationType | statusfilter }}</span>
+                    </template>
+                </el-table-column>
                
-                <el-table-column label="操作" prop="businessTripMoney" width="100" fixed="right">
+                <!-- <el-table-column label="操作" prop="businessTripMoney" width="100" fixed="right">
                     <template slot-scope="scope">
                         <el-tooltip placement="top">
                             <div slot="content">审批</div>
                             <svg-icon icon-class="eye" @click="delFlow(scope.row)" style="cursor: pointer;"/>
                         </el-tooltip>
                     </template>
-                    </el-table-column>
+                </el-table-column> -->
             </el-table>
             <div id="pageFooter" slot="foot">
                 <el-pagination
@@ -91,7 +107,7 @@
   <script>
   import { BoxCard } from '@/layout/components'
   import Add from './add'
-  import { selectPersonAgendaList } from '@/api/personalneed'
+  import { selectMineAgendaList } from '@/api/personalneed'
   export default {
     name: 'FlowList',
     components: {
@@ -114,9 +130,15 @@
         statusfilter(e){
             switch(e){
                 case 0:
-                return '通过'
+                return '未提交'
                 case 1:
+                return '审批中'
+                case 2:
+                return '审批通过'
+                case 3:
                 return '驳回'
+                case 4:
+                return '作废'
             }
         }
     },
@@ -163,7 +185,7 @@
             this.listLoading = true
             this.querydata.pageNum = this.pageNum
             this.querydata.pageSize = this.pageSize
-            selectPersonAgendaList(this.querydata).then(res => {
+            selectMineAgendaList(this.querydata).then(res => {
                 if(res.code  == 200 ){
                     this.list = res.data.dataList;
                 }

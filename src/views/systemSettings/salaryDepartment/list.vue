@@ -9,7 +9,13 @@
                                 <el-input v-model="querydata.userName" placeholder="请输入员工姓名" clearable />
                             </el-form-item>
                             <el-form-item>
-                                <el-input v-model="querydata.salaryDeptName" placeholder="请输入部门名称" clearable />
+                                <el-select v-model="querydata.salaryDeptId" filterable placeholder="请选择薪资归属部门">
+                                    <el-option v-for="item in SalaryDeptlist"
+                                        :key="item.id"
+                                        :label="item.salaryDeptName"
+                                        :value="item.id">
+                                    </el-option>
+                                </el-select>
                             </el-form-item>
                         </el-form>
                     </div>
@@ -84,6 +90,7 @@
   <script>
   import { BoxCard } from '@/layout/components'
   import Add from './add'
+  import {selectUserList,deleteUserByIds,selectSalaryDeptList} from '@/api/userList'
   import { selectUserSalaryDeptList,deleteUserSalaryDeptByIds } from '@/api/salaryDepartment'
   export default {
     name: 'FlowList',
@@ -101,10 +108,21 @@
             } else {
                 return 'calc(100vh - 254px)'
             }
-        }
+        },
+        // userPostType() {
+        //     console.log(this.$store.state.user.userinif,'userinif =====')
+        //     // return this.$router.options.routes
+        //     return this.$store.state.user.userinfo
+        // },
+    },
+    created(){
+        // this.userPostType = this.$store.state.user.userinfo;
+        console.log(this.$store.state.user,'用户信息')
     },
     data() {
       return {
+        userPostType:'', 
+        SalaryDeptlist:[],
         name:'',
         
         list:[],
@@ -113,7 +131,8 @@
         total: 0,
         pageSize: 10,
         pageNum: 1,
-        querydata: {},
+        querydata: {
+        },
         isall: -1,
         isAll: false,
         dialogName: '',
@@ -122,15 +141,27 @@
         editFormVisible:false,
       }
     },
-    
-    created() {
-
-    },
+   
     mounted() {
       this.fetchData()
-  
+        this.SalaryDeptList()
     },
     methods: {
+        SalaryDeptList(){
+                let par={
+                    pageNum: 1,
+                    pageSize: 10,
+                    salaryDeptName: ""
+                }
+                selectSalaryDeptList(par).then(res => {
+                    console.log(res)
+                    // 
+                    if(res.code == 200){
+                        this.SalaryDeptlist = res.data.dataList
+
+                    }
+                })
+            },
         handleCurrentChange(e) {
             console.log(e, '页码')
             this.pageNum = e
@@ -150,7 +181,7 @@
                 if(res.code  == 200 ){
                     this.list = res.data.dataList;
                 }
-                this.total = res.data.total
+                this.total = Number(res.data.total)
                 this.listLoading = false
             })
         },

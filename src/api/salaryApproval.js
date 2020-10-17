@@ -37,3 +37,23 @@ export function getFlowConfigById(params) {
       params
     })
   }
+
+
+// 处理当前节点
+export function handleThisNode(data) {
+  return request({
+    url: '/agenda/handleThisNode',
+    method: 'post',
+    data
+  })
+}
+
+
+// 汇总薪资流程
+export function collectTheMonthSalaryFlow(params) {
+  return request({
+    url: '/agenda/collectTheMonthSalaryFlow',
+    method: 'get',
+    params
+  })
+}

@@ -12,10 +12,10 @@
     router
   >
     <template v-for="(item,idx) in menuList">
-      <el-submenu @mouseenter.native="handleEnter" :popper-append-to-body="true" v-if="item.meta&&item.meta.title&&item.children" :index="idx+''" :key="idx">
+      <el-submenu @mouseenter.native="handleEnter" :popper-append-to-body="true" v-if="item.title&&item.children" :index="idx+''" :key="idx">
         <template slot="title">
-          <svg-icon :icon-class="item.meta.icon" />
-          <span slot="title">{{item.meta.title}}</span>
+          <svg-icon :icon-class="item.icon" />
+          <span slot="title">{{item.title}}</span>
         </template>
         <template v-if="item.children.length">
           <el-menu-item
@@ -24,13 +24,13 @@
             :key="j+'$'"
             class="submenu-title-noDropdown"
             :popper-append-to-body="true"
-          >{{val.meta.title}}</el-menu-item>
+          >{{val.title}}</el-menu-item>
         </template>
       </el-submenu>
       <template v-else>
         <el-menu-item :popper-append-to-body="true" @mouseenter.native="handleEnter" :index="item.redirect" :key="idx" class="submenu-title-noDropdown">
           <svg-icon :icon-class="item.children&&item.children[0].meta.icon" />
-          <span slot="title">{{item.children&&item.children[0].meta.title}}</span>
+          <span slot="title">{{item.children&&item.children[0].title}}</span>
         </el-menu-item>
       </template>
     </template>
@@ -58,6 +58,10 @@ export default {
       return !this.sidebar.opened
     }
     },
+    created(){
+      console.log(this.menuList,'菜单')
+    },
+
   methods: {
       handleOpen(key, keyPath) {
         console.log(key, keyPath);

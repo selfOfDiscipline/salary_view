@@ -109,7 +109,7 @@ export default {
           this.$store.dispatch('user/login', this.loginForm).then(() => {
             //   console.log(this.redirect)
             //   
-            this.$router.push({ path: '/salaryManagement/userList' })
+            this.$router.push({ path: '/personalCenter/editpassword' })
             //     this.loading = false
           }).catch(() => {
             this.loading = false
