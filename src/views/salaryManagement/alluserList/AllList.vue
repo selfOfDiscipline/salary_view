@@ -52,7 +52,7 @@
               <span>{{ scope.row.salaryDeptName }}</span>
             </template>
           </el-table-column>
-          <el-table-column label="基本工资" prop="standardSalary">
+          <el-table-column label="标准工资" prop="standardSalary">
               <template slot-scope="scope">
                   {{ scope.row.standardSalary | moneyFormit }}
               </template>
