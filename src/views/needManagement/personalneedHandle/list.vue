@@ -47,7 +47,7 @@
                         <span>{{ scope.row.createTime }}</span>
                     </template>
                 </el-table-column>
-                <el-table-column label="审批人" prop="editName"></el-table-column>
+                <el-table-column label="审批人" prop="handleName"></el-table-column>
                 <el-table-column label="审批时间" show-overflow-tooltip min-width="120" prop="createTime">
                     <template slot-scope="scope">
                         <span>{{ scope.row.createTime.substr(0,10) }}</span>
@@ -55,14 +55,14 @@
                 </el-table-column>
                 <el-table-column label="审批状态" show-overflow-tooltip min-width="120" prop="approverStatus">
                     <template slot-scope="scope">
-                        <span >{{ scope.row.approverStatus | statusfilter }}</span>
+                        <span >{{ scope.row.applicationStatus | statusfilter }}</span>
                     </template>
                 </el-table-column>
                 <el-table-column label="审批意见" prop="handleOpinion"></el-table-column>
                 
                 <el-table-column label="单据类型" show-overflow-tooltip min-width="120" prop="approverStatus">
                     <template slot-scope="scope">
-                        <span >{{ scope.row.applicationType | statusfilter }}</span>
+                        <span >{{ scope.row.applicationType }}</span>
                     </template>
                 </el-table-column>
                
