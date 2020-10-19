@@ -183,6 +183,11 @@
                             })
                             console.log(res)
                             // this.list = res.data.dataList;
+                        }else {
+                            this.$message({
+                                message: res.message,
+                                type: "error"
+                            });
                         }
                     })
                 }
@@ -208,6 +213,11 @@
                 selectPersonAgendaList(this.querydata).then(res => {
                     if(res.code  == 200 ){
                         this.list = res.data.dataList;
+                    }else {
+                        this.$message({
+                            message: res.message,
+                            type: "error"
+                        });
                     }
                     this.total = Number(res.data.total);
                     this.listLoading = false

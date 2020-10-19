@@ -64,12 +64,12 @@ export const constantRoutes = [
 			name: 'Example',
 			meta: { title: '基础设置', icon: 'example' },
 			children: [
-				{
-					path: 'salaryDepartment',
-					name: 'salaryDepartment',
-					component: () => import('@/views/systemSettings/salaryDepartment/list'),
-					meta: { title: '薪资部门' }
-				},
+				// {
+				// 	path: 'salaryDepartment',
+				// 	name: 'salaryDepartment',
+				// 	component: () => import('@/views/systemSettings/salaryDepartment/list'),
+				// 	meta: { title: '计薪人员' }
+				// },
 				{
 					path: 'salaryApproval',
 					name: 'salaryApproval',

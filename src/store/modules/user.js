@@ -54,6 +54,7 @@ const actions = {
         commit('SET_TOKEN', data.tokenKey)
         setToken(data.tokenKey)
         sessionStorage.setItem("userName",data.userName);
+        sessionStorage.setItem("userId",data.id);
         sessionStorage.setItem("allowCollectFlag",data.allowCollectFlag);
         commit('SET_USERINFO', data)
         resolve()

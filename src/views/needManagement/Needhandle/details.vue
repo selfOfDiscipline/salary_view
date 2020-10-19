@@ -32,9 +32,9 @@
                     <el-input v-model="form.createTime" disabled></el-input>
                 </el-form-item>
 
-                <el-form-item label="薪资归属部门" prop="salaryDeptName">
+                <!-- <el-form-item label="薪资归属部门" prop="salaryDeptName">
                     <el-input v-model="form.salaryDeptName" disabled ></el-input>
-                </el-form-item>
+                </el-form-item> -->
                 
             </el-form>
         </BoxCard>
@@ -158,8 +158,8 @@
             </el-table>
         </BoxCard>
         <div class="btn-area">
-            <el-button type="primary" plain @click="handleThisNode(0)">同意</el-button>
-            <el-button type="primary" plain @click="handleThisNode(1)">驳回</el-button>
+            <el-button type="primary" plain @click="handleThisNode(0)" v-if="form.approverStatus == 0">同意</el-button>
+            <el-button type="primary" plain @click="handleThisNode(1)" v-if="form.approverStatus == 0">驳回</el-button>
             <el-button type="primary" plain @click="callBack">关闭</el-button>
         </div>
     </div>
@@ -229,7 +229,7 @@ export default {
     },
     mounted(){
         console.log(this.salaryId);
-        this.SalaryDeptList()
+        // this.SalaryDeptList()
         // this.selectAllUserList();
     },
     methods: {

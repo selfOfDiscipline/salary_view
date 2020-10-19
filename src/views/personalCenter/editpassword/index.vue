@@ -4,25 +4,38 @@
             <el-form :inline="true" :model="form" :rules="rules" ref="form" label-position="right" 
                 class="form-area" 
                 label-width="130px" 
-                slot="main"
-                >
-                <el-form-item label="姓名" prop="userName">
-                    <el-input v-model="form.userName" placeholder="请输入姓名" :disabled="isDisable"></el-input>
+                slot="main">
+                <el-form-item label="姓名">
+                    <el-input v-model="form.userName" placeholder="请输入姓名" readonly></el-input>
                 </el-form-item>
-                <el-form-item label="OA账号" prop="userAccount">
-                    <el-input v-model="form.userAccount" placeholder="请输入OA账号" :disabled="isDisable"></el-input>
+                <el-form-item label="OA账号">
+                    <el-input v-model="form.userAccount" placeholder="请输入OA账号" readonly></el-input>
                 </el-form-item>
-                <el-form-item label="身份证号" prop="userCard">
-                    <el-input v-model="form.userCard" placeholder="请输入身份证号" maxlength="18" :disabled="isDisable"></el-input>
+                <el-form-item label="身份证号">
+                    <el-input v-model="form.userCard" placeholder="请输入身份证号" maxlength="18" readonly></el-input>
                 </el-form-item>
-                <el-form-item label="手机号" prop="userTel">
-                    <el-input v-model="form.userTel" placeholder="请输入手机号" maxlength="11" :disabled="isDisable"></el-input>
+                <el-form-item label="手机号">
+                    <el-input v-model="form.userTel" placeholder="请输入手机号" maxlength="11" readonly></el-input>
                 </el-form-item>
-                <el-form-item label="邮箱" prop="userEmail">
-                    <el-input v-model="form.userEmail" placeholder="请输入邮箱" :disabled="isDisable"></el-input>
+                <el-form-item label="入职日期" >
+                    <el-date-picker readonly
+                        v-model="form.userEntryDate"
+                        type="date"
+                        value-format="yyyy-MM-dd"
+                        format="yyyy-MM-dd"
+                        placeholder="请选择入职日期">
+                    </el-date-picker>
                 </el-form-item>
-                <el-form-item label="户籍所在地" prop="originalAddress">
-                    <el-input v-model="form.originalAddress" :disabled="isDisable"></el-input>
+                <el-form-item label="在职状态" prop="userRankType">
+                    <el-select v-model="form.userRankType" 
+                    disabled
+                    filterable placeholder="请选择在职状态" >
+                        <el-option v-for="item in RankTypeOption" readonly
+                            :key="item.id"
+                            :label="item.typeName"
+                            :value="item.id">
+                        </el-option>
+                    </el-select>
                 </el-form-item>
             </el-form>
         </BoxCard>
@@ -54,6 +67,7 @@
             
 <script>
     import { updateUserPassword } from '@/api/personalCenter'
+    import {getUserInfoById} from '@/api/userList'
     import {BoxCard} from '@/layout/components'
     export default {
         
@@ -63,6 +77,21 @@
         
         data() {
             return {
+                RankTypeOption:[
+                    {
+                        typeName: '试用期',
+                        id: 0
+                    },
+                    {
+                        typeName: '正式',
+                        id: 1
+                    },
+                    {
+                        typeName: '离职',
+                        id: 2
+                    }
+                ],
+                userId:'',
                 rules:{//单据类型
                     account:[
                         { required: true, message: '请输入账号', trigger: 'blur' },
@@ -77,13 +106,24 @@
                         { required: true, message: '请输入确认密码', trigger: 'blur' },
                     ],
                 },
-                form:{},
+                form:{
+
+                },
             }
         },
         mounted(){
-           
+            this.userId =  sessionStorage.getItem('userId');
+            this.getUserInfoById(this.userId);
         },
         methods: {
+            getUserInfoById(id){
+                getUserInfoById({id:id}).then(res=>{
+                    if(res.code == 200){
+                        this.form=res.data.user
+                    }
+                   
+                }
+            )},
             SaveSubmit(){
                 this.$refs['form'].validate((valid) => {
                     if (valid) {
