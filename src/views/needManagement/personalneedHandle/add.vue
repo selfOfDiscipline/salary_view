@@ -31,7 +31,6 @@
 <script>
 import { BoxCard } from '@/layout/components'
 import {startSalaryFlow} from '@/api/personalneed'
-startSalaryFlow
 import {selectDeptList,selectRoleList,selectSalaryDeptList,saveOrUpdateManageUser} from '@/api/userList'
 export default {
     props: {

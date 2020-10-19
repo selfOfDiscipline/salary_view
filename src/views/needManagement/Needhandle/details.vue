@@ -38,125 +38,17 @@
                 
             </el-form>
         </BoxCard>
-        <BoxCard title="薪资列表" class="modelbox">
-                <el-table
-                slot="main" v-loading="listLoading"
-                :data="list" element-loading-text="Loading"
-                fit stripe highlight-current-row height=320px>
-                <el-table-column label="序号" width="55" type="index">
-                    
-                </el-table-column>
-                <el-table-column label="所属日期" show-overflow-tooltip min-width="120" prop="salaryDate">
-                    <template slot-scope="scope">
-                        <span>{{ scope.row.salaryDate.substr(0, 7) }}</span>
-                    </template>
-                </el-table-column>
-                <el-table-column label="员工姓名" prop="userName"></el-table-column>
-                <el-table-column label="实付工资" show-overflow-tooltip min-width="120" prop="totalIncomeMoney">
-                    <template slot-scope="scope">
-                        <span>{{ scope.row.totalIncomeMoney |moneyFormit }}</span>
-                    </template>
-                </el-table-column>
-                <el-table-column label="薪资归属部门" show-overflow-tooltip min-width="120" prop="salaryDeptName">
-                    <template slot-scope="scope">
-                        <span>{{ scope.row.salaryDeptName}}</span>
-                    </template>
-                </el-table-column>
-                <el-table-column label="税前工资" prop="bankTaxBeforeShouldSalary" width="80">
-                    <template slot-scope="scope">
-                        {{ scope.row.bankTaxBeforeShouldSalary | moneyFormit }}
-                    </template>
-                </el-table-column>
-                <el-table-column label="代发实付工资" prop="bankRealitySalary" width="120">
-                    <template slot-scope="scope">
-                        {{ scope.row.bankRealitySalary | moneyFormit }}
-                    </template>
-                </el-table-column>
-                <el-table-column label="他行实付工资" prop="otherBankRealitySalary" width="120">
-                    <template slot-scope="scope">
-                        {{ scope.row.otherBankRealitySalary | moneyFormit }}
-                    </template>
-                </el-table-column>
-                <el-table-column label="实付总计" prop="monthSalaryRealityTotal" width="120">
-                    <template slot-scope="scope">
-                        {{ scope.row.monthSalaryRealityTotal | moneyFormit }}
-                    </template>
-                </el-table-column>
-                <el-table-column label="公司缴纳">
-                    <el-table-column label="养老" prop="yanglCompanyPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.yanglCompanyPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="工伤" prop="gongsCompanyPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.gongsCompanyPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="生育" prop="shengyCompanyPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.shengyCompanyPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="失业" prop="shiyCompanyPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.shiyCompanyPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="医疗" prop="yilCompanyPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.yilCompanyPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="公积金" prop="housingFundCompanyPayTotal" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.housingFundCompanyPayTotal | moneyFormit }}
-                        </template>     
-                    </el-table-column>
-                </el-table-column>
-                <el-table-column label="个人缴纳">
-                    <el-table-column label="养老" prop="yanglPersonPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.yanglPersonPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="工伤" prop="gongsPersonPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.gongsPersonPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="生育" prop="shengyPersonPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.shengyPersonPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="失业" prop="shiyPersonPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.shiyPersonPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="医疗" prop="yilPersonPayMoney" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.yilPersonPayMoney | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="公积金" prop="housingFundPersonPayTotal" width="80">
-                        <template slot-scope="scope">
-                            {{ scope.row.housingFundPersonPayTotal | moneyFormit }}
-                        </template>
-                    </el-table-column>
-                </el-table-column>
-                
-                <!-- <el-table-column label="操作" prop="businessTripMoney" width="100" fixed="right">
-                    <template slot-scope="scope">
-                        <el-tooltip placement="top">
-                            <div slot="content">删除</div>
-                            <svg-icon icon-class="del" @click="delFlow(scope.row)" style="cursor: pointer;"/>
-                        </el-tooltip>
-                    </template>
-                </el-table-column> -->
-            </el-table>
-        </BoxCard>
+        <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick">
+            <el-tab-pane label="正式员工" name="Official">
+                <tableDta :menuType="menuType" :applicationCode="code"/>
+            </el-tab-pane>
+            <el-tab-pane label="上月入职" name="Induction">
+                <tableDta :menuType="0" :applicationCode="code"/>
+            </el-tab-pane>
+            <el-tab-pane label="上月转正" name="Positive">
+                <tableDta :menuType="1" :applicationCode="code"/>
+            </el-tab-pane>
+        </el-tabs>
         <div class="btn-area">
             <el-button type="primary" plain @click="handleThisNode(0)" v-if="form.approverStatus == 0">同意</el-button>
             <el-button type="primary" plain @click="handleThisNode(1)" v-if="form.approverStatus == 0">驳回</el-button>
@@ -167,6 +59,8 @@
           
 <script>
 import {BoxCard} from '@/layout/components'
+import tableDta from './table'
+
 import { selectPersonAgendaList,getSalaryInfoByApplicationCode} from '@/api/personalneed'
 // import { rules ,RankTypeOption,PostTypeOption} from "./utils";
 import { saveOrUpdateFlowConfig,getFlowConfigById,handleThisNode } from '@/api/salaryApproval'
@@ -177,16 +71,21 @@ export default {
     },
     components: {
         BoxCard,
+        tableDta
     },
     created(){
         if(this.rowData){
             this.form = this.rowData;
             console.log(this.form)
-            this.getSalaryInfoByApplicationCode(this.rowData.applicationCode)
+            this.code = this.rowData.applicationCode
+            // this.getSalaryInfoByApplicationCode(this.rowData.applicationCode)
         }
     },
     data() {
         return {
+            menuType:'',
+            code:'',
+            activeName: 'Official',
             status:'',
             opinion:'',
             showopinion:false,
@@ -228,9 +127,6 @@ export default {
         }
     },
     mounted(){
-        console.log(this.salaryId);
-        // this.SalaryDeptList()
-        // this.selectAllUserList();
     },
     methods: {
         showopinionClick(){
@@ -350,68 +246,18 @@ export default {
         handleCloseBindWarnStandard() {
             this.$emit("closeBindWarnStandard");
         },
-        SalaryDeptList(){
-            let par={
-                pageNum: 1,
-                pageSize: 10,
-                salaryDeptName: ""
-            }
-            selectSalaryDeptList(par).then(res => {
-                console.log(res)
-                // 
-                if(res.code == 200){
-                    this.SalaryDeptlist = res.data.dataList
-
-                }
-            })
-        },
+        
         getRandomArbitrary(min, max) {
             return Math.random() * (max - min) + min;
         },
-        // 新增一行
-        addRow (e) {
-            let list = {
-                sortNum:'',
-                nodeName:'',
-                firstFlag:0,
-                lastFlag:0,
-                approverNames:'',
-                approverIds:'',
-                id:this.getRandomArbitrary(1,2),
-            }
-            
-            console.log(this.tableData,'1234567')
-            
-            this.tableData.push(list);
-        },
-        // 行内编辑选中的数据
-        selectRow (val) {
-            this.selectlistRow = val
-        },
-        // 行内编辑的删除
-        delData() {
-            if(this.selectlistRow.length != 0){
-                for (let i = 0; i < this.selectlistRow.length; i++) {
-                    let val = this.selectlistRow;
-                    // 获取选中行的索引的方法
-                    // 遍历表格中tableData数据和选中的val数据，比较它们的rowNum,相等则输出选中行的索引
-                    val.forEach((val, index) => {
-                        this.tableData.forEach((v, i) => {
-                            if (val.id === v.id) {
-                                // i 为选中的索引
-                                this.tableData.splice(i, 1);
-                            }
-                        })
-                    })
-                }
-            }else{
-                this.$message({
-                    message: '请选择要删除的数据',
-                    type: 'warning'
-                });
-            }
-            // this.$refs.tableData1.clearSelection()
-        },
+        
+        
+        handleClick(tab, event) {
+            // if(tab.name == 'Induction'){
+
+            // }
+                console.log(tab.name, event);
+            },
     }
 }
 </script>
@@ -566,5 +412,10 @@ export default {
       .selectCompany{
             width: 180px !important;
         }
+        .app-container{
+    padding-bottom: 0px !important;
+    position: relative;
+    margin-bottom: 15px;
+}
     </style>
           

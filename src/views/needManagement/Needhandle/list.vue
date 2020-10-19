@@ -113,7 +113,7 @@
         computed: {
             tableheight() {
                 if (this.isAll) {
-                    return 'calc(100vh - 314px)'
+                    return 'calc(100vh - 254px)'
                 } else {
                     return 'calc(100vh - 254px)'
                 }
