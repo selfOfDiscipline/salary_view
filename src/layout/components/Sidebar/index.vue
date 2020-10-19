@@ -126,7 +126,7 @@ methods: {
     removeToken('userInfo')
     logout().then((res) => {
       
-      if(res.status == 401){
+      if(res.code == 401 || res.code ==200){
         
           this.$store.commit('user/SET_USERINFO', {})
           this.$store.commit("user/SET_LOGINTIME",'1')
