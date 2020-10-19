@@ -39,9 +39,9 @@
                     <el-input v-model="form.stipulationStartTaxMoney" placeholder="请输入银行工资代发金额" :disabled="isDisable"></el-input>
                 </el-form-item>
                 
-                <el-form-item label="岗位工资" prop="postSalary">
+                <!-- <el-form-item label="岗位工资" prop="postSalary">
                     <el-input v-model="form.postSalary" placeholder="请输入岗位工资" :disabled="isDisable"></el-input>
-                </el-form-item>
+                </el-form-item> -->
                 <el-form-item label="岗位津贴" prop="postSubsidy">
                     <el-input v-model="form.postSubsidy" placeholder="请输入岗位津贴" :disabled="isDisable"></el-input>
                 </el-form-item>
@@ -49,14 +49,14 @@
                     <el-input v-model="form.otherSubsidy" placeholder="请输入其他津贴" :disabled="isDisable"></el-input>
                 </el-form-item>
                 <el-form-item label="增加项：电脑补">
-                    <el-input v-model="form.addComputerSubsidy" placeholder="请输入其他津贴" ></el-input>
+                    <el-input v-model="form.addComputerSubsidy" placeholder="请输入增加项：电脑补" ></el-input>
                 </el-form-item>
-                <el-form-item label="增加项：其他补">
-                    <el-input v-model="form.otherSubsidy" placeholder="请输入其他津贴" ></el-input>
+                <!-- <el-form-item label="增加项：其他补">
+                    <el-input v-model="form.otherSubsidy" placeholder="请输入增加项：其他补" ></el-input>
                 </el-form-item>
                 <el-form-item label="扣款项：其他">
-                    <el-input v-model="form.deductOther" placeholder="请输入其他津贴" ></el-input>
-                </el-form-item>
+                    <el-input v-model="form.deductOther" placeholder="请输入扣款项：其他" ></el-input>
+                </el-form-item> -->
                 
             </el-form>
         </BoxCard>

@@ -43,6 +43,14 @@ export function selectUserList(data) {
     data
   })
 }
+// 查询所有人员列表
+export function selectAllUserList(data) {
+  return request({
+    url: '/config/user/selectAllUserList',
+    method: 'post',
+    data
+  })
+}
 
 // 批量删除员工
 export function deleteUserByIds(params) {
@@ -72,14 +80,14 @@ export function updateUserRankByCondition(data) {
   })
 }
 
-// 查询人员列表全部
-export function selectAllUserList(data) {
-  return request({
-    url: '/config/user/selectAllUserList',
-    method: 'post',
-    data
-  })
-}
+// // 查询人员列表全部
+// export function selectAllUserList(data) {
+//   return request({
+//     url: '/config/user/selectAllUserList',
+//     method: 'post',
+//     data
+//   })
+// }
 // 修改用户基础信息
 export function updateUserByCondition(data) {
   return request({

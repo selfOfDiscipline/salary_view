@@ -221,9 +221,25 @@ export default {
                 const {
                     childEducation,continueEducation,homeLoanInterest,homeRents,supportParents,otherDeduct,
                     // userDeptId,
-                    standardSalary,salaryGrantRatio,performanceRatio,bankSalary, stipulationStartTaxMoney, postSalary, postSubsidy,  otherSubsidy, addComputerSubsidy,deductOther,
-                    yilGongsShengyBaseMoney,yilPersonRatio,yilCompanyRatio,yilPersonAddMoney,gongsPersonRatio, gongsCompanyRatio,shengyPersonRatio, shengyCompanyRatio,yanglShiyBaseMoney,yanglPersonRatio,yanglCompanyRatio,shiyPersonRatio,shiyCompanyRatio, housingFundBaseMoney,housingFundPersonRatio,housingFundCompanyRatio,
-
+                    standardSalary,salaryGrantRatio,performanceRatio,bankSalary, stipulationStartTaxMoney, 
+                    // postSalary,
+                    postSubsidy,  otherSubsidy, addComputerSubsidy,
+                    // deductOther,
+                    yilGongsShengyBaseMoney,yilPersonRatio,yilCompanyRatio,
+                    yilPersonAddMoney,gongsPersonRatio, gongsCompanyRatio,shengyPersonRatio, 
+                    shengyCompanyRatio,yanglShiyBaseMoney,yanglPersonRatio,yanglCompanyRatio,
+                    shiyPersonRatio,shiyCompanyRatio, housingFundBaseMoney,housingFundPersonRatio,housingFundCompanyRatio,
+                    totalIncomeMoney,
+                    totalTaxableSelfMoney,
+                    totalAlreadyTaxableMoney,
+                    totalDeductMoney,
+                    totalSpecialDeductMoney,
+                    totalChildEducation,
+                    totalContinueEducation,
+                    totalHomeLoanInterest,
+                    totalHomeRents,
+                    totalSupportParents,
+                    totalOtherDeduct,
                 } = res.data.userDetail
                 let roleIds='';
                 if(res.data.roleIds){
@@ -300,12 +316,12 @@ export default {
                     performanceRatio:performanceRatio,
                     bankSalary:bankSalary,
                     stipulationStartTaxMoney:stipulationStartTaxMoney,
-                    postSalary:postSalary,
+                    // postSalary:postSalary,
                     postSubsidy:postSubsidy,
                     otherSubsidy:otherSubsidy,
                     addComputerSubsidy:addComputerSubsidy,
                     otherSubsidy:otherSubsidy,
-                    deductOther:deductOther,
+                    // deductOther:deductOther,
                 }
                 console.log( userPostType)
                 
@@ -317,7 +333,18 @@ export default {
                     homeRents:homeRents,
                     supportParents:supportParents,
                     otherDeduct:otherDeduct,
-}
+                    totalIncomeMoney:totalIncomeMoney,
+                    totalTaxableSelfMoney:totalTaxableSelfMoney,
+                    totalAlreadyTaxableMoney:totalAlreadyTaxableMoney,
+                    totalDeductMoney:totalDeductMoney,
+                    totalSpecialDeductMoney:totalSpecialDeductMoney,
+                    totalChildEducation:totalChildEducation,
+                    totalContinueEducation:totalContinueEducation,
+                    totalHomeLoanInterest:totalHomeLoanInterest,
+                    totalHomeRents:totalHomeRents,
+                    totalSupportParents:totalSupportParents,
+                    totalOtherDeduct:totalOtherDeduct,
+                }
                 console.log(this.baseInfoData,'185')
                 if(status == 1 ){
                     this.isDisable = true;

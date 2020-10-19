@@ -132,7 +132,7 @@
   </template>
   <script>
   import { BoxCard } from '@/layout/components'
-  import {selectUserList,deleteUserByIds,selectSalaryDeptList} from '@/api/userList'
+  import {selectAllUserList,deleteUserByIds,selectSalaryDeptList,} from '@/api/userList'
   import Add from '../userList/add'
   import Positive from '../userList/positive'
   
@@ -267,7 +267,7 @@
             this.listLoading = true
             this.querydata.pageNum = this.pageNum
             this.querydata.pageSize = this.pageSize
-            selectUserList(this.querydata).then(res => {
+            selectAllUserList(this.querydata).then(res => {
                 // console.log(res)
                 this.listLoading = false;
                 if(res.code == 200){

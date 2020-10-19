@@ -186,7 +186,63 @@ export const rules = {//单据类型
     ],
     otherDeduct:[
         { required: true, message: '请输入其他扣除', trigger: 'blur' },
+    ],
+
+
+
+    totalIncomeMoney:[
+        { required: true, message: '请输入累计收入金额', trigger: 'blur' },
+    ],
+    totalTaxableSelfMoney:[
+        { required: true, message: '请输入累计应纳税所得额', trigger: 'blur' },
+    ],
+    totalAlreadyTaxableMoney:[
+        { required: true, message: '请输入累计已纳税额', trigger: 'blur' },
+    ],
+    totalDeductMoney:[
+        { required: true, message: '请输入累计减除费用金额', trigger: 'blur' },
+    ],
+    totalSpecialDeductMoney:[
+        { required: true, message: '请输入累计专项附加扣除金额', trigger: 'blur' },
+    ],
+    totalChildEducation:[
+        { required: true, message: '请输入累计子女教育扣除', trigger: 'blur' },
+    ],
+    totalContinueEducation:[
+        { required: true, message: '请输入累计继续教育扣除', trigger: 'blur' },
+    ],
+    totalHomeLoanInterest:[
+        { required: true, message: '请输入累计住房贷款利息扣除', trigger: 'blur' },
+    ],
+    totalHomeRents:[
+        { required: true, message: '请输入累计住房租金扣除', trigger: 'blur' },
+    ],
+    totalHomeRents:[
+        { required: true, message: '请输入累计赡养老人扣除', trigger: 'blur' },
+    ],
+    totalOtherDeduct:[
+        { required: true, message: '请输入累计专项扣除（个人年度社保+公积金）', trigger: 'blur' },
     ]
+//     <!-- /**
+//     * 累计继续教育扣除
+//     */
+//    private BigDecimal totalContinueEducation;
+//    /**
+//     * 累计住房贷款利息扣除
+//     */
+//    private BigDecimal totalHomeLoanInterest;
+//    /**
+//     * 累计住房租金扣除
+//     */
+//    private BigDecimal totalHomeRents;
+//    /**
+//     * 累计赡养老人扣除
+//     */
+//    private BigDecimal totalSupportParents;
+//    /**
+//     * 累计专项扣除（个人年度社保+公积金）
+//     */
+//    private BigDecimal totalOtherDeduct; -->
 }
 export const RankTypeOption= [
     {
