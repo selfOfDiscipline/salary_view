@@ -12,6 +12,8 @@
                                     <el-date-picker
                                         v-model="querydata.salaryDate"
                                         type="month"
+                                        value-format="yyyy-MM"
+                                        format="yyyy-MM"
                                         placeholder="选择月">
                                     </el-date-picker>
                                 </el-form-item>
@@ -221,7 +223,7 @@
                 this.listLoading = true
                 this.querydata.pageNum = this.pageNum
                 this.querydata.pageSize = this.pageSize
-                console.log(this.querydata)
+                console.log(this.querydata,'00000')
                 selectCollectListBySalaryDate(this.querydata).then(res => {
                     if(res.code  == 200 ){
                         this.list = res.data;
