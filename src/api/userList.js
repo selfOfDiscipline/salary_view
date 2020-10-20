@@ -9,7 +9,7 @@ export function selectDeptList() {
   })
 }
 
-// 查询全量角色结构
+// 查询全量岗位结构
 export function selectRoleList() {
     return request({
       url: '/config/role/selectRoleList',

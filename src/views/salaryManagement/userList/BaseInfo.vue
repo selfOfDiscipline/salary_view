@@ -114,7 +114,7 @@
                 <el-form-item label="户口类型" prop="householdType">
                         <el-radio-group v-model="form.householdType" :disabled="isDisable">
                             <el-radio :label="0">城镇</el-radio>
-                            <el-radio :label="1">农村</el-radio>
+                            <el-radio :label="1">农业</el-radio>
                         </el-radio-group>
                     </el-form-item>
                 <el-form-item label="工作城市" prop="workCity">
@@ -249,7 +249,7 @@
                         }
                         this.form.userDeptName = depName.join("，")
                         this.form.userDeptId = arrId.join(",")
-                    }else if(this.showName === "roleName"){//角色
+                    }else if(this.showName === "roleName"){//岗位
                         let arrId = []
                         let roleName = []
                         for(let i=0;i<leng;i++){

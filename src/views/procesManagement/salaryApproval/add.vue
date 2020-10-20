@@ -23,8 +23,8 @@
                         </el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="适用角色" prop="flowRoleId">
-                    <el-select v-model="form.flowRoleId" filterable placeholder="请选择适用角色">
+                <el-form-item label="适用岗位" prop="flowRoleId">
+                    <el-select v-model="form.flowRoleId" filterable placeholder="请选择适用岗位">
                         <el-option v-for="item in roleOption"
                             :key="item.roleId"
                             :label="item.name"

@@ -52,16 +52,16 @@ export default {
   },
   mounted(){
     console.log(this.$store.state)
-    // let userName = this.$store.state.user.userInfo.name
+    let userName = sessionStorage.getItem('userName');
     // let loginTime = this.$store.state.user.loginTime
     // 时间修改为24小时制
     // window.onload = function () {
-    //   alert(111)
+    //   // alert(111)
     //   new WatermarkSeedland('张三', {
     //     isMobile: true
     //   });
     // }
-    // new WatermarkSeedland(userName, {isMobile: true});
+    new WatermarkSeedland(userName, {isMobile: true});
     // this.diyfun();
 	  // .$watermark.set(`费控系统，，${loginTime}`)
   }

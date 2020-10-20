@@ -474,7 +474,7 @@ $(function(){
     		if(fdInitiatingProcess == '-1' && text == "提交"){
         		$('#next_step').removeAttr("disabled");	//移除disabled属性  
     			$('#preserve').removeAttr("disabled"); //移除disabled属性  
-        		var msg='对不起,该角色无发起流程权限！';
+        		var msg='对不起,该岗位无发起流程权限！';
         		cueFrame(msg);
         	}else {
         		if(protectionVal == 2){

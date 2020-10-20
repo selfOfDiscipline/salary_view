@@ -7,7 +7,7 @@ export function selectUserSalaryDeptList(data) {
     data
   })
 }
-// 查询角色是薪资核算的人员列表
+// 查询岗位是薪资核算的人员列表
 export function selectUserComputeRoleList(data) {
   return request({
     url: 'config/base/selectUserComputeRoleList',

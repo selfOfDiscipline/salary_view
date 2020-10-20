@@ -1,6 +1,6 @@
 <template>
     <div>
-        <BoxCard title="社保信息" class="modelbox" :canedit="isDisable">
+        <BoxCard title="社保信息" class="modelbox">
             <el-form 
                 :inline="true" 
                 :model="form" 
@@ -11,52 +11,52 @@
                 label-width="130px" 
                 slot="main">
                 <el-form-item label="医疗工伤生育基数" prop="yilGongsShengyBaseMoney">
-                    <el-input v-model="form.yilGongsShengyBaseMoney" placeholder="请输入医疗工伤生育基数" :disabled="isDisable"></el-input>
+                    <el-input v-model="form.yilGongsShengyBaseMoney" placeholder="请输入医疗工伤生育基数"  ></el-input>
                 </el-form-item>
                 <el-form-item label="医疗个人系数" prop="yilPersonRatio">
-                    <currency-input v-model="form.yilPersonRatio" placeholder="请输入医疗个人系数" :disabled="isDisable"></currency-input>
+                    <currency-input v-model="form.yilPersonRatio" placeholder="请输入医疗个人系数"  ></currency-input>
                 </el-form-item>
                 <el-form-item label="医疗公司系数" prop="yilCompanyRatio">
-                    <currency-input v-model="form.yilCompanyRatio" :disabled="isDisable"></currency-input>
+                    <currency-input v-model="form.yilCompanyRatio"  ></currency-input>
                 </el-form-item>
                 <el-form-item label="医疗个人另缴金额" prop="yilPersonAddMoney">
-                    <el-input v-model="form.yilPersonAddMoney" placeholder="请输入医疗个人另缴金额" :disabled="isDisable"></el-input>
+                    <el-input v-model="form.yilPersonAddMoney" placeholder="请输入医疗个人另缴金额"  ></el-input>
                 </el-form-item>
                 <el-form-item label="工伤个人系数" prop="gongsPersonRatio">
-                    <currency-input v-model="form.gongsPersonRatio" placeholder="请输入工伤个人系数" :disabled="isDisable"></currency-input>
+                    <currency-input v-model="form.gongsPersonRatio" placeholder="请输入工伤个人系数"  ></currency-input>
                 </el-form-item>
                 <el-form-item label="工伤公司系数" prop="gongsCompanyRatio">
-                    <currency-input v-model="form.gongsCompanyRatio" placeholder="请输入工伤公司系数" :disabled="isDisable"></currency-input>
+                    <currency-input v-model="form.gongsCompanyRatio" placeholder="请输入工伤公司系数"  ></currency-input>
                 </el-form-item>
                 <el-form-item label="生育个人系数" prop="shengyPersonRatio">
-                    <currency-input v-model="form.shengyPersonRatio" placeholder="请输入生育个人系数" :disabled="isDisable"></currency-input>
+                    <currency-input v-model="form.shengyPersonRatio" placeholder="请输入生育个人系数"  ></currency-input>
                 </el-form-item>
                 <el-form-item label="生育公司系数" prop="shengyCompanyRatio">
-                    <currency-input v-model="form.shengyCompanyRatio" placeholder="请输入生育公司系数" :disabled="isDisable"></currency-input>
+                    <currency-input v-model="form.shengyCompanyRatio" placeholder="请输入生育公司系数"  ></currency-input>
                 </el-form-item>
 
                 <el-form-item label="养老失业基数" prop="yanglShiyBaseMoney">
-                    <el-input v-model="form.yanglShiyBaseMoney" placeholder="请输入养老失业基数" :disabled="isDisable"></el-input>
+                    <el-input v-model="form.yanglShiyBaseMoney" placeholder="请输入养老失业基数"  ></el-input>
                 </el-form-item>
                 <el-form-item label="养老个人系数" prop="yanglPersonRatio">
-                    <currency-input v-model="form.yanglPersonRatio" placeholder="请输入养老个人系数" :disabled="isDisable"></currency-input>
+                    <currency-input v-model="form.yanglPersonRatio" placeholder="请输入养老个人系数"  ></currency-input>
                 </el-form-item>
                 <el-form-item label="养老公司系数" prop="yanglCompanyRatio">
-                    <currency-input v-model="form.yanglCompanyRatio" placeholder="请输入" :disabled="isDisable"></currency-input>
+                    <currency-input v-model="form.yanglCompanyRatio" placeholder="请输入"  ></currency-input>
                 </el-form-item>
                 <el-form-item label="失业个人系数" prop="shiyPersonRatio">
-                    <currency-input v-model="form.shiyPersonRatio" placeholder="请输入养老公司系数" :disabled="isDisable"></currency-input>
+                    <currency-input v-model="form.shiyPersonRatio" placeholder="请输入养老公司系数"  ></currency-input>
                 </el-form-item>
                 <el-form-item label="失业公司系数" prop="shiyCompanyRatio">
-                    <currency-input v-model="form.shiyCompanyRatio" placeholder="请输入失业公司系数" :disabled="isDisable"></currency-input>
+                    <currency-input v-model="form.shiyCompanyRatio" placeholder="请输入失业公司系数"  ></currency-input>
                 </el-form-item>
                 <el-form-item label="公积金基数" prop="housingFundBaseMoney">
-                    <el-input v-model="form.housingFundBaseMoney" placeholder="请输入公积金基数" :disabled="isDisable"></el-input>
+                    <el-input v-model="form.housingFundBaseMoney" placeholder="请输入公积金基数"  ></el-input>
                 </el-form-item>
                 <el-form-item label="公积金个人系数" prop="housingFundPersonRatio">
-                    <currency-input v-model="form.housingFundPersonRatio" placeholder="请输入公积金个人系数" :disabled="isDisable"></currency-input>
+                    <currency-input v-model="form.housingFundPersonRatio" placeholder="请输入公积金个人系数"  ></currency-input>
                 </el-form-item>
-                <el-form-item label="公积金公司系数" prop="housingFundCompanyRatio" :disabled="isDisable">
+                <el-form-item label="公积金公司系数" prop="housingFundCompanyRatio"  >
                     <currency-input v-model="form.housingFundCompanyRatio" placeholder="请输入公积金公司系数" ></currency-input>
                 </el-form-item>
             </el-form>

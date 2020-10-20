@@ -13,14 +13,14 @@
                 <!-- <el-form-item label="业务归属部门" prop="userDeptId">
                     <el-input clearable v-model="form.userDeptName" :disabled="isDisable" placeholder="请选择业务归属部门" @focus="openDialog('业务归属部门选择','deptName',false)"></el-input>
                 </el-form-item> -->
-                <el-form-item label="角色" prop="roleIds">
-                        <el-input :disabled="isDisable"
+                <el-form-item label="岗位" prop="roleIds">
+                        <el-input
                         v-model="form.userRoleName" 
-                        placeholder="请选择角色"
+                        placeholder="请选择岗位"
                         readonly
                         @focus="budgetControl"
                       ></el-input>
-                    <!-- <el-input clearable v-model="form.userRoleName" placeholder="请选择角色" @focus="openDialog('角色选择','roleName',true)"></el-input> -->
+                    <!-- <el-input clearable v-model="form.userRoleName" placeholder="请选择岗位" @focus="openDialog('岗位选择','roleName',true)"></el-input> -->
                 </el-form-item>
                 
                 <el-form-item label="标准薪资" prop="standardSalary">
@@ -76,7 +76,7 @@
         </el-dialog>
         <!-- -->
         <el-dialog
-            title="角色选择"
+            title="岗位选择"
             :visible.sync="BudgetCompany"
             :close-on-click-modal="false"
             width="450px"
@@ -231,7 +231,7 @@
                             }
                             this.form.userDeptName = depName.join("，")
                             this.form.userDeptId = arrId.join(",")
-                        }else if(this.showName === "roleName"){//角色
+                        }else if(this.showName === "roleName"){//岗位
                             let arrId = []
                             let roleName = []
                             for(let i=0;i<leng;i++){

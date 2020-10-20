@@ -938,7 +938,7 @@ $(function(){
 				$('#next_step').removeAttr("disabled");	//移除disabled属性  
 	 			$('#preserve').removeAttr("disabled"); //移除disabled属性  
 	 			$(".loading").fadeOut();
-	    		var msg='对不起,该角色无发起流程权限！';
+	    		var msg='对不起,该岗位无发起流程权限！';
 	    		cueFrame(msg);
 			}else{
 				if(allMoney < balanceAllMoney && text == "提交" ){

@@ -86,7 +86,7 @@ export const constantRoutes = [
 					path: 'roleManagement',
 					name: 'roleManagement',
 					component: () => import('@/views/systemSettings/roleManagement/list'),
-					meta: { title: '角色管理' }
+					meta: { title: '岗位管理' }
 				},
 				{
 					path: 'authoritymManagement',

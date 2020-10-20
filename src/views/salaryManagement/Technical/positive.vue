@@ -236,7 +236,7 @@ export default {
                 case 0:
                     return '城镇'
                 case 1:
-                    return '农村'
+                    return '农业'
                 }
             },
             statusfilter(e) {

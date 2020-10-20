@@ -87,7 +87,7 @@ export const rules = {//单据类型
         { required: true, message: '请输入薪资归属部门', trigger: 'blur' },
     ],
     userRoleIds:[
-        { required: true, message: '请输入角色', trigger: '' },
+        { required: true, message: '请输入岗位', trigger: '' },
     ],
     userPostType:[
         { required: true, message: '请输入岗位类型', trigger: 'blur' },

@@ -13,7 +13,7 @@ export const rules = {//单据类型
         { required: true, message: '请选择薪资归属部门', trigger: 'blur' },
     ],
     flowRoleId:[
-        { required: true, message: '请选择适用角色', trigger: 'blur' },
+        { required: true, message: '请选择适用岗位', trigger: 'blur' },
     ],
     flowRoleName:[
         { required: true, message: '请选择状态', trigger: 'blur' },

@@ -106,7 +106,7 @@
         
       },
       startDepartment() {
-        // 角色
+        // 岗位
         this.loading = true;
         selectRoleList().then(res => {
             this.loading = false;
