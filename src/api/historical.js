@@ -11,9 +11,10 @@ export function selectHistorySalaryList(data) {
 }
 
 // 汇总工资单
-export function selectCollectListBySalaryDate() {
+export function selectCollectListBySalaryDate(params) {
     return request({
         url: '/salary/selectCollectListBySalaryDate',
         method: 'get',
+        params
     })
 }
