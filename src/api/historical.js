@@ -18,3 +18,13 @@ export function selectCollectListBySalaryDate(params) {
         params
     })
 }
+
+// 导出
+export function exportSalaryBill(data){
+  return request({
+      url: "salary/exportSalaryBill",
+      method: "post",
+      data,
+      responseType: 'blob'
+  })
+}

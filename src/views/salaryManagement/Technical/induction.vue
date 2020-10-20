@@ -74,11 +74,29 @@
                             <el-input size="small" v-model="scope.row.newEntryAttendanceDays"></el-input>
                         </template>
                     </el-table-column>
-                    <el-table-column label="奖惩金额" prop="monthRewordsMoney;" min-width="120">
+                    <el-table-column label="奖惩金额" prop="monthRewordsMoney" min-width="120">
                         <template slot-scope="scope">
                             <el-input size="small" v-model="scope.row.monthRewordsMoney"></el-input>
                         </template>
                     </el-table-column>
+                    <el-table-column prop="computeSocialSecurityFlag" label="是否计算社保" min-width="120">
+                        <template slot-scope="scope">
+                            <el-switch
+                                v-model="scope.row.computeSocialSecurityFlag"
+                                inactive-color="#5B7BFA"
+                                active-color="#dadde5"
+                                :inactive-value="activeValue"
+                                :active-value="inactiveValue">
+                            </el-switch>
+                        </template>
+                    </el-table-column>
+                    <!-- @change=change(scope.$index,scope.row)   -->
+                    <!-- <el-table-column label="是否计算社保" prop="computeSocialSecurityFlag" min-width="120">
+                        <template slot-scope="scope">
+                            <el-input size="small" v-model="scope.row.monthRewordsMoney"></el-input>
+                        </template>
+                    </el-table-column> -->
+                    
                     <el-table-column label="税前工资" prop="bankTaxBeforeShouldSalary" width="80">
                         <template slot-scope="scope">
                             {{ scope.row.bankTaxBeforeShouldSalary | moneyFormit }}
@@ -221,6 +239,8 @@ export default {
     },
     data() {
         return {
+            activeValue:0,
+            inactiveValue:1,
             SalaryDeptlist:[],
             list:[],
             listLoading: false,
@@ -282,13 +302,14 @@ export default {
             })
         },
         calculate(row,index){
-            console.log(row,index)
+            console.log(row,index,row.computeSocialSecurityFlag)
             let par = {
                 id: row.id,
                 monthPerformanceRatio:row.monthPerformanceRatio,//绩效占比
                 newEntryAttendanceDays: row.newEntryAttendanceDays,
                 sickAdsenceDays:row.sickAdsenceDays,
-                monthRewordsMoney:row.monthRewordsMoney
+                monthRewordsMoney:row.monthRewordsMoney,
+                computeSocialSecurityFlag:row.computeSocialSecurityFlag,
             }
             lastMonthIncomeCompute(par).then(res => {
                 if(res.code == 200){

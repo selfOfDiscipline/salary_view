@@ -203,8 +203,9 @@
       <script>
       import { BoxCard } from '@/layout/components'
       import Add from './add'
+      import { parseTime,} from "@/utils/index";
       import {selectRoleList,selectSalaryDeptList} from '@/api/userList'
-      import { selectHistorySalaryList } from '@/api/historical'
+      import { selectHistorySalaryList,exportSalaryBill } from '@/api/historical'
       
       import { selectUserSalaryDeptList,deleteUserSalaryDeptByIds } from '@/api/salaryDepartment'
       export default {
@@ -286,17 +287,55 @@
                     }
                 })
             },
-            // 导出
-            Educe(){
-                if(this.querydata.salaryDate == ''){
-                    
-                    window.open(`${this.baseUrl}`)
-                }else{
-                    window.open(`${this.baseUrl}?salaryDate=${this.querydata.salaryDate}&userPostType=${this.querydata.userPostType}&userName=${this.querydata.userName}&salaryDeptId=${this.querydata.salaryDeptId}`)
+            Educe() {//导出Excel
+                const {salaryDate,userPostType,userName,salaryDeptId} = this.querydata
+                let query ={
+                    salaryDate:salaryDate,
+                    userPostType:userPostType,
+                    userName:userName,
+                    salaryDeptId:salaryDeptId,
                 }
-                // salaryDeptId userPostType userName
-                // window.open(this.baseUrl + 'salary/exportSalaryBill?' + 'templateName=importVerPriceApplyDetail&templateZHName='+encodeURIComponent('工资单'))
+                
+                exportSalaryBill(query).then(res=>{ 
+                        debugger
+                        console.log(res)
+                    　　this.download(res)
+                })
             },
+            download (res) {
+                if (!res) {
+                    return
+                }
+                const blob = new Blob([res], {
+                    type: 'application/vnd.ms-excel;charset=utf-8'
+                })
+                let fileName =
+                    '薪资列表' + parseTime(new Date(), '{y}-{m}-{d}') + '.xls'
+
+                // fileDownload(res, fileName)
+                if ('download' in document.createElement('a')) {
+                    // 非IE下载
+                    const elink = document.createElement('a')
+                    elink.download = fileName
+                    elink.style.display = 'none'
+                    elink.href = URL.createObjectURL(blob)
+                    document.body.appendChild(elink)
+                    elink.click()
+                    URL.revokeObjectURL(elink.href) // 释放URL 对象
+                    document.body.removeChild(elink)
+                } else {
+                    // IE10+下载columns
+                    navigator.msSaveBlob(blob, fileName)
+                }
+            },
+            // 导出
+            // new Educe(){
+            //     if(this.querydata.salaryDate == ''){
+            //         window.open(`${this.baseUrl}`)
+            //     }else{
+            //         window.open(`${this.baseUrl}?salaryDate=${this.querydata.salaryDate}&userPostType=${this.querydata.userPostType}&userName=${this.querydata.userName}&salaryDeptId=${this.querydata.salaryDeptId}`)
+            //     }
+            // },
             handleCurrentChange(e) {
                 console.log(e, '页码')
                 this.pageNum = e

@@ -79,6 +79,17 @@
                             <el-input size="small" v-model="scope.row.monthRewordsMoney"></el-input>
                         </template>
                     </el-table-column>
+                    <el-table-column property="computeSocialSecurityFlag" label="是否计算社保" min-width="120">
+                        <template slot-scope="scope">
+                                <el-switch
+                                v-model="scope.row.computeSocialSecurityFlag"
+                                inactive-color="#5B7BFA"
+                                active-color="#dadde5"
+                                :inactive-value="activeValue"
+                                :active-value="inactiveValue">
+                            </el-switch>
+                        </template>
+                    </el-table-column>
                     <el-table-column label="税前工资" prop="bankTaxBeforeShouldSalary" width="80">
                         <template slot-scope="scope">
                             {{ scope.row.bankTaxBeforeShouldSalary | moneyFormit }}
@@ -224,6 +235,8 @@ export default {
     },
     data() {
         return {
+            activeValue:0,
+            inactiveValue:1,
             SalaryDeptlist:[],
             list:[],
             listLoading: false,
@@ -293,12 +306,14 @@ export default {
         },
         calculate(row){
             console.log(row)
+            console.log(row.computeSocialSecurityFlag,)
             let par = { 
                 id: row.id,
                 monthPerformanceRatio:row.monthPerformanceRatio,//绩效占比
                 otherAbsenceDays: row.otherAbsenceDays,
                 sickAbsenceDays: row.sickAbsenceDays,
-                monthRewordsMoney:row.monthRewordsMoney
+                monthRewordsMoney:row.monthRewordsMoney,
+                computeSocialSecurityFlag:row.computeSocialSecurityFlag,
             }
             lastMonthCompute(par).then(res => {
                 if(res.code == 200){

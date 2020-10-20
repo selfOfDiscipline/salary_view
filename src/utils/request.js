@@ -48,7 +48,7 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-console.log(res,1111111122222)
+// console.log(res,1111111122222)
     // if the custom code is not 20000, it is judged as an error.
 
     if (res.code !== 200 && res.code !== 500) {
@@ -67,6 +67,7 @@ console.log(res,1111111122222)
     } else{
       return res
     }
+    return res
   },
   error => {
     // alert( process.env.VUE_APP_BASE_API)

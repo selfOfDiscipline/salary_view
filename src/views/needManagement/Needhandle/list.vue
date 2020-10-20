@@ -45,6 +45,8 @@
                             <a @click="goadd(scope.row)">{{scope.row.applicationCode}}</a>
                         </template>
                     </el-table-column>
+                    <el-table-column label="薪资归属部门" prop="salaryDeptName" show-overflow-tooltip min-width="150">
+                    </el-table-column>
                     <el-table-column label="节点名称" prop="nodeName"></el-table-column>
                     <el-table-column label="上一节点处理人" prop="createName"></el-table-column>
                     <el-table-column label="创建时间" show-overflow-tooltip min-width="120" prop="createTime">

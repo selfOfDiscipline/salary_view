@@ -57,6 +57,13 @@
                     {{ scope.row.monthRewordsMoney | moneyFormit }}
                 </template>    
             </el-table-column>
+            <el-table-column label="是否计算社保" prop="computeSocialSecurityFlag" min-width="120">
+                <template slot-scope="scope">
+                    <span v-if="scope.row.computeSocialSecurityFlag == 0">是</span>
+                    <span v-if="scope.row.computeSocialSecurityFlag == 1">否</span>
+                </template>    
+            </el-table-column>
+            <!-- computeSocialSecurityFlag -->
             <el-table-column label="税前工资" prop="bankTaxBeforeShouldSalary" width="80">
                 <template slot-scope="scope">
                     {{ scope.row.bankTaxBeforeShouldSalary | moneyFormit }}
