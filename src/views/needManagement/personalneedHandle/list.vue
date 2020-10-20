@@ -34,17 +34,17 @@
                     {{ (pageNum - 1) * pageSize + scope.$index + 1 }}
                     </template>
                 </el-table-column>
-                <el-table-column label="单据编号" prop="applicationCode"></el-table-column>
+                <el-table-column label="单据编号" prop="applicationCode" show-overflow-tooltip ></el-table-column>
                 <el-table-column label="薪资归属部门" prop="salaryDeptName" show-overflow-tooltip min-width="150"></el-table-column>
                 <el-table-column label="薪资归属日期" show-overflow-tooltip min-width="120" prop="createTime">
                     <template slot-scope="scope">
                         <span>{{ scope.row.createTime.substr(0,10) }}</span>
                     </template>
                 </el-table-column>
-                <el-table-column label="创建人" prop="createName"></el-table-column>
+                <el-table-column label="创建人" prop="createName" show-overflow-tooltip ></el-table-column>
                 <el-table-column label="创建时间" show-overflow-tooltip min-width="120" prop="createTime">
                     <template slot-scope="scope">
-                        <span>{{ scope.row.createTime }}</span>
+                        <span>{{ scope.row.createTime.substr(0,10) }}</span>
                     </template>
                 </el-table-column>
                 <el-table-column label="审批人" prop="handleName"></el-table-column>
@@ -58,7 +58,7 @@
                         <span >{{ scope.row.applicationStatus | statusfilter }}</span>
                     </template>
                 </el-table-column>
-                <el-table-column label="审批意见" prop="handleOpinion"></el-table-column>
+                <el-table-column label="审批意见" prop="handleOpinion" show-overflow-tooltip ></el-table-column>
                 
                 <el-table-column label="单据类型" show-overflow-tooltip min-width="120" prop="approverStatus">
                     <template slot-scope="scope">
@@ -133,9 +133,9 @@
                 return '未提交'
                 case 1:
                 return '审批中'
-                case 2:
-                return '审批通过'
                 case 3:
+                return '审批通过'
+                case 2:
                 return '驳回'
                 case 4:
                 return '作废'
