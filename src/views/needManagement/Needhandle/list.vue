@@ -46,7 +46,7 @@
                         </template>
                     </el-table-column>
                     <el-table-column label="节点名称" prop="nodeName"></el-table-column>
-                    <el-table-column label="创建人" prop="createName"></el-table-column>
+                    <el-table-column label="上一节点处理人" prop="createName"></el-table-column>
                     <el-table-column label="创建时间" show-overflow-tooltip min-width="120" prop="createTime">
                         <template slot-scope="scope">
                             <span>{{ scope.row.createTime.substr(0,10) }}</span>

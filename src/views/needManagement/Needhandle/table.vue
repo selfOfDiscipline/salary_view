@@ -13,6 +13,7 @@
                 </template>
             </el-table-column>
             <el-table-column label="员工姓名" prop="userName"></el-table-column>
+
             <!-- <el-table-column label="实付工资" show-overflow-tooltip min-width="120" prop="totalIncomeMoney">
                 <template slot-scope="scope">
                     <span>{{ scope.row.totalIncomeMoney |moneyFormit }}</span>
@@ -22,6 +23,39 @@
                 <template slot-scope="scope">
                     <span>{{ scope.row.salaryDeptName}}</span>
                 </template>
+            </el-table-column>
+            <el-table-column label="绩效数" prop="monthPerformanceRatio" min-width="100">
+            </el-table-column>
+            <el-table-column label="考勤" v-if="menuType == 0">
+                <el-table-column label="出勤" prop="newEntryAttendanceDays;" min-width="120">
+                </el-table-column>
+                <!-- <el-table-column label="病假缺勤" prop="sickAdsenceDays" min-width="80">
+                </el-table-column> -->
+            </el-table-column>
+            <el-table-column label="考勤" v-if="menuType == 2">
+                <el-table-column label="其他缺勤" prop="otherAbsenceDays" min-width="80">
+                </el-table-column>
+                <el-table-column label="病假缺勤" prop="sickAdsenceDays" min-width="80">
+                </el-table-column>
+            </el-table-column>
+            <el-table-column label="考勤" v-if="menuType == 1">
+                <el-table-column label="转正前应出勤" prop="positiveBeforeAttendanceDays" min-width="120">
+                </el-table-column>
+                <el-table-column label="转正前其他缺勤" prop="positiveBeforeOtherAttendanceDays" min-width="120">
+                </el-table-column> 
+                <el-table-column label="转正前病假缺勤" prop="positiveBeforeSickAttendanceDays" min-width="120">
+                </el-table-column>
+                <el-table-column label="转正后应出勤" prop="positiveAfterAttendanceDays" min-width="120">
+                </el-table-column>
+                <el-table-column label="转正后其他缺勤" prop="positiveAfterOtherAttendanceDays" min-width="120">
+                </el-table-column>
+                <el-table-column label="转正后病假缺勤" prop="positiveAfterSickAttendanceDays" min-width="120">
+                </el-table-column>
+            </el-table-column>
+            <el-table-column label="奖惩金额" prop="monthRewordsMoney" min-width="120">
+                <template slot-scope="scope">
+                    {{ scope.row.monthRewordsMoney | moneyFormit }}
+                </template>    
             </el-table-column>
             <el-table-column label="税前工资" prop="bankTaxBeforeShouldSalary" width="80">
                 <template slot-scope="scope">

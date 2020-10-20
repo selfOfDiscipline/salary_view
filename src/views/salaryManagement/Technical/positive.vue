@@ -61,7 +61,7 @@
                             </template>
                         </el-table-column> -->
                         <el-table-column label="基本工资" prop="monthBaseSalary" min-width="80" show-overflow-tooltip></el-table-column>
-                        <el-table-column label="绩效占比" prop="monthPerformanceRatio" min-width="100">
+                        <el-table-column label="绩效数" prop="monthPerformanceRatio" min-width="100">
                             <template slot-scope="scope">
                                 <el-input size="small" v-model="scope.row.monthPerformanceRatio"></el-input>
                             </template>
@@ -96,7 +96,7 @@
                                 <el-input size="small" v-model="scope.row.positiveAfterSickAttendanceDays"></el-input>
                             </template>
                         </el-table-column>
-                        <el-table-column label="奖惩金额" prop="monthRewordsMoney;" min-width="120">
+                        <el-table-column label="奖惩金额" prop="monthRewordsMoney" min-width="120">
                             <template slot-scope="scope">
                                 <el-input size="small" v-model="scope.row.monthRewordsMoney"></el-input>
                             </template>

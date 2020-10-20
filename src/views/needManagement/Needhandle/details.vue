@@ -40,7 +40,7 @@
         </BoxCard>
         <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick">
             <el-tab-pane label="正式员工" name="Official">
-                <tableDta :menuType="menuType" :applicationCode="code"/>
+                <tableDta :menuType="2" :applicationCode="code"/>
             </el-tab-pane>
             <el-tab-pane label="上月入职" name="Induction">
                 <tableDta :menuType="0" :applicationCode="code"/>

@@ -29,7 +29,7 @@
                 <el-form-item label="在职状态" prop="userRankType">
                     <el-select v-model="form.userRankType" 
                     disabled
-                    filterable placeholder="请选择在职状态" >
+                    filterable placeholder="在职状态" >
                         <el-option v-for="item in RankTypeOption" readonly
                             :key="item.id"
                             :label="item.typeName"
@@ -127,6 +127,13 @@
             SaveSubmit(){
                 this.$refs['form'].validate((valid) => {
                     if (valid) {
+                        const { account,oldPassword,newPassword,confirmPassword} = this.form;
+                        let par ={
+                            account:account,
+                            oldPassword:oldPassword,
+                            newPassword:newPassword,
+                            confirmPassword:confirmPassword
+                        }
                         updateUserPassword(this.form).then(res =>{
                             console.log(res);   
                             if(res.code == 200){

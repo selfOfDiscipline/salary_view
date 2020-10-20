@@ -292,9 +292,9 @@
                     
                     window.open(`${this.baseUrl}`)
                 }else{
-                    window.open(`${this.baseUrl}?salaryDate=${this.querydata.salaryDate}`)
+                    window.open(`${this.baseUrl}?salaryDate=${this.querydata.salaryDate}&userPostType=${this.querydata.userPostType}&userName=${this.querydata.userName}&salaryDeptId=${this.querydata.salaryDeptId}`)
                 }
-                
+                // salaryDeptId userPostType userName
                 // window.open(this.baseUrl + 'salary/exportSalaryBill?' + 'templateName=importVerPriceApplyDetail&templateZHName='+encodeURIComponent('工资单'))
             },
             handleCurrentChange(e) {
