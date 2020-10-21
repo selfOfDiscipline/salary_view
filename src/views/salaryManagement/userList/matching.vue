@@ -14,7 +14,7 @@
                     <el-input clearable v-model="form.userDeptName" :disabled="isDisable" placeholder="请选择业务归属部门" @focus="openDialog('业务归属部门选择','deptName',false)"></el-input>
                 </el-form-item> -->
                 <el-form-item label="岗位" prop="roleIds">
-                        <el-input
+                        <el-input :disabled="isDisable&&status==2"
                         v-model="form.userRoleName" 
                         placeholder="请选择岗位"
                         readonly
@@ -49,7 +49,7 @@
                     <el-input v-model="form.otherSubsidy" placeholder="请输入其他津贴" :disabled="isDisable"></el-input>
                 </el-form-item>
                 <el-form-item label="增加项：电脑补">
-                    <el-input v-model="form.addComputerSubsidy" placeholder="请输入增加项：电脑补" ></el-input>
+                    <el-input v-model="form.addComputerSubsidy" placeholder="请输入增加项：电脑补" :disabled="isDisable&&status==2"></el-input>
                 </el-form-item>
                 <!-- <el-form-item label="增加项：其他补">
                     <el-input v-model="form.otherSubsidy" placeholder="请输入增加项：其他补" ></el-input>
@@ -118,6 +118,9 @@
                 },
                 isDisable: {
                     default: false
+                },
+                status:{
+                    default: ''
                 }
             },
             components: {

@@ -228,9 +228,24 @@
         console.log(this.value) // 2019-8-20
     },
     mounted() {
-      this.fetchData()
-      this.SalaryDeptList()
-  
+        let userId = this.$route.query.userId;
+        // let status = this.$route.query.status;
+        if(userId){
+            this.status = 2;
+            this.userId = userId;
+            console.log(this.userId);
+            this.dialogName = 'edit'
+            this.showClose = false;
+            // this.editFormVisible = !this.editFormVisible
+
+          
+            // this.status = status;
+            // debugger
+            // console.log(this.editFormVisible)
+            this.editFormVisible= !this.editFormVisible;
+        }
+        this.fetchData()
+        this.SalaryDeptList();
     },
     methods: {
         SalaryDeptList(){

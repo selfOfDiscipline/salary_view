@@ -42,12 +42,8 @@
                     :data="list"
                     element-loading-text="Loading"
                     fit
-                    stripe
                     highlight-current-row
                     :height="tableheight">
-
-                    
-
                     <el-table-column label="序号" width="55">
                         <template slot-scope="scope">
                         {{ (pageNum - 1) * pageSize + scope.$index + 1 }}

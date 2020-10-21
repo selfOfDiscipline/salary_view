@@ -11,22 +11,22 @@
                     label-width="130px" 
                     slot="main">
                     <el-form-item label="子女教育" prop="childEducation">
-                        <el-input v-model="form.childEducation" placeholder="请输入子女教育" ></el-input>
+                        <el-input v-model="form.childEducation" placeholder="请输入子女教育" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="继续教育" prop="continueEducation">
-                        <el-input v-model="form.continueEducation" placeholder="请输入继续教育" ></el-input>
+                        <el-input v-model="form.continueEducation" placeholder="请输入继续教育" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="住房贷款利息" prop="homeLoanInterest">
-                        <el-input v-model="form.homeLoanInterest" placeholder="请输入住房贷款利息" ></el-input>
+                        <el-input v-model="form.homeLoanInterest" placeholder="请输入住房贷款利息" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="住房租金" prop="homeRents">
-                        <el-input v-model="form.homeRents" placeholder="请输入住房租金" ></el-input>
+                        <el-input v-model="form.homeRents" placeholder="请输入住房租金" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="赡养老人" prop="supportParents">
-                        <el-input v-model="form.supportParents" placeholder="请输入赡养老人" ></el-input>
+                        <el-input v-model="form.supportParents" placeholder="请输入赡养老人" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="其他扣除" prop="otherDeduct">
-                        <el-input v-model="form.otherDeduct" placeholder="请输入其他扣除" ></el-input>
+                        <el-input v-model="form.otherDeduct" placeholder="请输入其他扣除" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                 </el-form>
             </BoxCard>
@@ -42,37 +42,37 @@
                     label-width="130px" 
                     slot="main">
                     <el-form-item label="累计收入" prop="totalIncomeMoney">
-                        <el-input v-model="form.totalIncomeMoney" placeholder="请输入累计收入金额" ></el-input>
+                        <el-input v-model="form.totalIncomeMoney" placeholder="请输入累计收入金额" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="累计应纳税所得额" prop="totalTaxableSelfMoney">
-                        <el-input v-model="form.totalTaxableSelfMoney" placeholder="请输入累计应纳税所得额" ></el-input>
+                        <el-input v-model="form.totalTaxableSelfMoney" placeholder="请输入累计应纳税所得额" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="累计已纳税额" prop="totalAlreadyTaxableMoney">
-                        <el-input v-model="form.totalAlreadyTaxableMoney" placeholder="请输入累计已纳税额" ></el-input>
+                        <el-input v-model="form.totalAlreadyTaxableMoney" placeholder="请输入累计已纳税额" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="累计减除费用" prop="totalDeductMoney">
-                        <el-input v-model="form.totalDeductMoney" placeholder="请输入累计减除费用金额" ></el-input>
+                        <el-input v-model="form.totalDeductMoney" placeholder="请输入累计减除费用金额" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="累计专项附加扣除" prop="totalSpecialDeductMoney">
-                        <el-input v-model="form.totalSpecialDeductMoney" placeholder="请输入累计专项附加扣除金额" ></el-input>
+                        <el-input v-model="form.totalSpecialDeductMoney" placeholder="请输入累计专项附加扣除金额" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="累计子女教育扣除" prop="totalChildEducation">
-                        <el-input v-model="form.totalChildEducation" placeholder="请输入累计子女教育扣除" ></el-input>
+                        <el-input v-model="form.totalChildEducation" placeholder="请输入累计子女教育扣除" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="累计继续教育扣除" prop="totalContinueEducation">
-                        <el-input v-model="form.totalContinueEducation" placeholder="请输入累计继续教育扣除" ></el-input>
+                        <el-input v-model="form.totalContinueEducation" placeholder="请输入累计继续教育扣除" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="累计住房贷款利息扣除" prop="totalHomeLoanInterest">
-                        <el-input v-model="form.totalHomeLoanInterest" placeholder="请输入累计住房贷款利息扣除" ></el-input>
+                        <el-input v-model="form.totalHomeLoanInterest" placeholder="请输入累计住房贷款利息扣除" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="累计住房租金扣除" prop="totalHomeRents">
-                        <el-input v-model="form.totalHomeRents" placeholder="请输入累计住房租金扣除" ></el-input>
+                        <el-input v-model="form.totalHomeRents" placeholder="请输入累计住房租金扣除" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="累计赡养老人扣除" prop="totalSupportParents">
-                        <el-input v-model="form.totalSupportParents" placeholder="请输入累计赡养老人扣除" ></el-input>
+                        <el-input v-model="form.totalSupportParents" placeholder="请输入累计赡养老人扣除" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="累计专项扣除（个人年度社保+公积金）" prop="totalOtherDeduct">
-                        <el-input v-model="form.totalOtherDeduct" placeholder="请输入累计专项扣除（个人年度社保+公积金）" ></el-input>
+                        <el-input v-model="form.totalOtherDeduct" placeholder="请输入累计专项扣除（个人年度社保+公积金）" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                 </el-form>
             </BoxCard>
@@ -95,12 +95,16 @@
                 },
                 isDisable: {
                     default: false
+                },
+                status:{
+                    default: ''
                 }
             },
             components: {
                 BoxCard,
             },
             created(){
+                
                 this.form = this.otherDeductionData
             },
             computed: {

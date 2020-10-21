@@ -9,19 +9,19 @@
                 label-width="130px" 
                 slot="main">
                 <el-form-item label="银行卡号">
-                        <el-input v-model="form.otherBankCard" placeholder="请输入他行银行卡号" :disabled="isDisable"></el-input>
+                        <el-input v-model="form.otherBankCard" placeholder="请输入他行银行卡号" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="开户行">
-                        <el-input v-model="form.otherBankOpen" placeholder="请输入他行开户行" :disabled="isDisable"></el-input>
+                        <el-input v-model="form.otherBankOpen" placeholder="请输入他行开户行" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="开户行名称">
-                        <el-input v-model="form.otherBankOpenName" placeholder="请输入他行开户行名称" :disabled="isDisable"></el-input>
+                        <el-input v-model="form.otherBankOpenName" placeholder="请输入他行开户行名称" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="开户行省份">
-                        <el-input v-model="form.otherBankOpenProvince" placeholder="请输入他行开户行省份" :disabled="isDisable"></el-input>
+                        <el-input v-model="form.otherBankOpenProvince" placeholder="请输入他行开户行省份" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="开户行城市">
-                        <el-input v-model="form.otherBankOpenCity" placeholder="请输入他行开户行城市" :disabled="isDisable"></el-input>
+                        <el-input v-model="form.otherBankOpenCity" placeholder="请输入他行开户行城市" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
             </el-form>
         </BoxCard>
@@ -45,6 +45,9 @@
                 },
                 isDisable: {
                     default: false
+                },
+                status:{
+                    default: ''
                 }
             },
             components: {
@@ -63,6 +66,7 @@
                 }
             },
             created(){
+                
                 this.form = this.otherBanksData
             },
             mounted(){

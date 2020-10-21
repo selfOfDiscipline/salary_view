@@ -41,7 +41,6 @@
                     :data="list"
                     element-loading-text="Loading"
                     fit
-                    stripe
                     highlight-current-row
                     :height="tableheight">
                     <el-table-column label="序号" width="55">

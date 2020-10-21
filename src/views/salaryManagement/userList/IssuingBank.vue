@@ -11,19 +11,19 @@
                     label-width="130px" 
                     slot="main">
                     <el-form-item label="银行卡号" prop="salaryBankCard">
-                        <el-input v-model="form.salaryBankCard" placeholder="请输入代发银行卡号" ></el-input>
+                        <el-input v-model="form.salaryBankCard" placeholder="请输入代发银行卡号" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="开户行" prop="salaryBankOpen">
-                        <el-input v-model="form.salaryBankOpen" placeholder="请输入代发开户行" ></el-input>
+                        <el-input v-model="form.salaryBankOpen" placeholder="请输入代发开户行" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="开户行名称" prop="salaryBankOpenName">
-                        <el-input v-model="form.salaryBankOpenName" placeholder="请输入代发开户行名称" ></el-input>
+                        <el-input v-model="form.salaryBankOpenName" placeholder="请输入代发开户行名称" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="开户行省份" prop="salaryBankOpenProvince">
-                        <el-input v-model="form.salaryBankOpenProvince" placeholder="请输入代发开户行省份" ></el-input>
+                        <el-input v-model="form.salaryBankOpenProvince" placeholder="请输入代发开户行省份" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                     <el-form-item label="开户行城市" prop="salaryBankOpenCity">
-                        <el-input v-model="form.salaryBankOpenCity" placeholder="请输入代发开户行城市" ></el-input>
+                        <el-input v-model="form.salaryBankOpenCity" placeholder="请输入代发开户行城市" :disabled="isDisable&&status==2"></el-input>
                     </el-form-item>
                 </el-form>
             </BoxCard>
@@ -47,12 +47,16 @@
                 },
                 isDisable: {
                     default: false
+                },
+                status:{
+                    default: ''
                 }
             },
             components: {
                 BoxCard,
             },
             created(){
+                
                 this.form = this.issuingBankData
             },
             data() {

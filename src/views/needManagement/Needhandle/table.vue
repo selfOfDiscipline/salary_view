@@ -29,9 +29,9 @@
                 </template>
             </el-table-column>
             <el-table-column label="员工姓名" show-overflow-tooltip prop="userName">
-                <template slot-scope="scope">
+                <!-- <template slot-scope="scope">
                     <a @click="gochack(scope.row)">{{scope.row.userName}}</a>
-                </template>
+                </template> -->
             </el-table-column>
 
             <el-table-column label="薪资归属部门" show-overflow-tooltip min-width="120" prop="salaryDeptName">
@@ -228,12 +228,13 @@ mounted() {
 },
 methods: {
     gochack(e){
-        if(e){
-            console.log(e.userId)
-            this.userId = e.userId;
-            this.status = 2,    
-            this.editFormVisible = true
-        }
+        window.open(`${window.location.origin}/#/salaryManagement/userList?userId=${e.userId}`)
+        // if(e){
+        //     console.log(e.userId)
+        //     this.userId = e.userId;
+        //     this.status = 2,    
+        //     this.editFormVisible = true
+        // }
     },
     getSalaryInfoByApplicationCode(){
         this.listLoading = true

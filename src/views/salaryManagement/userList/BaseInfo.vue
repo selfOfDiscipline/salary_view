@@ -168,6 +168,9 @@
             },
             isDisable: {
                 default: ''
+            },
+            status:{
+                default: ''
             }
         },
         components: {
@@ -176,8 +179,7 @@
         },
         created(){
             if(this.baseInfoData){
-                console.log( this.baseInfoData)
-                debugger
+                
                 // this.isDisable = this.isdisable;
                 this.form = this.baseInfoData
             }

@@ -1,16 +1,16 @@
 <template>
     <div class="app-container" v-loading="approvalLoading">
         <div v-if="resove">
-            <BaseInfo ref="baseInfo"  :baseInfoData="baseInfoData" :isDisable="isDisable"></BaseInfo>
-            <IssuingBank ref="issuingBank" :issuingBankData="issuingBankData" :isDisable="isDisable"></IssuingBank>
-            <OtherBanks ref="otherBanks" :otherBanksData="otherBanksData" :isDisable="isDisable"></OtherBanks>
+            <BaseInfo ref="baseInfo"  :baseInfoData="baseInfoData" :isDisable="isDisable" :status="status"></BaseInfo>
+            <IssuingBank ref="issuingBank" :issuingBankData="issuingBankData" :isDisable="isDisable" :status="status"></IssuingBank>
+            <OtherBanks ref="otherBanks" :otherBanksData="otherBanksData" :isDisable="isDisable" :status="status"></OtherBanks>
             <!-- IssuingBank -->
-            <Matching ref="matching" :matchingData="matchingData" :isDisable="isDisable"></Matching>
-            <SocialSecurity ref="socialSecurity" :socialSecurityData="socialSecurityData" :isDisable="isDisable"></SocialSecurity>
-            <OtherDeduction ref="otherDeduction" :otherDeductionData="otherDeductionData" :isDisable="isDisable"></OtherDeduction>
+            <Matching ref="matching" :matchingData="matchingData" :isDisable="isDisable" :status="status"></Matching>
+            <SocialSecurity ref="socialSecurity" :socialSecurityData="socialSecurityData" :isDisable="isDisable" :status="status"></SocialSecurity>
+            <OtherDeduction ref="otherDeduction" :otherDeductionData="otherDeductionData" :isDisable="isDisable" :status="status"></OtherDeduction>
             <div class="btn-area">
-                <el-button type="primary" plain @click="SaveSubmit()">保存</el-button>
-                <el-button type="primary" plain @click="callBack">关闭</el-button>
+                <el-button type="primary" plain @click="SaveSubmit()" v-if="status!='2'">保存</el-button>
+                <el-button type="primary" plain @click="callBack" v-if="status!='2'">关闭</el-button>
             </div>
         </div>
     </div>
@@ -34,10 +34,11 @@ export default {
         status:'',
     },
     created () {
-        if(this.userId){
-            console.log(this.userId,'185');
-            this.getUser(this.userId,this.status);
-        }
+        // alert(this.userId)
+        // if(this.userId){
+        //     console.log(this.userId,'185');
+        //     this.getUser(this.userId,this.status);
+        // }
     },
     components: {
         BoxCard,
@@ -366,7 +367,10 @@ export default {
     },
     
     mounted() {
-      
+        if(this.userId){
+            console.log(this.userId,'185');
+            this.getUser(this.userId,this.status);
+        }
     },
 
 }
