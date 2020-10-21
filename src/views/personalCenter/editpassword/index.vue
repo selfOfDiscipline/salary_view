@@ -48,13 +48,13 @@
                     <el-input v-model="form.account"></el-input>
                 </el-form-item>
                 <el-form-item label="原密码" prop="oldPassword">
-                    <el-input v-model="form.oldPassword" type="passord"></el-input>
+                    <el-input v-model="form.oldPassword" type="password"></el-input>
                 </el-form-item>
                 <el-form-item label="新密码" prop="newPassword" >
-                    <el-input v-model="form.newPassword" type="passord"></el-input>
+                    <el-input v-model="form.newPassword" type="password"></el-input>
                 </el-form-item>
                 <el-form-item label="确认密码" prop="confirmPassword">
-                    <el-input v-model="form.confirmPassword" type="passord"></el-input>
+                    <el-input v-model="form.confirmPassword" type="password"></el-input>
                 </el-form-item>
                 <el-form-item>
                     <!-- <el-button type="primary" plain @click="">取消</el-button> -->
