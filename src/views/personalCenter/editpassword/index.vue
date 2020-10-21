@@ -45,7 +45,7 @@
                 label-width="100px" 
                 slot="main"> 
                 <el-form-item label="账号" prop="account">
-                    <el-input v-model="form.account"></el-input>
+                    <el-input v-model="form.userAccount"></el-input>
                 </el-form-item>
                 <el-form-item label="原密码" prop="oldPassword">
                     <el-input v-model="form.oldPassword" type="password"></el-input>
@@ -127,9 +127,9 @@
             SaveSubmit(){
                 this.$refs['form'].validate((valid) => {
                     if (valid) {
-                        const { account,oldPassword,newPassword,confirmPassword} = this.form;
+                        const { userAccount,oldPassword,newPassword,confirmPassword} = this.form;
                         let par ={
-                            account:account,
+                            account:userAccount,
                             oldPassword:oldPassword,
                             newPassword:newPassword,
                             confirmPassword:confirmPassword

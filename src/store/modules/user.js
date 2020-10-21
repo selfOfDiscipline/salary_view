@@ -1,6 +1,7 @@
 import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
+import { MessageBox, Message } from 'element-ui'
 
 const getDefaultState = () => {
   return {
@@ -45,20 +46,27 @@ const actions = {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
       login({ account: username.trim(), password: password }).then(response => {
-        debugger
         // console.log( process.env.VUE_APP_BASE_API)
-        window.location.href = window.location.href +'personalCenter/editpassword'
-        // this.$router.push({ path: '/salaryManagement/userList' })
-        const { data } = response;
-        
-        commit('SET_TOKEN', data.tokenKey)
-        setToken(data.tokenKey)
-        sessionStorage.setItem("userName",data.userName);
-        sessionStorage.setItem("userId",data.id);
-        sessionStorage.setItem("allowCollectFlag",data.allowCollectFlag);
-        commit('SET_USERINFO', data)
-        resolve()
-       
+        console.log(response)
+        if(response.code == 200){
+          window.location.href = window.location.href +'personalCenter/editpassword'
+          // this.$router.push({ path: '/salaryManagement/userList' })
+          const { data } = response;
+          
+          commit('SET_TOKEN', data.tokenKey)
+          setToken(data.tokenKey)
+          sessionStorage.setItem("userName",data.userName);
+          sessionStorage.setItem("userId",data.id);
+          sessionStorage.setItem("allowCollectFlag",data.allowCollectFlag);
+          commit('SET_USERINFO', data)
+          resolve()
+        }else{
+          Message({
+            message: response.message,
+            type: 'error',
+            duration: 3  * 1000
+          })
+        }
       }).catch(error => {
         reject(error)
       })
