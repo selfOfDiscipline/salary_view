@@ -160,6 +160,11 @@
                     this.listLoading = false
                     if(res.code  == 200 ){
                         this.list = res.data.dataList;
+                    }else{
+                        this.$message({
+                            type: 'error',
+                            message: res.message
+                        })
                     }
                     this.total = Number(res.data.total)
                     

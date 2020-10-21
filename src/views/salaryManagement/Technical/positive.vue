@@ -315,9 +315,9 @@ export default {
                 generateTheMonthBasePayroll().then(res => {
                     if(res.code ==200){
                         this.$message({
-                        message: res.message,
-                        type: 'success'
-                    })
+                            message: res.message,
+                            type: 'success'
+                        })
                         this.fetchData()
                     }
                 })

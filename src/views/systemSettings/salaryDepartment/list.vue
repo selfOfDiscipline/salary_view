@@ -180,6 +180,15 @@
             selectUserSalaryDeptList(this.querydata).then(res => {
                 if(res.code  == 200 ){
                     this.list = res.data.dataList;
+                    // this.$message({
+                    //     type: 'success',
+                    //     message: res.message
+                    // })
+                }else{
+                    this.$message({
+                        type: 'error',
+                        message: res.message
+                    })
                 }
                 this.total = Number(res.data.total)
                 this.listLoading = false

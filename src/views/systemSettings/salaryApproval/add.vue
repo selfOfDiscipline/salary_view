@@ -238,7 +238,12 @@ export default {
                         console.log(res);   
                         if(res.code == 200){
                             this.$emit('reload')
-                            this.callBack()
+                            this.callBack();
+                        }else{
+                            this.$message({
+                                type: 'error',
+                                message: res.message
+                            })
                         }
                     })
                 } else {

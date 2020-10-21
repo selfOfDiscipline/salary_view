@@ -156,8 +156,20 @@ export default {
                     
                     startSalaryFlow(par).then(res =>{
                         console.log(res);
-                        this.$emit('reload')
-                        this.callBack()
+                        if(res.code == 200){ 
+                            this.$emit('reload')
+                            this.callBack()
+                            this.$message({
+                                type: 'success',
+                                message: res.message
+                            })
+                        }else{
+                            this.$message({
+                                type: 'error',
+                                message: res.message
+                            })
+                        }
+                       
                         
                     })
                 } else {

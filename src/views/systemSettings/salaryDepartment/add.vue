@@ -113,9 +113,21 @@
                 this.$refs['form'].validate((valid) => {
                     if (valid) {
                         saveUserSalaryDept(this.form).then(res =>{
-                            console.log(res);
-                            this.$emit('reload')
-                            this.callBack()
+                            if(res.code == 200){ 
+                                console.log(res);
+                                this.$emit('reload')
+                                this.callBack()
+                                this.$message({
+                                    type: 'success',
+                                    message: res.message
+                                })
+                            }else{
+                                this.$message({
+                                    type: 'error',
+                                    message: res.message
+                                })
+                            }
+                           
                             
                         })
                     } else {
