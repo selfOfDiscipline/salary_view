@@ -1,6 +1,6 @@
 <template>
     <div class="app-container">
-        <BoxCard title="基本信息" class="modelbox">
+        <!-- <BoxCard title="基本信息" class="modelbox">
             <el-form :inline="true" :model="form" :rules="rules" ref="form" label-position="right" 
                 class="form-area" 
                 label-width="130px" 
@@ -38,14 +38,14 @@
                     </el-select>
                 </el-form-item>
             </el-form>
-        </BoxCard>
+        </BoxCard> -->
         <BoxCard title="修改密码" class="modelbox pawd">
             <el-form :inline="true" :model="form" ref="form" :rules="rules" label-position="right" 
                 class="form-area" 
                 label-width="100px" 
                 slot="main"> 
                 <el-form-item label="账号" prop="account">
-                    <el-input v-model="form.userAccount"></el-input>
+                    <el-input v-model="form.account"></el-input>
                 </el-form-item>
                 <el-form-item label="原密码" prop="oldPassword">
                     <el-input v-model="form.oldPassword" type="password"></el-input>
@@ -127,9 +127,9 @@
             SaveSubmit(){
                 this.$refs['form'].validate((valid) => {
                     if (valid) {
-                        const { userAccount,oldPassword,newPassword,confirmPassword} = this.form;
+                        const { account,oldPassword,newPassword,confirmPassword} = this.form;
                         let par ={
-                            account:userAccount,
+                            account:account,
                             oldPassword:oldPassword,
                             newPassword:newPassword,
                             confirmPassword:confirmPassword

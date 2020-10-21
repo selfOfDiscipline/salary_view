@@ -1,5 +1,21 @@
 <template>
     <div>
+        <!-- <el-dialog  
+            fullscreen 
+            modal-append-to-body  
+            append-to-body
+            title="查看员工信息" 
+            :visible.sync="editFormVisible" 
+            :close-on-click-modal="false" 
+            :show-close="showClose"
+            @close="editFormVisible = false">
+            <Add v-if="editFormVisible"
+                :userId="userId" 
+                :status="status" @reload="fetchData"
+                @closeDialog="editFormVisible = false" >
+                
+            </Add>
+        </el-dialog> -->
         <el-table
             slot="main" v-loading="listLoading"
             :data="list" element-loading-text="Loading"
@@ -12,19 +28,18 @@
                     <span>{{ scope.row.salaryDate.substr(0, 7) }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="员工姓名" prop="userName"></el-table-column>
-
-            <!-- <el-table-column label="实付工资" show-overflow-tooltip min-width="120" prop="totalIncomeMoney">
+            <el-table-column label="员工姓名" show-overflow-tooltip prop="userName">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.totalIncomeMoney |moneyFormit }}</span>
+                    <a @click="gochack(scope.row)">{{scope.row.userName}}</a>
                 </template>
-            </el-table-column> -->
+            </el-table-column>
+
             <el-table-column label="薪资归属部门" show-overflow-tooltip min-width="120" prop="salaryDeptName">
                 <template slot-scope="scope">
                     <span>{{ scope.row.salaryDeptName}}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="绩效数" prop="monthPerformanceRatio" min-width="100">
+            <el-table-column label="绩效" prop="monthPerformanceRatio" min-width="100">
             </el-table-column>
             <el-table-column label="考勤" v-if="menuType == 0">
                 <el-table-column label="出勤" prop="newEntryAttendanceDays;" min-width="120">
@@ -52,7 +67,7 @@
                 <el-table-column label="转正后病假缺勤" prop="positiveAfterSickAttendanceDays" min-width="120">
                 </el-table-column>
             </el-table-column>
-            <el-table-column label="奖惩金额" prop="monthRewordsMoney" min-width="120">
+            <el-table-column label="其他金额增减金额" prop="monthRewordsMoney" min-width="120">
                 <template slot-scope="scope">
                     {{ scope.row.monthRewordsMoney | moneyFormit }}
                 </template>    
@@ -155,7 +170,7 @@
 import { BoxCard } from '@/layout/components'
 import {startSalaryFlow} from '@/api/personalneed'
 import {selectDeptList,selectRoleList,selectSalaryDeptList,saveOrUpdateManageUser} from '@/api/userList'
-
+import Add from '../../salaryManagement/userList/add'
 import { getSalaryInfoByApplicationCode } from '@/api/personalneed'
 export default {
 props: {
@@ -165,9 +180,15 @@ props: {
 name: 'Add',
 components: {
     BoxCard,
+    Add
 },
 data(){
     return{
+        showClose:true,
+        editFormVisible:false,
+        isAdd:false,
+        userId:'',
+        status:'',
         listLoading:false,
         list:[],
         SalaryDeptlist:[],
@@ -198,7 +219,7 @@ computed:{
 created(){
     // this.form.id = this.positiveId
     // this.form.userName = this.positiveName;
-    console.log( this.applicationCode  ,'1234567')
+    // console.log( this.applicationCode  ,'1234567')
 
 },
 mounted() {
@@ -206,6 +227,14 @@ mounted() {
     // this.SalaryDeptList()
 },
 methods: {
+    gochack(e){
+        if(e){
+            console.log(e.userId)
+            this.userId = e.userId;
+            this.status = 2,    
+            this.editFormVisible = true
+        }
+    },
     getSalaryInfoByApplicationCode(){
         this.listLoading = true
         getSalaryInfoByApplicationCode({applicationCode:this.applicationCode, menuType: this.menuType}).then(res =>{

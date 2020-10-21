@@ -35,8 +35,8 @@ export default {
     },
     created () {
         if(this.userId){
+            console.log(this.userId,'185');
             this.getUser(this.userId,this.status);
-            console.log(this.baseInfoData,'185');
         }
     },
     components: {
@@ -348,8 +348,10 @@ export default {
                 console.log(this.baseInfoData,'185')
                 if(status == 1 ){
                     this.isDisable = true;
+                }else if(status == 2){
+                    this.isDisable = true;
                 }
-                console.log(this.isDisable,'００００');
+                // console.log(this.isDisable,'００００');
                 
                 this.resove = true;
                 this.approvalLoading = false;
