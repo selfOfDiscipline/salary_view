@@ -241,6 +241,7 @@ export default {
                     totalHomeRents,
                     totalSupportParents,
                     totalOtherDeduct,
+                    deductThing,
                 } = res.data.userDetail
                 let roleIds='';
                 if(res.data.roleIds){
@@ -321,6 +322,7 @@ export default {
                     postSubsidy:postSubsidy,
                     otherSubsidy:otherSubsidy,
                     addComputerSubsidy:addComputerSubsidy,
+                    deductThing:deductThing
                     // otherSubsidy:otherSubsidy,
                     // deductOther:deductOther,
                 }

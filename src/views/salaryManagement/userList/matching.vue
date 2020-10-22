@@ -56,11 +56,10 @@
                 </el-form-item>
                 <!-- <el-form-item label="增加项：其他补">
                     <el-input v-model="form.otherSubsidy" placeholder="请输入增加项：其他补" ></el-input>
-                </el-form-item>
-                <el-form-item label="扣款项：其他">
-                    <el-input v-model="form.deductOther" placeholder="请输入扣款项：其他" ></el-input>
                 </el-form-item> -->
-                
+                <el-form-item label="社保代缴手续费">
+                    <el-input v-model="form.deductThing" placeholder="请输入社保代缴手续费" ></el-input>
+                </el-form-item>
             </el-form>
         </BoxCard>
         <el-dialog
@@ -132,7 +131,9 @@
                 RoleTree
             },
             created(){
-                this.form = this.matchingData
+                if(this.matchingData.deductThing){
+                    this.form = this.matchingData
+                }
                 console.log(this.matchingData.bankSalary)
             },
             computed: {
@@ -157,7 +158,7 @@
                         label: 'roleName'
                     },
                     form:{
-                        userDeptId:'',
+                        deductThing:0,
                         salaryDeptId:'',
                         roleIds:'',
                         stipulationStartTaxMoney:5000.00,
