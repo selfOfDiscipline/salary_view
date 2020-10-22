@@ -105,17 +105,17 @@ export const rules = {//单据类型
     //     { required: true, message: '请输入绩效占比', trigger: 'blur' },
     // ],
     bankSalary:[
-        { required: true, message: '请输入银行工资代发金额', trigger: 'blur' },
+        { required: true, message: '请输入税前工资', trigger: 'blur' },
     ],
-    // postSalary:[
-    //     { required: true, message: '请输入岗位工资', trigger: 'blur' },
-    // ],
-    // postSubsidy:[
-    //     { required: true, message: '请输入岗位津贴', trigger: 'blur' },
-    // ],
-    // otherSubsidy:[
-    //     { required: true, message: '请输入其他津贴', trigger: 'blur' },
-    // ],
+    postSalary:[
+        { required: true, message: '请输入岗位工资', trigger: 'blur' },
+    ],
+    postSubsidy:[
+        { required: true, message: '请输入岗位津贴', trigger: 'blur' },
+    ],
+    otherSubsidy:[
+        { required: true, message: '请输入 基本工资', trigger: 'blur' },
+    ],
     
 
     yilGongsShengyBaseMoney:[

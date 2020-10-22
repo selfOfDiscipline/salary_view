@@ -2,13 +2,13 @@
         <div class="mainconbox">
             <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick">
                 <el-tab-pane label="正式员工" name="Official">
-                    <Official/>
+                    <Official ref="mychild"/>
                 </el-tab-pane>
                 <el-tab-pane label="上月入职" name="Induction">
-                    <Induction/>
+                    <Induction ref="mychild"/>
                 </el-tab-pane>
                 <el-tab-pane label="上月转正" name="Positive">
-                    <Positive/>
+                    <Positive ref="mychild"/>
                 </el-tab-pane>
             </el-tabs>
         </div>
@@ -44,7 +44,7 @@
         },
         methods: {
             handleClick(tab, event) {
-                console.log(tab, event);
+                this.$refs.mychild.fetchData();
             },
         }
     }

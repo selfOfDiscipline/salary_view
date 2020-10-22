@@ -108,8 +108,10 @@ export default {
         //   this.loading = true
           this.$store.dispatch('user/login', this.loginForm).then(() => {
             //   console.log(this.redirect)
-            //   
-            this.$router.push({ path: '/personalCenter/editpassword' })
+            //  
+             if(sessionStorage.getItem("userId")){
+               this.$router.push({ path: '/personalCenter/editpassword' })
+             }
             //     this.loading = false
           }).catch(() => {
             this.loading = false

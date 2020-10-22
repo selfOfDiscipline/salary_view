@@ -104,8 +104,9 @@
                 BoxCard,
             },
             created(){
-                
-                this.form = this.otherDeductionData
+                if(this.otherDeductionData.childEducation){
+                    this.form = this.otherDeductionData
+                }
             },
             computed: {
             
@@ -113,7 +114,23 @@
             data() {
                 return {
                     form:{
-                        
+                        childEducation:0,
+                        continueEducation:0,
+                        homeLoanInterest:0,
+                        homeRents:0,
+                        supportParents:0,
+                        otherDeduct:0,
+                        totalIncomeMoney:0,
+                        totalTaxableSelfMoney:0,
+                        totalAlreadyTaxableMoney:0,
+                        totalDeductMoney:0,
+                        totalSpecialDeductMoney:0,
+                        totalChildEducation:0,
+                        totalContinueEducation:0,
+                        totalHomeLoanInterest:0,
+                        totalHomeRents:0,
+                        totalSupportParents:0,
+                        totalOtherDeduct:0,  
                     },
                     rules:rules,
                     }

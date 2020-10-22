@@ -223,7 +223,7 @@ export default {
                     childEducation,continueEducation,homeLoanInterest,homeRents,supportParents,otherDeduct,
                     // userDeptId,
                     standardSalary,salaryGrantRatio,performanceRatio,bankSalary, stipulationStartTaxMoney, 
-                    // postSalary,
+                    postSalary,
                     postSubsidy,  otherSubsidy, addComputerSubsidy,
                     // deductOther,
                     yilGongsShengyBaseMoney,yilPersonRatio,yilCompanyRatio,
@@ -317,11 +317,11 @@ export default {
                     performanceRatio:performanceRatio,
                     bankSalary:bankSalary,
                     stipulationStartTaxMoney:stipulationStartTaxMoney,
-                    // postSalary:postSalary,
+                    postSalary:postSalary,
                     postSubsidy:postSubsidy,
                     otherSubsidy:otherSubsidy,
                     addComputerSubsidy:addComputerSubsidy,
-                    otherSubsidy:otherSubsidy,
+                    // otherSubsidy:otherSubsidy,
                     // deductOther:deductOther,
                 }
                 console.log( userPostType)

@@ -311,7 +311,7 @@ export default {
                 id: row.id,
                 monthPerformanceRatio:row.monthPerformanceRatio,//绩效占比
                 otherAbsenceDays: row.otherAbsenceDays,
-                sickAbsenceDays: row.sickAbsenceDays,
+                sickAbsenceDays: row.sickAdsenceDays,
                 monthRewordsMoney:row.monthRewordsMoney,
                 computeSocialSecurityFlag:row.computeSocialSecurityFlag,
             }
