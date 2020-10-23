@@ -226,10 +226,13 @@ export default {
                     postSalary,
                     postSubsidy,  otherSubsidy, addComputerSubsidy,
                     // deductOther,
-                    yilGongsShengyBaseMoney,yilPersonRatio,yilCompanyRatio,
-                    yilPersonAddMoney,gongsPersonRatio, gongsCompanyRatio,shengyPersonRatio, 
-                    shengyCompanyRatio,yanglShiyBaseMoney,yanglPersonRatio,yanglCompanyRatio,
-                    shiyPersonRatio,shiyCompanyRatio, housingFundBaseMoney,housingFundPersonRatio,housingFundCompanyRatio,
+                    yilBaseMoney,yilPersonRatio,yilCompanyRatio,yilPersonAddMoney,
+                    gongsBaseMoney,gongsPersonRatio, gongsCompanyRatio,
+                    shengyBaseMoney,shengyPersonRatio,shengyCompanyRatio,
+                    yanglBaseMoney,yanglPersonRatio,yanglCompanyRatio,
+                    shiyBaseMoney,shiyPersonRatio,shiyCompanyRatio, 
+                    otherBaseMoney,otherPersonRatio,otherCompanyRatio,
+                    housingFundBaseMoney,housingFundPersonRatio,housingFundCompanyRatio,
                     totalIncomeMoney,
                     totalTaxableSelfMoney,
                     totalAlreadyTaxableMoney,
@@ -290,19 +293,31 @@ export default {
                 }
                 // 社保
                 this.socialSecurityData={
-                    yilGongsShengyBaseMoney,
+                    yilBaseMoney,
                     yilPersonRatio,
                     yilCompanyRatio,
                     yilPersonAddMoney,
+
+                    gongsBaseMoney,
                     gongsPersonRatio,
                     gongsCompanyRatio,
+
+                    shengyBaseMoney,
                     shengyPersonRatio,
                     shengyCompanyRatio,
-                    yanglShiyBaseMoney,
+
+                    yanglBaseMoney,
                     yanglPersonRatio,
                     yanglCompanyRatio,
+
+                    shiyBaseMoney,
                     shiyPersonRatio,
                     shiyCompanyRatio,
+
+                    otherBaseMoney,
+                    otherPersonRatio,
+                    otherCompanyRatio,
+
                     housingFundBaseMoney,
                     housingFundPersonRatio,
                     housingFundCompanyRatio,

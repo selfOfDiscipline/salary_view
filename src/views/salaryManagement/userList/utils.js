@@ -118,8 +118,14 @@ export const rules = {//单据类型
     ],
     
 
-    yilGongsShengyBaseMoney:[
-        { required: true, message: '请输入医疗工伤生育基数', trigger: 'blur' },
+    yilBaseMoney:[
+        { required: true, message: '请输入医疗基数', trigger: 'blur' },
+    ],
+    gongsBaseMoney:[
+        { required: true, message: '请输入工伤基数', trigger: 'blur' },
+    ],
+    shengyBaseMoney:[
+        { required: true, message: '请输入生育基数', trigger: 'blur' },
     ],
     yilPersonRatio:[
         { required: true, message: '请输入医疗个人系数', trigger: 'blur' },
@@ -142,8 +148,11 @@ export const rules = {//单据类型
     shengyCompanyRatio:[
         { required: true, message: '请输入生育公司系数', trigger: 'blur' },
     ],
-    yanglShiyBaseMoney:[
-        { required: true, message: '请输入养老失业基数', trigger: 'blur' },
+    yanglBaseMoney:[
+        { required: true, message: '请输入养老基数', trigger: 'blur' },
+    ],
+    shiyBaseMoney:[
+        { required: true, message: '请输入失业基数', trigger: 'blur' },
     ],
     yanglPersonRatio:[
         { required: true, message: '请输入养老个人系数', trigger: 'blur' },
@@ -157,6 +166,17 @@ export const rules = {//单据类型
     shiyCompanyRatio:[
         { required: true, message: '请输入失业公司系数', trigger: 'blur' },
     ],
+
+    otherBaseMoney:[
+        { required: true, message: '请输入其他险基数', trigger: 'blur' },
+    ],
+    otherPersonRatio:[
+        { required: true, message: '请输入其他险个人系数', trigger: 'blur' },
+    ],
+    otherCompanyRatio:[
+        { required: true, message: '请输入其他险公司系数', trigger: 'blur' },
+    ],
+    
     housingFundBaseMoney:[
         { required: true, message: '请输入公积金基数', trigger: 'blur' },
     ],

@@ -10,8 +10,8 @@
                 class="form-area" 
                 label-width="130px" 
                 slot="main">
-                <el-form-item label="医疗工伤生育基数" prop="yilGongsShengyBaseMoney">
-                    <el-input v-model="form.yilGongsShengyBaseMoney" placeholder="请输入医疗工伤生育基数"  :disabled="isDisable&&status==2"></el-input>
+                <el-form-item label="医疗基数" prop="yilBaseMoney">
+                    <el-input v-model="form.yilBaseMoney" placeholder="请输入医疗工伤生育基数"  :disabled="isDisable&&status==2"></el-input>
                 </el-form-item>
                 <el-form-item label="医疗个人系数" prop="yilPersonRatio">
                     <currency-input v-model="form.yilPersonRatio" placeholder="请输入医疗个人系数" :disabled="isDisable&&status==2"></currency-input>
@@ -22,11 +22,17 @@
                 <el-form-item label="医疗个人另缴金额" prop="yilPersonAddMoney">
                     <el-input v-model="form.yilPersonAddMoney" placeholder="请输入医疗个人另缴金额" :disabled="isDisable&&status==2"></el-input>
                 </el-form-item>
+                <el-form-item label="工伤基数" prop="gongsBaseMoney">
+                    <el-input v-model="form.gongsBaseMoney" placeholder="请输入医疗工伤生育基数"  :disabled="isDisable&&status==2"></el-input>
+                </el-form-item>
                 <el-form-item label="工伤个人系数" prop="gongsPersonRatio">
                     <currency-input v-model="form.gongsPersonRatio" placeholder="请输入工伤个人系数" :disabled="isDisable&&status==2"></currency-input>
                 </el-form-item>
                 <el-form-item label="工伤公司系数" prop="gongsCompanyRatio">
                     <currency-input v-model="form.gongsCompanyRatio" placeholder="请输入工伤公司系数" :disabled="isDisable&&status==2"></currency-input>
+                </el-form-item>
+                <el-form-item label="生育基数" prop="shengyBaseMoney">
+                    <el-input v-model="form.shengyBaseMoney" placeholder="请输入医疗工伤生育基数"  :disabled="isDisable&&status==2"></el-input>
                 </el-form-item>
                 <el-form-item label="生育个人系数" prop="shengyPersonRatio">
                     <currency-input v-model="form.shengyPersonRatio" placeholder="请输入生育个人系数" :disabled="isDisable&&status==2"></currency-input>
@@ -35,8 +41,8 @@
                     <currency-input v-model="form.shengyCompanyRatio" placeholder="请输入生育公司系数":disabled="isDisable&&status==2" ></currency-input>
                 </el-form-item>
 
-                <el-form-item label="养老失业基数" prop="yanglShiyBaseMoney">
-                    <el-input v-model="form.yanglShiyBaseMoney" placeholder="请输入养老失业基数":disabled="isDisable&&status==2"  ></el-input>
+                <el-form-item label="养老基数" prop="yanglBaseMoney">
+                    <el-input v-model="form.yanglBaseMoney" placeholder="请输入养老失业基数":disabled="isDisable&&status==2"  ></el-input>
                 </el-form-item>
                 <el-form-item label="养老个人系数" prop="yanglPersonRatio">
                     <currency-input v-model="form.yanglPersonRatio" placeholder="请输入养老个人系数":disabled="isDisable&&status==2" ></currency-input>
@@ -44,12 +50,26 @@
                 <el-form-item label="养老公司系数" prop="yanglCompanyRatio">
                     <currency-input v-model="form.yanglCompanyRatio" placeholder="请输入":disabled="isDisable&&status==2" ></currency-input>
                 </el-form-item>
+                <el-form-item label="失业基数" prop="shiyBaseMoney">
+                    <el-input v-model="form.shiyBaseMoney" placeholder="请输入养老失业基数":disabled="isDisable&&status==2"  ></el-input>
+                </el-form-item>
                 <el-form-item label="失业个人系数" prop="shiyPersonRatio">
                     <currency-input v-model="form.shiyPersonRatio" placeholder="请输入养老公司系数":disabled="isDisable&&status==2" ></currency-input>
                 </el-form-item>
                 <el-form-item label="失业公司系数" prop="shiyCompanyRatio">
                     <currency-input v-model="form.shiyCompanyRatio" placeholder="请输入失业公司系数":disabled="isDisable&&status==2" ></currency-input>
                 </el-form-item>
+
+                <el-form-item label="其他险基数" prop="otherBaseMoney">
+                    <el-input v-model="form.otherBaseMoney" placeholder="请输入养老失业基数":disabled="isDisable&&status==2"  ></el-input>
+                </el-form-item>
+                <el-form-item label="其他险个人系数" prop="otherPersonRatio">
+                    <currency-input v-model="form.otherPersonRatio" placeholder="请输入养老公司系数":disabled="isDisable&&status==2" ></currency-input>
+                </el-form-item>
+                <el-form-item label="其他险公司系数" prop="otherCompanyRatio">
+                    <currency-input v-model="form.otherCompanyRatio" placeholder="请输入失业公司系数":disabled="isDisable&&status==2" ></currency-input>
+                </el-form-item>
+
                 <el-form-item label="公积金基数" prop="housingFundBaseMoney">
                     <el-input v-model="form.housingFundBaseMoney" placeholder="请输入公积金基数":disabled="isDisable&&status==2" ></el-input>
                 </el-form-item>
@@ -99,19 +119,31 @@ export default {
         data() {
             return {
                 form:{
-                    yilGongsShengyBaseMoney:0,
+                    yilBaseMoney:0,
                     yilPersonRatio:0,
                     yilCompanyRatio:0,
                     yilPersonAddMoney:0,
+
+                    gongsBaseMoney:0,
                     gongsPersonRatio:0,
                     gongsCompanyRatio:0,
+
+                    shengyBaseMoney:0,
                     shengyPersonRatio:0,
                     shengyCompanyRatio:0,
-                    yanglShiyBaseMoney:0,
+
+                    yanglBaseMoney:0,
                     yanglPersonRatio:0,
                     yanglCompanyRatio:0,
+
+                    shiyBaseMoney:0,
                     shiyPersonRatio:0,
                     shiyCompanyRatio:0,
+
+                    otherBaseMoney:0,
+                    otherPersonRatio:0,
+                    otherCompanyRatio:0,
+
                     housingFundBaseMoney:0,
                     housingFundPersonRatio:0,
                     housingFundCompanyRatio:0,
