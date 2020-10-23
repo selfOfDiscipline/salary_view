@@ -136,6 +136,10 @@ export const rules = {//单据类型
     yilPersonAddMoney:[
         { required: true, message: '请输入医疗个人另缴金额', trigger: 'blur' },
     ],
+    yilCompanyAddMoney:[
+        { required: true, message: '请输入医疗公司另缴金额', trigger: 'blur' },
+    ],
+
     gongsPersonRatio:[
         { required: true, message: '请输入工伤个人系数', trigger: 'blur' },
     ],

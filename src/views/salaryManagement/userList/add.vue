@@ -226,7 +226,7 @@ export default {
                     postSalary,
                     postSubsidy,  otherSubsidy, addComputerSubsidy,
                     // deductOther,
-                    yilBaseMoney,yilPersonRatio,yilCompanyRatio,yilPersonAddMoney,
+                    yilBaseMoney,yilPersonRatio,yilCompanyRatio,yilPersonAddMoney,yilCompanyAddMoney,
                     gongsBaseMoney,gongsPersonRatio, gongsCompanyRatio,
                     shengyBaseMoney,shengyPersonRatio,shengyCompanyRatio,
                     yanglBaseMoney,yanglPersonRatio,yanglCompanyRatio,
@@ -297,7 +297,8 @@ export default {
                     yilPersonRatio,
                     yilCompanyRatio,
                     yilPersonAddMoney,
-
+                    yilCompanyAddMoney,
+                    
                     gongsBaseMoney,
                     gongsPersonRatio,
                     gongsCompanyRatio,

@@ -22,6 +22,10 @@
                 <el-form-item label="医疗个人另缴金额" prop="yilPersonAddMoney">
                     <el-input v-model="form.yilPersonAddMoney" placeholder="请输入医疗个人另缴金额" :disabled="isDisable&&status==2"></el-input>
                 </el-form-item>
+                <el-form-item label="医疗公司另缴金额" prop="yilCompanyAddMoney">
+                    <el-input v-model="form.yilCompanyAddMoney" placeholder="请输入医疗个人另缴金额" :disabled="isDisable&&status==2"></el-input>
+                </el-form-item>
+                
                 <el-form-item label="工伤基数" prop="gongsBaseMoney">
                     <el-input v-model="form.gongsBaseMoney" placeholder="请输入医疗工伤生育基数"  :disabled="isDisable&&status==2"></el-input>
                 </el-form-item>
@@ -123,6 +127,7 @@ export default {
                     yilPersonRatio:0,
                     yilCompanyRatio:0,
                     yilPersonAddMoney:0,
+                    yilCompanyAddMoney:0,
 
                     gongsBaseMoney:0,
                     gongsPersonRatio:0,
