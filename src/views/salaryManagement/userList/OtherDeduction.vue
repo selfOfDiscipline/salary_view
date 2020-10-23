@@ -104,7 +104,9 @@
                 BoxCard,
             },
             created(){
-                if(this.otherDeductionData.childEducation){
+                // if(this.status){
+                //     debugger
+                if(this.otherDeductionData.totalIncomeMoney){
                     this.form = this.otherDeductionData
                 }
             },
@@ -120,7 +122,7 @@
                         homeRents:0,
                         supportParents:0,
                         otherDeduct:0,
-                        totalIncomeMoney:0,
+                        // totalIncomeMoney:0,
                         totalTaxableSelfMoney:0,
                         totalAlreadyTaxableMoney:0,
                         totalDeductMoney:0,

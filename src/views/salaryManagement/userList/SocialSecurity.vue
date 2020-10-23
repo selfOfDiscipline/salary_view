@@ -113,9 +113,10 @@ export default {
             BoxCard,
         },
         created(){
-            if(this.socialSecurityData.yilBaseMoney){
+            if(this.socialSecurityData.totalIncomeMoney){
                 this.form = this.socialSecurityData
             }
+            console.log( this.form,'socialSecurityData')
         },
         computed: {
         
@@ -123,7 +124,7 @@ export default {
         data() {
             return {
                 form:{
-                    yilBaseMoney:0,                                                        
+                    // yilBaseMoney:0,                                                        
                     yilPersonRatio:0,
                     yilCompanyRatio:0,
                     yilPersonAddMoney:0,
@@ -149,7 +150,7 @@ export default {
                     otherPersonRatio:0,
                     otherCompanyRatio:0,
 
-                    housingFundBaseMoney:0,
+                    // housingFundBaseMoney:0,
                     housingFundPersonRatio:0,
                     housingFundCompanyRatio:0,
                 },
