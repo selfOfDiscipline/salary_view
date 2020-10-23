@@ -297,7 +297,7 @@ export default {
                 }
                 // 社保
                 this.socialSecurityData={
-                    yilBaseMoney,
+                    yilBaseMoney:yilBaseMoney,
                     yilPersonRatio,
                     yilCompanyRatio,
                     yilPersonAddMoney,
@@ -369,7 +369,7 @@ export default {
                     totalSupportParents:totalSupportParents,
                     totalOtherDeduct:totalOtherDeduct,
                 }
-                console.log(this.baseInfoData,'185')
+                console.log(this.otherDeductionData.totalIncomeMoney,'185')
                 if(status == 1 ){
                     this.isDisable = true;
                 }else if(status == 2){

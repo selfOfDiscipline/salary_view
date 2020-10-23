@@ -132,7 +132,7 @@
             },
             created(){
                 if(this.matchingData.otherSubsidy){
-                    debugger
+                    // debugger
                     this.form = this.matchingData
                 }
                 console.log(this.form,'配比信息')

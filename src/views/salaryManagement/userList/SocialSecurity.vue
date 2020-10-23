@@ -11,7 +11,7 @@
                 label-width="130px" 
                 slot="main">
                 <el-form-item label="医疗基数" prop="yilBaseMoney">
-                    <el-input v-model="form.yilBaseMoney" placeholder="请输入医疗工伤生育基数"  :disabled="isDisable&&status==2"></el-input>
+                    <el-input v-model="form.yilBaseMoney" placeholder="请输入医疗基数"  :disabled="isDisable&&status==2"></el-input>
                 </el-form-item>
                 <el-form-item label="医疗个人系数" prop="yilPersonRatio">
                     <currency-input v-model="form.yilPersonRatio" placeholder="请输入医疗个人系数" :disabled="isDisable&&status==2"></currency-input>
@@ -27,7 +27,7 @@
                 </el-form-item>
                 
                 <el-form-item label="工伤基数" prop="gongsBaseMoney">
-                    <el-input v-model="form.gongsBaseMoney" placeholder="请输入医疗工伤生育基数"  :disabled="isDisable&&status==2"></el-input>
+                    <el-input v-model="form.gongsBaseMoney" placeholder="请输入工伤基数"  :disabled="isDisable&&status==2"></el-input>
                 </el-form-item>
                 <el-form-item label="工伤个人系数" prop="gongsPersonRatio">
                     <currency-input v-model="form.gongsPersonRatio" placeholder="请输入工伤个人系数" :disabled="isDisable&&status==2"></currency-input>
@@ -36,7 +36,7 @@
                     <currency-input v-model="form.gongsCompanyRatio" placeholder="请输入工伤公司系数" :disabled="isDisable&&status==2"></currency-input>
                 </el-form-item>
                 <el-form-item label="生育基数" prop="shengyBaseMoney">
-                    <el-input v-model="form.shengyBaseMoney" placeholder="请输入医疗工伤生育基数"  :disabled="isDisable&&status==2"></el-input>
+                    <el-input v-model="form.shengyBaseMoney" placeholder="请输入生育基数"  :disabled="isDisable&&status==2"></el-input>
                 </el-form-item>
                 <el-form-item label="生育个人系数" prop="shengyPersonRatio">
                     <currency-input v-model="form.shengyPersonRatio" placeholder="请输入生育个人系数" :disabled="isDisable&&status==2"></currency-input>
@@ -46,16 +46,16 @@
                 </el-form-item>
 
                 <el-form-item label="养老基数" prop="yanglBaseMoney">
-                    <el-input v-model="form.yanglBaseMoney" placeholder="请输入养老失业基数":disabled="isDisable&&status==2"  ></el-input>
+                    <el-input v-model="form.yanglBaseMoney" placeholder="请输入养老业基数":disabled="isDisable&&status==2"  ></el-input>
                 </el-form-item>
                 <el-form-item label="养老个人系数" prop="yanglPersonRatio">
                     <currency-input v-model="form.yanglPersonRatio" placeholder="请输入养老个人系数":disabled="isDisable&&status==2" ></currency-input>
                 </el-form-item>
                 <el-form-item label="养老公司系数" prop="yanglCompanyRatio">
-                    <currency-input v-model="form.yanglCompanyRatio" placeholder="请输入":disabled="isDisable&&status==2" ></currency-input>
+                    <currency-input v-model="form.yanglCompanyRatio" placeholder="请输入养老公司系数":disabled="isDisable&&status==2" ></currency-input>
                 </el-form-item>
                 <el-form-item label="失业基数" prop="shiyBaseMoney">
-                    <el-input v-model="form.shiyBaseMoney" placeholder="请输入养老失业基数":disabled="isDisable&&status==2"  ></el-input>
+                    <el-input v-model="form.shiyBaseMoney" placeholder="请输入失业基数":disabled="isDisable&&status==2"  ></el-input>
                 </el-form-item>
                 <el-form-item label="失业个人系数" prop="shiyPersonRatio">
                     <currency-input v-model="form.shiyPersonRatio" placeholder="请输入养老公司系数":disabled="isDisable&&status==2" ></currency-input>
@@ -65,13 +65,13 @@
                 </el-form-item>
 
                 <el-form-item label="其他险基数" prop="otherBaseMoney">
-                    <el-input v-model="form.otherBaseMoney" placeholder="请输入养老失业基数":disabled="isDisable&&status==2"  ></el-input>
+                    <el-input v-model="form.otherBaseMoney" placeholder="请输入其他险基数":disabled="isDisable&&status==2"  ></el-input>
                 </el-form-item>
                 <el-form-item label="其他险个人系数" prop="otherPersonRatio">
-                    <currency-input v-model="form.otherPersonRatio" placeholder="请输入养老公司系数":disabled="isDisable&&status==2" ></currency-input>
+                    <currency-input v-model="form.otherPersonRatio" placeholder="请输入其他险个人系数":disabled="isDisable&&status==2" ></currency-input>
                 </el-form-item>
                 <el-form-item label="其他险公司系数" prop="otherCompanyRatio">
-                    <currency-input v-model="form.otherCompanyRatio" placeholder="请输入失业公司系数":disabled="isDisable&&status==2" ></currency-input>
+                    <currency-input v-model="form.otherCompanyRatio" placeholder="请输入其他险公司系数":disabled="isDisable&&status==2" ></currency-input>
                 </el-form-item>
 
                 <el-form-item label="公积金基数" prop="housingFundBaseMoney">
@@ -113,10 +113,12 @@ export default {
             BoxCard,
         },
         created(){
-            if(this.socialSecurityData.totalIncomeMoney){
+            console.log( this.status,'socialSecurityData111')
+            if(this.socialSecurityData.yilBaseMoney){
+                debugger
                 this.form = this.socialSecurityData
             }
-            console.log( this.form,'socialSecurityData')
+            console.log( this.form.yilBaseMoney,'socialSecurityData')
         },
         computed: {
         
@@ -150,7 +152,7 @@ export default {
                     otherPersonRatio:0,
                     otherCompanyRatio:0,
 
-                    // housingFundBaseMoney:0,
+                    housingFundBaseMoney:0,
                     housingFundPersonRatio:0,
                     housingFundCompanyRatio:0,
                 },
