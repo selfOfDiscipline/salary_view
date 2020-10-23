@@ -131,10 +131,11 @@
                 RoleTree
             },
             created(){
-                if(this.matchingData.deductThing){
+                if(this.matchingData.otherSubsidy){
+                    debugger
                     this.form = this.matchingData
                 }
-                console.log(this.matchingData.bankSalary)
+                console.log(this.form,'配比信息')
             },
             computed: {
             

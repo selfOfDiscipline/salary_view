@@ -95,7 +95,7 @@ export default {
             user:{
                 userSex:0,
                 householdType:0,},
-            userDetail:{
+                userDetail:{
                 userDeptId:'',
                 salaryDeptId:'',
                 roleIds:'',
@@ -112,6 +112,7 @@ export default {
             rules:rules,
             RankTypeOption:RankTypeOption,
             PostTypeOption:PostTypeOption,
+            userDetailId:'',
         }
     },
     
@@ -128,7 +129,7 @@ export default {
                 const matching = this.$refs.matching.getMatching(true);
                 const socialSecurity = this.$refs.socialSecurity.getSocialSecurity(true); 
                 const otherDeduction = this.$refs.otherDeduction.getOtherDeduction(true);
-                console.log(baseInfo)
+                console.log(matching,'matching')
                 
                 let query = {
                     user:Object.assign(baseInfo,issuingBank,otherBanks),
@@ -137,7 +138,7 @@ export default {
                 }
                 if(this.userId){
                     query.user.id = this.userId
-                    query.userDetail.id = this.userId
+                    query.userDetail.id = this.userDetailId
                 }
                 delete query.userDetail.userDeptName;
                 delete query.userDetail.salaryDeptName;
@@ -246,7 +247,9 @@ export default {
                     totalSupportParents,
                     totalOtherDeduct,
                     deductThing,
+                    id,
                 } = res.data.userDetail
+                this.userDetailId = id
                 let roleIds='';
                 if(res.data.roleIds){
                     roleIds = res.data.roleIds
@@ -326,6 +329,7 @@ export default {
                 }
                
                 this.matchingData = {
+                    id:id,
                     // userDeptId:userDeptId,userDeptName:deptName,
                     roleIds:roleIds,
                     
