@@ -113,7 +113,7 @@ export default {
             BoxCard,
         },
         created(){
-            if(this.socialSecurityData.housingFundBaseMoney){
+            if(this.socialSecurityData.yilBaseMoney){
                 this.form = this.socialSecurityData
             }
         },
