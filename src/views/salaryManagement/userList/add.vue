@@ -137,6 +137,7 @@ export default {
                 }
                 if(this.userId){
                     query.user.id = this.userId
+                    query.userDetail.id = this.userId
                 }
                 delete query.userDetail.userDeptName;
                 delete query.userDetail.salaryDeptName;
@@ -298,7 +299,7 @@ export default {
                     yilCompanyRatio,
                     yilPersonAddMoney,
                     yilCompanyAddMoney,
-                    
+
                     gongsBaseMoney,
                     gongsPersonRatio,
                     gongsCompanyRatio,

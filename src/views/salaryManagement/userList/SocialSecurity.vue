@@ -123,12 +123,12 @@ export default {
         data() {
             return {
                 form:{
-                    yilBaseMoney:0,
+                    yilBaseMoney:0,                                                        
                     yilPersonRatio:0,
                     yilCompanyRatio:0,
                     yilPersonAddMoney:0,
                     yilCompanyAddMoney:0,
-
+                                                                      
                     gongsBaseMoney:0,
                     gongsPersonRatio:0,
                     gongsCompanyRatio:0,
