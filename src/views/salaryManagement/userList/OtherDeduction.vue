@@ -104,12 +104,12 @@
                 BoxCard,
             },
             created(){
-                console.log(this.otherDeductionData.totalIncomeMoney,'otherDeductionData1234567')
-                if(this.otherDeductionData.totalIncomeMoney||this.otherDeductionData.totalIncomeMoney == 0){
-                     console.log(this.otherDeductionData.totalIncomeMoney,'1111')
-                    debugger
+                // console.log(this.otherDeductionData.totalIncomeMoney,'otherDeductionData1234567')
+                // if(this.otherDeductionData.totalIncomeMoney||this.otherDeductionData.totalIncomeMoney == 0){
+                //      console.log(this.otherDeductionData.totalIncomeMoney,'1111')
+                //     debugger
                     this.form = this.otherDeductionData
-                }
+                // }
                
             },
             computed: {

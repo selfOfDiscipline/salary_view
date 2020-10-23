@@ -113,12 +113,12 @@ export default {
             BoxCard,
         },
         created(){
-            console.log( this.status,'socialSecurityData111')
-            if(this.socialSecurityData.yilBaseMoney){
-                debugger
+            // console.log( this.socialSecurityData ,'socialSecurityData111')
+            // if(this.socialSecurityData.yilBaseMoney){
+            //     debugger
                 this.form = this.socialSecurityData
-            }
-            console.log( this.form.yilBaseMoney,'socialSecurityData')
+            // }
+            // console.log( this.form.yilBaseMoney,'socialSecurityData')
         },
         computed: {
         

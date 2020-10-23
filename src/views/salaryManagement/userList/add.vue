@@ -58,8 +58,55 @@ export default {
             issuingBankData:{},
             otherBanksData:{},
             matchingData:{},
-            socialSecurityData:{},
-            otherDeductionData:{},
+            socialSecurityData:{
+                yilPersonRatio:0,
+                yilCompanyRatio:0,
+                yilPersonAddMoney:0,
+                yilCompanyAddMoney:0,
+                                                                    
+                gongsBaseMoney:0,
+                gongsPersonRatio:0,
+                gongsCompanyRatio:0,
+
+                shengyBaseMoney:0,
+                shengyPersonRatio:0,
+                shengyCompanyRatio:0,
+
+                yanglBaseMoney:0,
+                yanglPersonRatio:0,
+                yanglCompanyRatio:0,
+
+                shiyBaseMoney:0,
+                shiyPersonRatio:0,
+                shiyCompanyRatio:0,
+
+                otherBaseMoney:0,
+                otherPersonRatio:0,
+                otherCompanyRatio:0,
+
+                housingFundBaseMoney:0,
+                housingFundPersonRatio:0,
+                housingFundCompanyRatio:0,
+            },
+            otherDeductionData:{
+                childEducation:0,
+                continueEducation:0,
+                homeLoanInterest:0,
+                homeRents:0,
+                supportParents:0,
+                otherDeduct:0,
+                // totalIncomeMoney:0,
+                totalTaxableSelfMoney:0,
+                totalAlreadyTaxableMoney:0,
+                totalDeductMoney:0,
+                totalSpecialDeductMoney:0,
+                totalChildEducation:0,
+                totalContinueEducation:0,
+                totalHomeLoanInterest:0,
+                totalHomeRents:0,
+                totalSupportParents:0,
+                totalOtherDeduct:0,  
+            },
             SalaryDeptlist: [],
             cascaderList: [], // 弹窗树
             showName: '', //弹窗树显示的字段名
@@ -298,34 +345,34 @@ export default {
                 // 社保
                 this.socialSecurityData={
                     yilBaseMoney:yilBaseMoney,
-                    yilPersonRatio,
-                    yilCompanyRatio,
-                    yilPersonAddMoney,
-                    yilCompanyAddMoney,
+                    yilPersonRatio:yilPersonRatio,
+                    yilCompanyRatio:yilCompanyRatio,
+                    yilPersonAddMoney:yilPersonAddMoney,
+                    yilCompanyAddMoney:yilCompanyAddMoney,
 
-                    gongsBaseMoney,
-                    gongsPersonRatio,
-                    gongsCompanyRatio,
+                    gongsBaseMoney:gongsBaseMoney,
+                    gongsPersonRatio:gongsPersonRatio,
+                    gongsCompanyRatio:gongsCompanyRatio,
 
-                    shengyBaseMoney,
-                    shengyPersonRatio,
-                    shengyCompanyRatio,
+                    shengyBaseMoney:shengyBaseMoney,
+                    shengyPersonRatio:shengyPersonRatio,
+                    shengyCompanyRatio:shengyCompanyRatio,
 
-                    yanglBaseMoney,
-                    yanglPersonRatio,
-                    yanglCompanyRatio,
+                    yanglBaseMoney:yanglBaseMoney,
+                    yanglPersonRatio:yanglPersonRatio,
+                    yanglCompanyRatio:yanglCompanyRatio,
 
-                    shiyBaseMoney,
-                    shiyPersonRatio,
-                    shiyCompanyRatio,
+                    shiyBaseMoney:shiyBaseMoney,
+                    shiyPersonRatio:shiyPersonRatio,
+                    shiyCompanyRatio:shiyCompanyRatio,
 
-                    otherBaseMoney,
-                    otherPersonRatio,
-                    otherCompanyRatio,
+                    otherBaseMoney:otherBaseMoney,
+                    otherPersonRatio:otherPersonRatio,
+                    otherCompanyRatio:otherCompanyRatio,
 
-                    housingFundBaseMoney,
-                    housingFundPersonRatio,
-                    housingFundCompanyRatio,
+                    housingFundBaseMoney:housingFundBaseMoney,
+                    housingFundPersonRatio:housingFundPersonRatio,
+                    housingFundCompanyRatio:housingFundCompanyRatio,
                 }
                
                 this.matchingData = {
