@@ -131,11 +131,11 @@
                 RoleTree
             },
             created(){
-                if(this.matchingData.otherSubsidy){
+                // if(this.matchingData.otherSubsidy){
                     // debugger
                     this.form = this.matchingData
-                }
-                console.log(this.form,'配比信息')
+                // }
+                // console.log(this.form,'配比信息')
             },
             computed: {
             

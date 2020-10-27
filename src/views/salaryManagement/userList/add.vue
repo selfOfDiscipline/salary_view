@@ -57,7 +57,12 @@ export default {
             baseInfoData:{},
             issuingBankData:{},
             otherBanksData:{},
-            matchingData:{},
+            matchingData:{
+                deductThing:0,
+                salaryDeptId:'',
+                roleIds:'',
+                stipulationStartTaxMoney:5000.00,
+            },
             socialSecurityData:{
                 yilPersonRatio:0,
                 yilCompanyRatio:0,
