@@ -23,7 +23,7 @@
       },
       decimal: {
         type: Number,
-        default: 3,
+        default: 4,
         desc: "小数位"
       },
       disabled: {//是否禁用
@@ -71,26 +71,26 @@
             if (value === '-') {
               this.$emit("input", value);
             } else {
-              let formatvalue = !!value ? accounting.unformat(value) : "0.000";
+              let formatvalue = !!value ? accounting.unformat(value) : "0.0000";
               this.$emit("input", formatvalue);
             }
           } else if (pointReg.test(value)) {//小数点位数大于
-            let formatvalue = accounting.unformat((value - 0).toFixed(3))
+            let formatvalue = accounting.unformat((value - 0).toFixed(4))
             this.$emit("input", formatvalue);
           } else {
             let formatvalue
             if (isPositive) {
               formatvalue = accounting.unformat('')
             } else {
-              formatvalue = !!value ? accounting.unformat(value) : "0.000";
+              formatvalue = !!value ? accounting.unformat(value) : "0.0000";
             }
             this.$emit("input", formatvalue);
           }
         }else{
-          let formatvalue = "0.000";
+          let formatvalue = "0.0000";
           this.$emit("input", formatvalue);
         }
-        
+
       },
       onBlur() {
         this.focused = false;
