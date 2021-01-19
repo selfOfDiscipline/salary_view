@@ -16,7 +16,7 @@ export function selectRoleList() {
       method: 'get'
     })
   }
-  
+
   // 查询薪资核算部门列表
   export function selectSalaryDeptList(data) {
     return request({
@@ -25,7 +25,7 @@ export function selectRoleList() {
       data
     })
   }
-  
+
   // 新增或修改用户信息
   export function saveOrUpdateManageUser(data) {
     return request({
@@ -47,6 +47,15 @@ export function selectUserList(data) {
 export function selectAllUserList(data) {
   return request({
     url: '/config/user/selectAllUserList',
+    method: 'post',
+    data
+  })
+}
+
+// 查询所有系统账号列表
+export function selectAllAdminList(data) {
+  return request({
+    url: '/config/user/selectAllAdminList',
     method: 'post',
     data
   })

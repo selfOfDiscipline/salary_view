@@ -1,9 +1,9 @@
 <template>
     <div class="app-container" v-loading="approvalLoading">
         <BoxCard title="基本信息" class="modelbox">
-            <el-form :inline="true" :model="form" :rules="rules" ref="form" label-position="right" 
-                class="form-area" 
-                label-width="100px" 
+            <el-form :inline="true" :model="form" :rules="rules" ref="form" label-position="right"
+                class="form-area"
+                label-width="100px"
                 slot="main">
                 <el-form-item label="流程编号" prop="flowEnCode">
                     <el-input v-model="form.flowEnCode" placeholder="请输入流程编号" ></el-input>
@@ -36,7 +36,7 @@
                     <el-radio-group v-model="form.useFlag">
                         <el-radio :label = 0>启用</el-radio>
                         <el-radio :label = 1>停用</el-radio>
-                    </el-radio-group>   
+                    </el-radio-group>
                 </el-form-item>
             </el-form>
         </BoxCard>
@@ -105,12 +105,12 @@
         </div>
     </div>
 </template>
-          
+
 <script>
 import {BoxCard} from '@/layout/components'
 import { rules ,RankTypeOption,PostTypeOption} from "./utils";
 import { saveOrUpdateFlowConfig,getFlowConfigById } from '@/api/salaryApproval'
-import {selectDeptList,selectRoleList,selectSalaryDeptList,selectAllUserList} from '@/api/userList'
+import {selectDeptList,selectRoleList,selectSalaryDeptList,selectAllAdminList} from '@/api/userList'
 export default {
     props: {
         salaryId:'',
@@ -120,7 +120,7 @@ export default {
     },
     created(){
         console.log(this.salaryId);
-        
+
         if(this.salaryId){
             this.getFlowConfigById(this.salaryId)
         }
@@ -167,7 +167,7 @@ export default {
     mounted(){
         console.log(this.salaryId);
         this.SalaryDeptList()
-        this.selectAllUserList();
+        this.selectAllAdminList();
     },
     methods: {
         getFlowConfigById(id){
@@ -196,26 +196,26 @@ export default {
             //         this.form.budgetDepartmentId = iterator.id
             //     }
             // }
-            
+
             console.log(e.toString())
             // this.approverIds = this.sels.map(item => item.id).toString();
             // approverChange
         },
-        selectAllUserList(){
+        selectAllAdminList(){
             let par ={
                 pageNum: 1,
                 pageSize:1000,
             }
-            selectAllUserList(par).then(res =>{
+            selectAllAdminList(par).then(res =>{
                 console.log(res);
                 this.usreList = res.data.dataList
-                
+
             })
         },
         SaveSubmit(){
             this.$refs['form'].validate((valid) => {
                 if (valid) {
-                    
+
                     this.tableData.forEach((item, index) => {
                         console.log(item,index)
                         this.tableData[index].approverIds = item.approverIds.toString();
@@ -235,7 +235,7 @@ export default {
                     console.log(par)
                     debugger
                     saveOrUpdateFlowConfig(par).then(res =>{
-                        console.log(res);   
+                        console.log(res);
                         if(res.code == 200){
                             this.$emit('reload')
                             this.callBack();
@@ -266,7 +266,7 @@ export default {
             }
             selectSalaryDeptList(par).then(res => {
                 console.log(res)
-                // 
+                //
                 if(res.code == 200){
                     this.SalaryDeptlist = res.data.dataList
 
@@ -287,9 +287,9 @@ export default {
                 approverIds:'',
                 id:this.getRandomArbitrary(1,2),
             }
-            
+
             console.log(this.tableData,'1234567')
-            
+
             this.tableData.push(list);
         },
         // 行内编辑选中的数据
@@ -324,7 +324,7 @@ export default {
 }
 </script>
     <style lang="scss" scoped>
-    
+
     .pro-tree{
             /* width: 100%; */
             height: 24px;
@@ -342,10 +342,10 @@ export default {
     .tevBtn{
         height: 32px !important;
         line-height: 32px !important;
-    
+
     }
     .app-container{
-    
+
     //   padding: 20px;
       padding-bottom: 65px;
       position: relative;
@@ -382,7 +382,7 @@ export default {
                 .el-date-editor{
                     width: 80%;
                 }
-                
+
                 .el-date-editor.el-input__inner{
                     width: 100%;
                     height: 35px !important;
@@ -470,9 +470,8 @@ export default {
         color: #409EFF;
         cursor:pointer;
       }
-    
+
       .selectCompany{
             width: 180px !important;
         }
     </style>
-          
