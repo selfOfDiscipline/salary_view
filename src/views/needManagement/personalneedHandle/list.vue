@@ -50,7 +50,7 @@
                 <el-table-column label="审批人" prop="handleName"></el-table-column>
                 <el-table-column label="审批时间" show-overflow-tooltip min-width="120" prop="handleDate">
                     <template slot-scope="scope">
-                        <span>{{ scope.row.handleDate.substr(0,16) }}</span>
+                        <span v-if="scope.row.handleDate != null">{{ scope.row.handleDate.substr(0,16) }}</span>
                     </template>
                 </el-table-column>
                 <el-table-column label="审批状态" show-overflow-tooltip min-width="120" prop="approverStatus">

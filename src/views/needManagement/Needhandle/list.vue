@@ -48,7 +48,7 @@
                     <el-table-column label="薪资归属部门" prop="salaryDeptName" show-overflow-tooltip min-width="150">
                     </el-table-column>
                     <el-table-column label="节点名称" prop="nodeName"></el-table-column>
-                    <el-table-column label="上一节点处理人" prop="createName"></el-table-column>
+                    <el-table-column label="创建人" prop="createName"></el-table-column>
                     <el-table-column label="创建时间" show-overflow-tooltip min-width="120" prop="createTime">
                         <template slot-scope="scope">
                             <span>{{ scope.row.createTime.substr(0,10) }}</span>
@@ -82,13 +82,13 @@
                     <div class="goButton">GO</div>
                 </div>
             </BoxCard>
-            <el-dialog  
-                fullscreen 
+            <el-dialog
+                fullscreen
                 modal-append-to-body
                 append-to-body
-                :title="dialogName === 'edit' ? '薪资审批' : '薪资审批'" 
-                :visible.sync="editFormVisible" 
-                :close-on-click-modal="false" 
+                :title="dialogName === 'edit' ? '薪资审批' : '薪资审批'"
+                :visible.sync="editFormVisible"
+                :close-on-click-modal="false"
                 @close="editFormVisible = false">
                 <Details v-if="isAdd && editFormVisible"
                     @reload="fetchData"
@@ -110,7 +110,7 @@
           Details
         },
         filters: {
-         
+
         },
         computed: {
             tableheight() {
@@ -154,7 +154,7 @@
             editFormVisible:false,
           }
         },
-        
+
         created() {
             this.allowCollectFlag =  sessionStorage.getItem('allowCollectFlag') ==="false" ? false : true;;
             // console.log(this.allowCollectFlag);
@@ -171,7 +171,7 @@
              // 行内编辑选中的数据
             selectRow (val) {
                 this.selectlistRow = val
-            },  
+            },
             collect(){
                 console.log(this.selectlistRow)
                 if(this.selectlistRow){
@@ -193,8 +193,8 @@
                         }
                     })
                 }
-                
-               
+
+
                 // collectTheMonthSalaryFlow
             },
             handleCurrentChange(e) {
@@ -207,7 +207,7 @@
                 this.pageSize = val
                 this.fetchData()
             },
-            
+
             fetchData() {
                 this.listLoading = true
                 this.querydata.pageNum = this.pageNum
@@ -230,7 +230,7 @@
                 // this.pageSize=10
                 this.fetchData()
             },
-            
+
             resetform() {
                 this.querydata = {}
                 this.createTime = ''
@@ -240,7 +240,7 @@
                 this.isAdd = true
                 this.dialogName = name
                 this.editFormVisible = !this.editFormVisible
-            
+
             },
             delFlow(data) {
                 this.$confirm('是否确认删除?', '提示', {
@@ -272,10 +272,9 @@
                     message: '已取消删除'
                     })
                 })
-               
+
             }
         }
     }
     </script>
-    
-      
+

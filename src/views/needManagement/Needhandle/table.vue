@@ -1,19 +1,19 @@
 <template>
     <div>
-        <!-- <el-dialog  
-            fullscreen 
-            modal-append-to-body  
+        <!-- <el-dialog
+            fullscreen
+            modal-append-to-body
             append-to-body
-            title="查看员工信息" 
-            :visible.sync="editFormVisible" 
-            :close-on-click-modal="false" 
+            title="查看员工信息"
+            :visible.sync="editFormVisible"
+            :close-on-click-modal="false"
             :show-close="showClose"
             @close="editFormVisible = false">
             <Add v-if="editFormVisible"
-                :userId="userId" 
+                :userId="userId"
                 :status="status" @reload="fetchData"
                 @closeDialog="editFormVisible = false" >
-                
+
             </Add>
         </el-dialog> -->
         <el-table
@@ -21,7 +21,7 @@
             :data="list" element-loading-text="Loading"
             fit stripe highlight-current-row height=400px>
             <el-table-column label="序号" width="55" type="index">
-                
+
             </el-table-column>
             <el-table-column label="所属日期" show-overflow-tooltip min-width="120" prop="salaryDate">
                 <template slot-scope="scope">
@@ -42,7 +42,7 @@
             <el-table-column label="绩效" prop="monthPerformanceRatio" min-width="100">
             </el-table-column>
             <el-table-column label="考勤" v-if="menuType == 0">
-                <el-table-column label="出勤" prop="newEntryAttendanceDays;" min-width="120">
+                <el-table-column label="出勤" prop="newEntryAttendanceDays" min-width="120">
                 </el-table-column>
                 <!-- <el-table-column label="病假缺勤" prop="sickAdsenceDays" min-width="80">
                 </el-table-column> -->
@@ -57,7 +57,7 @@
                 <el-table-column label="转正前应出勤" prop="positiveBeforeAttendanceDays" min-width="120">
                 </el-table-column>
                 <el-table-column label="转正前其他缺勤" prop="positiveBeforeOtherAttendanceDays" min-width="120">
-                </el-table-column> 
+                </el-table-column>
                 <el-table-column label="转正前病假缺勤" prop="positiveBeforeSickAttendanceDays" min-width="120">
                 </el-table-column>
                 <el-table-column label="转正后应出勤" prop="positiveAfterAttendanceDays" min-width="120">
@@ -70,13 +70,13 @@
             <el-table-column label="其他金额增减金额" prop="monthRewordsMoney" min-width="120">
                 <template slot-scope="scope">
                     {{ scope.row.monthRewordsMoney | moneyFormit }}
-                </template>    
+                </template>
             </el-table-column>
             <el-table-column label="是否计算社保" prop="computeSocialSecurityFlag" min-width="120">
                 <template slot-scope="scope">
                     <span v-if="scope.row.computeSocialSecurityFlag == 0">是</span>
                     <span v-if="scope.row.computeSocialSecurityFlag == 1">否</span>
-                </template>    
+                </template>
             </el-table-column>
             <!-- computeSocialSecurityFlag -->
             <el-table-column label="税前工资" prop="bankTaxBeforeShouldSalary" width="80">
@@ -128,7 +128,7 @@
                 <el-table-column label="公积金" prop="housingFundCompanyPayTotal" width="80">
                     <template slot-scope="scope">
                         {{ scope.row.housingFundCompanyPayTotal | moneyFormit }}
-                    </template>     
+                    </template>
                 </el-table-column>
             </el-table-column>
             <el-table-column label="个人缴纳">
@@ -232,7 +232,7 @@ methods: {
         // if(e){
         //     console.log(e.userId)
         //     this.userId = e.userId;
-        //     this.status = 2,    
+        //     this.status = 2,
         //     this.editFormVisible = true
         // }
     },
