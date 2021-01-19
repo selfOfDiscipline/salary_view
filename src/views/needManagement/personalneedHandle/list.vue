@@ -36,21 +36,21 @@
                 </el-table-column>
                 <el-table-column label="单据编号" prop="applicationCode" show-overflow-tooltip ></el-table-column>
                 <el-table-column label="薪资归属部门" prop="salaryDeptName" show-overflow-tooltip min-width="150"></el-table-column>
-                <el-table-column label="薪资归属日期" show-overflow-tooltip min-width="120" prop="createTime">
+                <el-table-column label="薪资归属日期" show-overflow-tooltip min-width="120" prop="salaryDate">
                     <template slot-scope="scope">
-                        <span>{{ scope.row.createTime.substr(0,10) }}</span>
+                        <span>{{ scope.row.salaryDate.substr(0,7) }}</span>
                     </template>
                 </el-table-column>
                 <el-table-column label="创建人" prop="createName" show-overflow-tooltip ></el-table-column>
                 <el-table-column label="创建时间" show-overflow-tooltip min-width="120" prop="createTime">
                     <template slot-scope="scope">
-                        <span>{{ scope.row.createTime.substr(0,10) }}</span>
+                        <span>{{ scope.row.createTime.substr(0,16) }}</span>
                     </template>
                 </el-table-column>
                 <el-table-column label="审批人" prop="handleName"></el-table-column>
-                <el-table-column label="审批时间" show-overflow-tooltip min-width="120" prop="createTime">
+                <el-table-column label="审批时间" show-overflow-tooltip min-width="120" prop="handleDate">
                     <template slot-scope="scope">
-                        <span>{{ scope.row.createTime.substr(0,10) }}</span>
+                        <span>{{ scope.row.handleDate.substr(0,16) }}</span>
                     </template>
                 </el-table-column>
                 <el-table-column label="审批状态" show-overflow-tooltip min-width="120" prop="approverStatus">
@@ -59,13 +59,13 @@
                     </template>
                 </el-table-column>
                 <el-table-column label="审批意见" prop="handleOpinion" show-overflow-tooltip ></el-table-column>
-                
+
                 <el-table-column label="单据类型" show-overflow-tooltip min-width="120" prop="approverStatus">
                     <template slot-scope="scope">
                         <span >{{ scope.row.applicationType }}</span>
                     </template>
                 </el-table-column>
-               
+
                 <!-- <el-table-column label="操作" prop="businessTripMoney" width="100" fixed="right">
                     <template slot-scope="scope">
                         <el-tooltip placement="top">
@@ -88,14 +88,14 @@
                 <div class="goButton">GO</div>
             </div>
         </BoxCard>
-        <el-dialog  
+        <el-dialog
             width="400px"
             height="400px"
-            modal-append-to-body  
+            modal-append-to-body
             append-to-body
-            :title="dialogName === 'edit' ? '编辑' : '新增'" 
-            :visible.sync="editFormVisible" 
-            :close-on-click-modal="false" 
+            :title="dialogName === 'edit' ? '编辑' : '新增'"
+            :visible.sync="editFormVisible"
+            :close-on-click-modal="false"
             @close="editFormVisible = false">
             <Add v-if="isAdd && editFormVisible"
                 @reload="fetchData"
@@ -115,7 +115,7 @@
       Add
     },
     filters: {
-     
+
     },
     computed: {
         tableheight() {
@@ -145,7 +145,7 @@
     data() {
       return {
         name:'',
-        
+
         list:[],
         listLoading: false,
         currentPage: 1,
@@ -161,13 +161,13 @@
         editFormVisible:false,
       }
     },
-    
+
     created() {
 
     },
     mounted() {
       this.fetchData()
-  
+
     },
     methods: {
         handleCurrentChange(e) {
@@ -180,7 +180,7 @@
             this.pageSize = val
             this.fetchData()
         },
-        
+
         fetchData() {
             this.listLoading = true
             this.querydata.pageNum = this.pageNum
@@ -207,7 +207,7 @@
             // this.pageSize=10
             this.fetchData()
         },
-        
+
         resetform() {
             this.querydata = {}
             this.createTime = ''
@@ -216,7 +216,7 @@
             this.isAdd = true
             this.dialogName = name
             this.editFormVisible = !this.editFormVisible
-        
+
         },
         delFlow(data) {
             this.$confirm('是否确认删除?', '提示', {
@@ -248,10 +248,9 @@
                 message: '已取消删除'
                 })
             })
-           
+
         }
     }
 }
 </script>
 
-  
