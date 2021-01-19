@@ -42,7 +42,7 @@
             <el-table-column label="绩效" prop="monthPerformanceRatio" min-width="100">
             </el-table-column>
             <el-table-column label="考勤" v-if="menuType == 0">
-                <el-table-column label="出勤" prop="newEntryAttendanceDays;" min-width="120">
+                <el-table-column label="出勤" prop="newEntryAttendanceDays" min-width="120">
                 </el-table-column>
                 <!-- <el-table-column label="病假缺勤" prop="sickAdsenceDays" min-width="80">
                 </el-table-column> -->
