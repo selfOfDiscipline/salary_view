@@ -6,7 +6,7 @@
                     <div class="searchInput">
                     <el-form ref="form" :model="querydata" label-width="100px" :inline="true" :class="isAll?'allheight':'oneheight'">
                         <el-form-item>
-                        <el-input v-model="querydata.theme" placeholder="请输入员工姓名" clearable />
+                        <el-input v-model="querydata.userName" placeholder="请输入员工姓名" clearable />
                         </el-form-item>
                         <el-form-item>
                             <el-select v-model="querydata.userSalaryDeptId" filterable placeholder="请选择薪资归属部门">
@@ -35,7 +35,7 @@
                     <el-button type="primary" plain @click="click" >一键生成</el-button>
                 </template>
                 <el-table
-                    :cell-style="cellStyle" 
+                    :cell-style="cellStyle"
                     :header-cell-style="headCellStyle"
                     slot="main"
                     v-loading="listLoading"
@@ -50,13 +50,13 @@
                         </template>
                     </el-table-column>
                     <el-table-column label="员工姓名" prop="userName" show-overflow-tooltip min-width="120"/>
-            
+
                     <el-table-column label="薪资归属部门" show-overflow-tooltip min-width="120" prop="salaryDeptName">
                         <template slot-scope="scope">
                         <span>{{ scope.row.salaryDeptName }}</span>
                         </template>
                     </el-table-column>
-                    
+
                     <el-table-column label="基本工资" prop="monthBaseSalary" min-width="120" show-overflow-tooltip></el-table-column>
                     <!-- 绩效占比 -->
                     <el-table-column label="绩效" prop="monthPerformanceRatio" min-width="100">
@@ -92,7 +92,7 @@
                             <el-input size="small" v-model="scope.row.monthRewordsMoney"></el-input>
                         </template>
                     </el-table-column> -->
-                    
+
                     <el-table-column label="税前工资" prop="bankTaxBeforeShouldSalary" width="80">
                         <template slot-scope="scope">
                             {{ scope.row.bankTaxBeforeShouldSalary | moneyFormit }}
@@ -142,7 +142,7 @@
                         <el-table-column label="公积金" prop="housingFundCompanyPayTotal" width="80">
                             <template slot-scope="scope">
                                 {{ scope.row.housingFundCompanyPayTotal | moneyFormit }}
-                            </template>     
+                            </template>
                         </el-table-column>
                     </el-table-column>
                     <el-table-column label="个人缴纳">
@@ -199,7 +199,7 @@
                     <div class="goButton">GO</div>
                 </div>
             </BoxCard>
-        </div>  
+        </div>
     </div>
 </template>
 <script>
@@ -207,7 +207,7 @@ import { BoxCard } from '@/layout/components'
 import { selectUserListBySalaryUser,lastMonthIncomeCompute,generateTheMonthBasePayroll } from '@/api/Technical'
 import {selectDeptList,selectRoleList,selectSalaryDeptList,saveOrUpdateManageUser} from '@/api/userList'
 export default {
-    
+
     name: 'FlowList',
     components: {
         BoxCard
@@ -229,7 +229,7 @@ export default {
                 return '正式'
             case 2:
                 return '离职'
-            
+
             }
         },
     },
@@ -280,7 +280,7 @@ export default {
             }
             selectSalaryDeptList(par).then(res => {
                 console.log(res)
-                // 
+                //
                 if(res.code == 200){
                     this.SalaryDeptlist = res.data.dataList
                 }
@@ -328,7 +328,7 @@ export default {
             this.pageSize = val
             this.fetchData()
         },
-        
+
         fetchData() {
             // if(this.querydata.userSalaryDeptId){
                 this.listLoading = true
@@ -348,7 +348,7 @@ export default {
             // this.pageSize=10
             this.fetchData()
         },
-        
+
         showall() {
             this.isAll = !this.isAll
         },
@@ -368,7 +368,7 @@ export default {
        //设置指定行、列、具体单元格颜色
        cellStyle(row, column, rowIndex, columnIndex){
             if(row.row.currentComputeFlag === 1){ //指定坐标rowIndex ：行，columnIndex ：列
-               return 'background:#e1f1ff' 
+               return 'background:#e1f1ff'
             }else{
                 return ''
             }
@@ -376,7 +376,7 @@ export default {
     }
 }
 </script>
-          
+
 <style lang="scss" scoped>
     .cards{
         padding: 0 5px !important;
@@ -385,5 +385,4 @@ export default {
         margin-bottom: 0px !important;
     }
 </style>
-          
-          
+
