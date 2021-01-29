@@ -7,7 +7,7 @@
                             <el-form ref="form" :model="querydata" label-width="100px" :inline="true" :class="isAll?'allheight':'oneheight'">
                                 <el-form-item>
                                     <el-input v-model="querydata.userName" placeholder="请输入员工姓名" clearable />
-                                </el-form-item> 
+                                </el-form-item>
                                 <el-form-item>
                                     <el-date-picker
                                         v-model="querydata.salaryDate"
@@ -67,6 +67,12 @@
                         </template>
                     </el-table-column>
                     <el-table-column label="员工姓名" prop="userName"></el-table-column>
+                    <el-table-column label="工资已发放" prop="payWagesFlag" min-width="120">
+                        <template slot-scope="scope">
+                            <span v-if="scope.row.payWagesFlag == 0">否</span>
+                            <span v-if="scope.row.payWagesFlag == 1">是</span>
+                        </template>
+                    </el-table-column>
                     <el-table-column label="实付工资" show-overflow-tooltip min-width="120" prop="totalIncomeMoney">
                         <template slot-scope="scope">
                             <span>{{ scope.row.totalIncomeMoney |moneyFormit }}</span>
@@ -126,7 +132,7 @@
                         <el-table-column label="公积金" prop="housingFundCompanyPayTotal" width="80">
                             <template slot-scope="scope">
                                 {{ scope.row.housingFundCompanyPayTotal | moneyFormit }}
-                            </template>     
+                            </template>
                         </el-table-column>
                     </el-table-column>
                     <el-table-column label="个人缴纳">
@@ -161,7 +167,7 @@
                             </template>
                         </el-table-column>
                     </el-table-column>
-                    
+
                     <!-- <el-table-column label="操作" prop="businessTripMoney" width="100" fixed="right">
                         <template slot-scope="scope">
                             <el-tooltip placement="top">
@@ -184,14 +190,14 @@
                     <div class="goButton">GO</div>
                 </div>
             </BoxCard>
-            <el-dialog  
+            <el-dialog
                 width="400px"
                 height="400px"
-                modal-append-to-body  
+                modal-append-to-body
                 append-to-body
-                :title="dialogName === 'edit' ? '编辑' : '新增'" 
-                :visible.sync="editFormVisible" 
-                :close-on-click-modal="false" 
+                :title="dialogName === 'edit' ? '编辑' : '新增'"
+                :visible.sync="editFormVisible"
+                :close-on-click-modal="false"
                 @close="editFormVisible = false">
                 <Add v-if="isAdd && editFormVisible"
                     @reload="fetchData"
@@ -206,7 +212,7 @@
       import { parseTime,} from "@/utils/index";
       import {selectRoleList,selectSalaryDeptList} from '@/api/userList'
       import { selectHistorySalaryList,exportSalaryBill } from '@/api/historical'
-      
+
       import { selectUserSalaryDeptList,deleteUserSalaryDeptByIds } from '@/api/salaryDepartment'
       export default {
         name: 'FlowList',
@@ -215,7 +221,7 @@
           Add
         },
         filters: {
-         
+
         },
         computed: {
             tableheight() {
@@ -262,14 +268,14 @@
             baseUrl:process.env.VUE_APP_BASE_API + 'salary/exportSalaryBill',
           }
         },
-        
+
         created() {
-    
+
         },
         mounted() {
           this.fetchData()
           this.SalaryDeptList();
-      
+
         },
         methods: {
             SalaryDeptList(){
@@ -280,7 +286,7 @@
                 }
                 selectSalaryDeptList(par).then(res => {
                     console.log(res)
-                    // 
+                    //
                     if(res.code == 200){
                         this.SalaryDeptlist = res.data.dataList
 
@@ -295,8 +301,8 @@
                     userName:userName,
                     salaryDeptId:salaryDeptId,
                 }
-                
-                exportSalaryBill(query).then(res=>{ 
+
+                exportSalaryBill(query).then(res=>{
                         debugger
                         console.log(res)
                     　　this.download(res)
@@ -346,7 +352,7 @@
                 this.pageSize = val
                 this.fetchData()
             },
-            
+
             fetchData() {
                 this.listLoading = true
                 this.querydata.pageNum = this.pageNum
@@ -364,7 +370,7 @@
                 // this.pageSize=10
                 this.fetchData()
             },
-            
+
             resetform() {
                 this.querydata = {}
                 this.createTime = ''
@@ -373,7 +379,7 @@
                 this.isAdd = true
                 this.dialogName = name
                 this.editFormVisible = !this.editFormVisible
-            
+
             },
             delFlow(data) {
                 this.$confirm('是否确认删除?', '提示', {
@@ -405,7 +411,7 @@
                     message: '已取消删除'
                     })
                 })
-               
+
             }
         }
     }
@@ -639,5 +645,4 @@
     }
 }
 
-</style>   
-      
+</style>
